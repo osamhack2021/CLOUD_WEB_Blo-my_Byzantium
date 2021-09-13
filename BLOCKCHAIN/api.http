@@ -1,0 +1,27 @@
+http://localhost:8080/fooddata/
+
+###
+
+http://localhost:8080/fooddata/blocks
+
+###
+
+POST http://localhost:8080/fooddata/blocks
+
+###
+
+http://localhost:8080/blocks/fooddata/{hash}
+
+###
+http://localhost:8080/fooddata/transactions/delivery/cp/39/Kimchi/Kg/1
+
+###
+
+http://localhost:8080/fooddata/transactions/provide/cp/Kimchi/Kg/2
+
+###
+http://localhost:8080/fooddata/transactions/mempool
+
+###
+
+http://localhost:8080/fooddata/transactions/balance/39/Kimchi
