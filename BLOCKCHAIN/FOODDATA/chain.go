@@ -8,16 +8,20 @@ import (
 
 type blockchain struct {
 	NewestHash string
-	Blocks     []*Block
 }
 
+type DB struct {
+	Blocks []*Block
+}
+
+var db DB
 var b *blockchain
 var once sync.Once
 
 var errblockNotExist error = errors.New("Block not found")
 
-func FindBlock(b *blockchain, hash string) (*Block, error) {
-	for _, block := range b.Blocks {
+func findBlockinDB(db DB, hash string) (*Block, error) {
+	for _, block := range db.Blocks {
 		if block.Hash == hash {
 			return block, nil
 		}
@@ -25,9 +29,23 @@ func FindBlock(b *blockchain, hash string) (*Block, error) {
 	return &Block{}, errblockNotExist
 }
 
+func FindBlock(b *blockchain, hash string) (block *Block, err error) {
+	here := b.NewestHash
+	for {
+		if here == "" {
+			return &Block{}, errblockNotExist
+		}
+		if here == hash {
+			return findBlockinDB(db, here)
+		}
+		bb, _ := findBlockinDB(db, here)
+		here = bb.PrevHash
+	}
+}
+
 func (b *blockchain) AddBlock() {
 	block := createBlock(b.NewestHash)
-	b.Blocks = append(b.Blocks, block)
+	db.Blocks = append(db.Blocks, block)
 	b.NewestHash = block.Hash
 }
 
@@ -35,7 +53,7 @@ func UTxOutsByAddress(b *blockchain, address, food string) []*UTxOut {
 	var uTxOuts []*UTxOut
 	creatorTxs := make(map[string]bool)
 
-	for _, block := range b.Blocks {
+	for _, block := range db.Blocks {
 		for _, tx := range block.Transactions {
 			for _, input := range tx.TxIns {
 				if input.Owner == address && input.Food == food {
@@ -68,6 +86,19 @@ func Remained(b *blockchain, address, food string) int {
 	return amount
 }
 
+func AllBlocks(b *blockchain) (blocks []*Block) {
+	here := b.NewestHash
+	for {
+		block, _ := findBlockinDB(db, here)
+		blocks = append(blocks, block)
+		here = block.PrevHash
+		if block.PrevHash == "" {
+			break
+		}
+	}
+	return blocks
+}
+
 func GetBlockchain() *blockchain {
 	if b == nil {
 		once.Do(func() {
@@ -77,6 +108,7 @@ func GetBlockchain() *blockchain {
 	}
 	return b
 }
+
 func BalanceByAddress(b *blockchain, address, food string) int {
 	txOuts := UTxOutsByAddress(b, address, food)
 	var amount int

@@ -77,7 +77,7 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 func blocks(rw http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		UTILS.HandleErr(json.NewEncoder(rw).Encode(FOODDATA.GetBlockchain()))
+		UTILS.HandleErr(json.NewEncoder(rw).Encode(FOODDATA.AllBlocks(FOODDATA.GetBlockchain())))
 	case "POST":
 		FOODDATA.GetBlockchain().AddBlock()
 		rw.WriteHeader(http.StatusCreated)
