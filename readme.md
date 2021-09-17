@@ -31,9 +31,11 @@
 
 ## 설치 안내 (Installation Process)
 ```bash
-$ git clone git주소
-$ yarn or npm install
-$ yarn start or npm run start
+$ cd WEB/blo_web/frontend
+$ npm install
+$ cd ..
+$ pip install -r requirements.txt
+$ python manage.py runserver react
 ```
 
 ## 프로젝트 사용법 (Getting Started)
