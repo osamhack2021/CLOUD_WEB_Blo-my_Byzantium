@@ -8,7 +8,7 @@ from rest_framework.parsers import JSONParser
 
 
 
-
+@csrf_exempt
 def account_list(request):
     if request.method == 'GET':
         query_set = Account.objects.all()
@@ -25,8 +25,9 @@ def account_list(request):
 
 
 
+@csrf_exempt
 def account(request, pk):
-
+    
     obj = Account.objects.get(pk=pk)
 
     if request.method == 'GET':
@@ -47,6 +48,7 @@ def account(request, pk):
 
 
 
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
