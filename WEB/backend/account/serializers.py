@@ -6,4 +6,6 @@ from .models import Account
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['name', 'phone_number', 'address']
+        fields = ['id', 'military_id', 'password', 'permission', 'name', 'rank', 'affiliated_unit', 'phone_number', 'email']
+        
+        # id는 유저고유번호입니다.

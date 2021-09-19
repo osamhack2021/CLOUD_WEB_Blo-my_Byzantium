@@ -52,10 +52,10 @@ def account(request, pk):
 def login(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        search_name = data['name']
-        obj = Account.objects.get(name=search_name)
+        search_military_id = data['military_id']
+        obj = Account.objects.get(military_id = search_military_id)
 
-        if data['phone_number'] == obj.phone_number:
+        if data['password'] == obj.password:
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=400)
