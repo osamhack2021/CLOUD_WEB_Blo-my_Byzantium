@@ -53,7 +53,7 @@ func UTxOutsByAddress(b *blockchain, address, food string) []*UTxOut {
 	var uTxOuts []*UTxOut
 	creatorTxs := make(map[string]bool)
 
-	for _, block := range db.Blocks {
+	for _, block := range AllBlocks(b) {
 		for _, tx := range block.Transactions {
 			for _, input := range tx.TxIns {
 				if input.Owner == address && input.Food == food {
@@ -111,6 +111,9 @@ func GetBlockchain() *blockchain {
 
 func BalanceByAddress(b *blockchain, address, food string) int {
 	txOuts := UTxOutsByAddress(b, address, food)
+	for _, tx := range txOuts {
+		fmt.Println(*tx)
+	}
 	var amount int
 	amount = 0
 	for _, txOut := range txOuts {
