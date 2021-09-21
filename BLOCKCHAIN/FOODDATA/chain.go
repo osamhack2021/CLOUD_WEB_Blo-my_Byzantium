@@ -124,12 +124,12 @@ func BalanceByAddressNfood(b *blockchain, address, food string) int {
 }
 
 type Foodblock struct {
-	Timestamp      string
-	Food           string
-	Address        string
-	ReceivedAmount int
-	Quota          int
-	SendAmount     int
+	Timestamp      string `json:"timestamp"`
+	Food           string`json:"type"`
+	Address        string`json:"address"`
+	ReceivedAmount int`json:"receiveamount"`
+	Quota          int`json:"quota"`
+	SendAmount     int`json:"sendamount"`
 }
 
 func GetFoodblockBydateNfood(date, food string) (fbs []*Foodblock) {

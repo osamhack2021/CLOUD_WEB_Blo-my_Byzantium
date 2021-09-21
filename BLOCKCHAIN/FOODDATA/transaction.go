@@ -25,14 +25,12 @@ type TxIn struct {
 	Index      int
 	Owner      string
 	Food       string
-	AmountUnit string
 }
 
 type TxOut struct {
 	Owner      string
 	Food       string
 	Amount     int
-	AmountUnit string
 }
 
 type UTxOut struct {
@@ -56,12 +54,12 @@ func (t *Tx) getId() {
 	t.ID = UTILS.GetHash(t)
 }
 
-func maketotalamountTx(to, food, unit string, amount int) *Tx {
+func maketotalamountTx(to, food string, amount int) *Tx {
 	txIns := []*TxIn{
-		{"", -1, "TOTAL AMOUNT", food, unit},
+		{"", -1, "TOTAL AMOUNT", food},
 	}
 	txOuts := []*TxOut{
-		{to, food, amount, unit},
+		{to, food, amount},
 	}
 	tx := Tx{
 		ID:        "",
@@ -73,7 +71,7 @@ func maketotalamountTx(to, food, unit string, amount int) *Tx {
 	return &tx
 }
 
-func makeTx(from, to, food, unit string, amount int) (*Tx, error) {
+func makeTx(from, to, food string, amount int) (*Tx, error) {
 	if Remained(GetBlockchain(), from, food) < amount {
 		return nil, errors.New("not enough remained")
 	}
@@ -85,15 +83,15 @@ func makeTx(from, to, food, unit string, amount int) (*Tx, error) {
 		if total >= amount {
 			break
 		}
-		txIn := &TxIn{uTxOut.TxID, uTxOut.Index, from, food, unit}
+		txIn := &TxIn{uTxOut.TxID, uTxOut.Index, from, food}
 		txIns = append(txIns, txIn)
 		total += uTxOut.Amount
 	}
 	if change := total - amount; change != 0 {
-		changeTxOut := &TxOut{from, food, change, unit}
+		changeTxOut := &TxOut{from, food, change}
 		txOuts = append(txOuts, changeTxOut)
 	}
-	txOut := &TxOut{to, food, amount, unit}
+	txOut := &TxOut{to, food, amount}
 	txOuts = append(txOuts, txOut)
 	tx := &Tx{
 		ID:        "",
@@ -105,8 +103,8 @@ func makeTx(from, to, food, unit string, amount int) (*Tx, error) {
 	return tx, nil
 }
 
-func (m *mempool) AddTx(from, to, food, unit string, amount int) error {
-	tx, err := makeTx(from, to, food, unit, amount)
+func (m *mempool) AddTx(from, to, food string, amount int) error {
+	tx, err := makeTx(from, to, food, amount)
 	if err != nil {
 		return err
 	}
@@ -114,8 +112,8 @@ func (m *mempool) AddTx(from, to, food, unit string, amount int) error {
 	return nil
 }
 
-func (m *mempool) ProvideFood(address, food, unit string, amount int) error {
-	tx := maketotalamountTx(address, food, unit, amount)
+func (m *mempool) ProvideFood(address, food string, amount int) error {
+	tx := maketotalamountTx(address, food, amount)
 	m.Txs = append(m.Txs, tx)
 	return nil
 }
