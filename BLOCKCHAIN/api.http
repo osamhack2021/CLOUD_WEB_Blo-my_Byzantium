@@ -13,15 +13,23 @@ POST http://localhost:8080/fooddata/blocks
 http://localhost:8080/blocks/fooddata/{hash}
 
 ###
-http://localhost:8080/fooddata/transactions/delivery/cp/39/Kimchi/Kg/1
+http://localhost:8080/fooddata/transactions/delivery/1/11/Kimchi/Kg/280
+###
+http://localhost:8080/fooddata/transactions/delivery/11/111/Kimchi/Kg/150
+###
+http://localhost:8080/fooddata/transactions/delivery/11/112/Kimchi/Kg/50
 
 ###
 
-http://localhost:8080/fooddata/transactions/provide/cp/Kimchi/Kg/2
+http://localhost:8080/fooddata/transactions/provide/1/Kimchi/Kg/750
 
 ###
 http://localhost:8080/fooddata/transactions/mempool
 
 ###
 
-http://localhost:8080/fooddata/transactions/balance/cp/Kimchi
+http://localhost:8080/fooddata/transactions/balance/111/Kimchi
+
+###
+
+http://localhost:8080/fooddata/2021-09-21/Kimchi

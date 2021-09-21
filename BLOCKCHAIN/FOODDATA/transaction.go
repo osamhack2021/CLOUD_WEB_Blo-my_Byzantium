@@ -15,7 +15,7 @@ var Mempool *mempool = &mempool{}
 //부식 Tx
 type Tx struct {
 	ID        string
-	Timestamp int
+	Timestamp time.Time
 	TxIns     []*TxIn
 	TxOuts    []*TxOut
 }
@@ -65,7 +65,7 @@ func maketotalamountTx(to, food, unit string, amount int) *Tx {
 	}
 	tx := Tx{
 		ID:        "",
-		Timestamp: int(time.Now().Unix()),
+		Timestamp: time.Now(),
 		TxIns:     txIns,
 		TxOuts:    txOuts,
 	}
@@ -97,7 +97,7 @@ func makeTx(from, to, food, unit string, amount int) (*Tx, error) {
 	txOuts = append(txOuts, txOut)
 	tx := &Tx{
 		ID:        "",
-		Timestamp: int(time.Now().Unix()),
+		Timestamp: time.Now(),
 		TxIns:     txIns,
 		TxOuts:    txOuts,
 	}

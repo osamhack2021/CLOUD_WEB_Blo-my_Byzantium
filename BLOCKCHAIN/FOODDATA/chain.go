@@ -3,6 +3,7 @@ package FOODDATA
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"sync"
 )
 
@@ -109,7 +110,7 @@ func GetBlockchain() *blockchain {
 	return b
 }
 
-func BalanceByAddress(b *blockchain, address, food string) int {
+func BalanceByAddressNfood(b *blockchain, address, food string) int {
 	txOuts := UTxOutsByAddress(b, address, food)
 	for _, tx := range txOuts {
 		fmt.Println(*tx)
@@ -120,4 +121,44 @@ func BalanceByAddress(b *blockchain, address, food string) int {
 		amount += txOut.Amount
 	}
 	return amount
+}
+
+type Foodblock struct {
+	Timestamp      string
+	Food           string
+	Address        string
+	ReceivedAmount int
+	Quota          int
+	SendAmount     int
+}
+
+func GetFoodblockBydateNfood(date, food string) (fbs []*Foodblock) {
+	blockchian := GetBlockchain()
+	blocks := AllBlocks(blockchian)
+	for _, block := range blocks {
+		for _, tx := range block.Transactions {
+			timestring := fmt.Sprint(tx.Timestamp)
+			if strings.HasPrefix(timestring, date) {
+				checkaddress := tx.TxIns[0].Owner
+				fb := Foodblock{}
+				fb.SendAmount = 0
+				for _, txout := range tx.TxOuts {
+					if txout.Food == food && txout.Owner != checkaddress {
+						fb.Address = txout.Owner
+						fb.Food = food
+						fb.ReceivedAmount = txout.Amount
+						fb.Timestamp = fmt.Sprint(tx.Timestamp)
+						fb.Quota = BalanceByAddressNfood(blockchian, fb.Address, food)
+						fb.SendAmount = fb.ReceivedAmount - fb.Quota
+						fbs = append(fbs, &fb)
+					}
+				}
+			}
+		}
+	}
+
+	for _, f := range fbs {
+		fmt.Println(*f)
+	}
+	return fbs
 }
