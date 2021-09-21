@@ -125,11 +125,11 @@ func BalanceByAddressNfood(b *blockchain, address, food string) int {
 
 type Foodblock struct {
 	Timestamp      string `json:"timestamp"`
-	Food           string`json:"type"`
-	Address        string`json:"address"`
-	ReceivedAmount int`json:"receiveamount"`
-	Quota          int`json:"quota"`
-	SendAmount     int`json:"sendamount"`
+	Food           string `json:"type"`
+	Address        string `json:"address"`
+	ReceivedAmount int    `json:"receiveamount"`
+	Quota          int    `json:"quota"`
+	SendAmount     int    `json:"sendamount"`
 }
 
 func GetFoodblockBydateNfood(date, food string) (fbs []*Foodblock) {
@@ -142,8 +142,18 @@ func GetFoodblockBydateNfood(date, food string) (fbs []*Foodblock) {
 				checkaddress := tx.TxIns[0].Owner
 				fb := Foodblock{}
 				fb.SendAmount = 0
+			Loop:
 				for _, txout := range tx.TxOuts {
 					if txout.Food == food && txout.Owner != checkaddress {
+						for _, temp := range fbs {
+							if temp.Address == txout.Owner {
+								temp.ReceivedAmount += txout.Amount
+								temp.Timestamp = fmt.Sprint(tx.Timestamp)
+								temp.Quota = BalanceByAddressNfood(blockchian, temp.Address, food)
+								temp.SendAmount = temp.ReceivedAmount - temp.Quota
+								continue Loop
+							}
+						}
 						fb.Address = txout.Owner
 						fb.Food = food
 						fb.ReceivedAmount = txout.Amount
