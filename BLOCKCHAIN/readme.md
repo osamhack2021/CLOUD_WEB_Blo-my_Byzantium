@@ -14,4 +14,40 @@
  ## 기능 설명
  - main.go를 실행
     ```go run main.go```
- - test.http 파일에서 테스트
+ - VSCODE를 이용해 test.http 파일 오픈
+ - test.http파일의 각 URL 위에 떠 있는 'Send Request' 버튼을 통해 request 전송 가능
+ - //튜토리얼 시작 ~ //튜토리얼 종료 까지 URL을 실행해보면서 튜토리얼 진행 가능
+
+  ###  부식 데이터 관리(http://localhost:8080/fooddata)
+ - /fooddata
+URL들에 대한 설명 출력
+
+ - /fooddata/admin/provide/{address}/{food}/{amount}
+ address에 food를 amount만큼 제공(가장 처음에 할당하는 데이터), 생성된 데이터를 mempool에 보관함
+
+ - /fooddata/admin/approve
+ 승인나지 않은 데이터를 승인. mempool에 있는 데이터를 block으로 생성
+
+ - /fooddata/admin/mempool
+ mempool 조회.(아직 어플을 사용할 user용 URL이 아님. 프로젝트 설계에서는 해당 기능을 사용하지 않기 때문에 미완성으로 둠. 추후 보기 쉽게 변경할 예정)
+
+ - /fooddata/makefooddata/{food}/{from}/{to}/{amount}
+ from에서 amount만큼의 food를 to로 전달함. to에서 해당 음식을 받았을 때 사용하는 기능
+
+ - /fooddata/see/{date}/{food}
+ 해당 date에 해당 food의 대한 유통 정보 조회. {date}는 yyyy-MM-dd 형식에 맞춰서 적어야함. ex) /fooddata/see/2021-09-22/Kimchi
+
+   ###  함수 플로우차트
+   - 전체적인 함수 플로우 차트
+   ![FlowChart](./image/FlowChart.png)
+
+   - /fooddata/makefooddata/{food}/{from}/{to}/{amount}
+   ![makefooddata](./image/makefooddata.png)
+
+   - /fooddata/admin/approve
+   ![approve](./image/approve.png) 
+
+    ## 작업해야할목록
+   - account에 따른 wallet 구현
+   - DB 연결(임시)
+   - DB 연결 제거 후 P2P방식의 서버 구현

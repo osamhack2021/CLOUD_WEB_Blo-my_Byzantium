@@ -15,11 +15,11 @@ import (
 var port string = ":8080"
 
 type URLDescription struct {
-	URL         string
-	Method      string
-	Description string
-	Payload     string
-	Example     string
+	URL         string `json:"url"`
+	Method      string `json:"method"`
+	Description string `json:"description"`
+	Payload     string `json:"payload"`
+	Example     string `json:"example"`
 }
 
 func help(rw http.ResponseWriter, r *http.Request) {
@@ -30,17 +30,17 @@ func help(rw http.ResponseWriter, r *http.Request) {
 			Description: "See All URL",
 		},
 		{
-			URL:         "http://localhost:8080/fooddata/{yyyy-MM-dd}/{food}",
+			URL:         "http://localhost:8080/fooddata/see/{yyyy-MM-dd}/{food}",
 			Method:      "GET",
 			Description: "See The {food} Data For That day",
 			Payload:     "{yyyy-MM-dd} = formated String {food}=string",
 			Example:     "http://localhost:8080/fooddata/2021-09-21/Kimchi",
 		},
 		{
-			URL:         "http://localhost:8080/fooddata/{yyyy-MM-dd}/{food}/{from}/{to}/{amount}",
+			URL:         "http://localhost:8080/fooddata/makefooddata/{food}/{from}/{to}/{amount}",
 			Method:      "POST",
 			Description: "Make The {food} Data For That day",
-			Payload:     "{yyyy-MM-dd} = format {food}=string {from}=string {to}=string {amount}=int",
+			Payload:     "{food}=string {from}=string {to}=string {amount}=int",
 			Example:     "http://localhost:8080/fooddata/2021-09-21/Kimchi/1stBrigade/1stGeneration/280",
 		},
 		{
@@ -121,10 +121,10 @@ func Start() {
 
 	handler.HandleFunc("/fooddata", help)
 	handler.HandleFunc("/fooddata/admin/approve", approve)
-	handler.HandleFunc("/fooddata/{food}/{from}/{to}/{amount}", makefooddate)
+	handler.HandleFunc("/fooddata/makefooddata/{food}/{from}/{to}/{amount}", makefooddate)
 	handler.HandleFunc("/fooddata/admin/provide/{address}/{food}/{amount}", provide)
 	handler.HandleFunc("/fooddata/admin/mempool", mempool)
-	handler.HandleFunc("/fooddata/{date}/{food}", seefooddate)
+	handler.HandleFunc("/fooddata/see/{date}/{food}", seefooddate)
 
 	fmt.Println("Listening on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(port, handler))
