@@ -8,7 +8,7 @@ http://localhost:8080/fooddata/admin/makefirstblock
 http://localhost:8080/fooddata/2021-09-21/Kimchi
 
 ###
-http://localhost:8080/fooddata/2021-09-21/Kimchi/1stBrigade/1stGeneration/280
+http://localhost:8080/fooddata/Kimchi/1stBrigade/1stGeneration/280
 
 ###
 
@@ -17,7 +17,7 @@ http://localhost:8080/fooddata/admin/mempool
 
 ###
 
-http://localhost:8080/fooddata/admin/Provide/1stBrigade/Kimchi/750
+http://localhost:8080/fooddata/admin/provide/1stBrigade/Kimchi/750
 
 ###
 

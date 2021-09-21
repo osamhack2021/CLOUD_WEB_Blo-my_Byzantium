@@ -15,10 +15,11 @@ import (
 var port string = ":8080"
 
 type URLDescription struct {
-	URL         string `json:"url"`
-	Method      string `json:"method"`
-	Description string `json:"description"`
-	Payload     string `json:"payload"`
+	URL         string
+	Method      string
+	Description string
+	Payload     string
+	Example     string
 }
 
 func help(rw http.ResponseWriter, r *http.Request) {
@@ -32,19 +33,22 @@ func help(rw http.ResponseWriter, r *http.Request) {
 			URL:         "http://localhost:8080/fooddata/{yyyy-MM-dd}/{food}",
 			Method:      "GET",
 			Description: "See The {food} Data For That day",
-			Payload:     "{yyyy-MM-dd} = format\n{food}=string\n  (ex. http://localhost:8080/fooddata/2021-09-21/Kimchi)",
+			Payload:     "{yyyy-MM-dd} = formated String {food}=string",
+			Example:     "http://localhost:8080/fooddata/2021-09-21/Kimchi",
 		},
 		{
 			URL:         "http://localhost:8080/fooddata/{yyyy-MM-dd}/{food}/{from}/{to}/{amount}",
 			Method:      "POST",
 			Description: "Make The {food} Data For That day",
-			Payload:     "{yyyy-MM-dd} = format\n{food}=string\n{from}=string\n{to}=string\namount=int\n  (ex. http://localhost:8080/fooddata/2021-09-21/Kimchi/1stBrigade/1stGeneration/280)",
+			Payload:     "{yyyy-MM-dd} = format {food}=string {from}=string {to}=string {amount}=int",
+			Example:     "http://localhost:8080/fooddata/2021-09-21/Kimchi/1stBrigade/1stGeneration/280",
 		},
 		{
 			URL:         "http://localhost:8080/fooddata/admin/Provide/{address}/{food}/{amount}",
 			Method:      "POST",
 			Description: "Make The Total Amount Data For That Day",
-			Payload:     "{address} = string\n{food}=string\n{amount}=int\n  (ex.http://localhost:8080/fooddata/admin/Provide/1stBrigade/Kimchi/750)",
+			Payload:     "{address} = string {food}=string {amount}=int",
+			Example:     "http://localhost:8080/fooddata/admin/Provide/1stBrigade/Kimchi/750",
 		},
 		{
 			URL:         "http://localhost:8080/fooddata/admin/mempool",
@@ -84,7 +88,6 @@ func makefooddate(rw http.ResponseWriter, r *http.Request) {
 	food := vars["food"]
 	amount, err := strconv.Atoi(vars["amount"])
 	UTILS.HandleErr(err)
-	fmt.Println(from, to, food, amount)
 	FOODDATA.Mempool.AddTx(from, to, food, amount)
 	rw.WriteHeader(http.StatusCreated)
 }
@@ -117,11 +120,11 @@ func Start() {
 	handler.Use(jsonContentTypeMiddleware)
 
 	handler.HandleFunc("/fooddata", help)
-	handler.HandleFunc("/fooddata/{date}/{food}", seefooddate)
-	handler.HandleFunc("/fooddata/{food}/{from}/{to}/{amount}", makefooddate)
-	handler.HandleFunc("/fooddata/admin/mempool", mempool)
-	handler.HandleFunc("/fooddata/admin/Provide/{address}/{food}/{amount}", provide)
 	handler.HandleFunc("/fooddata/admin/approve", approve)
+	handler.HandleFunc("/fooddata/{food}/{from}/{to}/{amount}", makefooddate)
+	handler.HandleFunc("/fooddata/admin/provide/{address}/{food}/{amount}", provide)
+	handler.HandleFunc("/fooddata/admin/mempool", mempool)
+	handler.HandleFunc("/fooddata/{date}/{food}", seefooddate)
 
 	fmt.Println("Listening on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(port, handler))

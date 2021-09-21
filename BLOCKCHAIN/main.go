@@ -1,8 +1,6 @@
 package main
 
-import (
-	"BLOCKCHAIN/SERVICE"
-)
+import "BLOCKCHAIN/SERVICE"
 
 func main() {
 	SERVICE.Start()
