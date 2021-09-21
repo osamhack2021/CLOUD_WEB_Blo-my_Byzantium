@@ -12,19 +12,13 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type URL string
-
 var port string = ":8080"
 
 type URLDescription struct {
-	URL         URL
+	URL         string
 	Method      string
 	Description string
 	Payload     string
-}
-
-type AddBlockBody struct {
-	Message string
 }
 
 func documentation(rw http.ResponseWriter, r *http.Request) {
@@ -104,10 +98,9 @@ func transactionDelivery(rw http.ResponseWriter, r *http.Request) {
 	from := vars["from"]
 	to := vars["to"]
 	food := vars["food"]
-	unit := vars["unit"]
 	amount, err := strconv.Atoi(vars["amount"])
 	UTILS.HandleErr(err)
-	FOODDATA.Mempool.AddTx(from, to, food, unit, amount)
+	FOODDATA.Mempool.AddTx(from, to, food, amount)
 	rw.WriteHeader(http.StatusCreated)
 }
 
@@ -115,10 +108,9 @@ func transactionProvide(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	address := vars["address"]
 	food := vars["food"]
-	unit := vars["unit"]
 	amount, err := strconv.Atoi(vars["amount"])
 	UTILS.HandleErr(err)
-	FOODDATA.Mempool.ProvideFood(address, food, unit, amount)
+	FOODDATA.Mempool.ProvideFood(address, food, amount)
 	rw.WriteHeader(http.StatusCreated)
 }
 
@@ -156,8 +148,8 @@ func Start() {
 	handler.HandleFunc("/fooddata/", documentation)
 	handler.HandleFunc("/fooddata/blocks", blocks)
 	handler.HandleFunc("/fooddata/blocks/{hash:[a-z0-9]+}", block)
-	handler.HandleFunc("/fooddata/transactions/delivery/{from}/{to}/{food}/{unit}/{amount}", transactionDelivery)
-	handler.HandleFunc("/fooddata/transactions/provide/{address}/{food}/{unit}/{amount}", transactionProvide)
+	handler.HandleFunc("/fooddata/transactions/delivery/{from}/{to}/{food}/{amount}", transactionDelivery)
+	handler.HandleFunc("/fooddata/transactions/provide/{address}/{food}/{amount}", transactionProvide)
 	handler.HandleFunc("/fooddata/transactions/mempool", mempool)
 	handler.HandleFunc("/fooddata/transactions/balance/{address}/{food}", balance)
 	handler.HandleFunc("/fooddata/{date}/{food}", getpage)

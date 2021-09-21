@@ -1,9 +1,9 @@
 package main
 
 import (
-	"BLOCKCHAIN/API"
+	"BLOCKCHAIN/SERVICE"
 )
 
 func main() {
-	API.Start()
+	SERVICE.Start()
 }
