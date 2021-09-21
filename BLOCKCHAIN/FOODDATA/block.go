@@ -9,7 +9,7 @@ import (
 type Block struct {
 	Hash         string
 	PrevHash     string
-	Timestamp    int
+	Timestamp    time.Time
 	Transactions []*Tx
 }
 
@@ -24,7 +24,7 @@ func createBlock(prevHash string) *Block {
 		Hash:     "",
 		PrevHash: prevHash,
 	}
-	block.Timestamp = int(time.Now().Unix())
+	block.Timestamp = time.Now()
 	block.Hash = calculateHash(block)
 	block.Transactions = Mempool.TxToConfirm()
 	return block

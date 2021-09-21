@@ -137,8 +137,16 @@ func balance(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	address := vars["address"]
 	food := vars["food"]
-	amount := FOODDATA.BalanceByAddress(FOODDATA.GetBlockchain(), address, food)
+	amount := FOODDATA.BalanceByAddressNfood(FOODDATA.GetBlockchain(), address, food)
 	json.NewEncoder(rw).Encode(balancest{address, food, amount})
+}
+
+func getpage(rw http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	date := vars["date"]
+	food := vars["food"]
+	UTILS.HandleErr(json.NewEncoder(rw).Encode(FOODDATA.GetFoodblockBydateNfood(date, food)))
+
 }
 
 func Start() {
@@ -152,6 +160,7 @@ func Start() {
 	handler.HandleFunc("/fooddata/transactions/provide/{address}/{food}/{unit}/{amount}", transactionProvide)
 	handler.HandleFunc("/fooddata/transactions/mempool", mempool)
 	handler.HandleFunc("/fooddata/transactions/balance/{address}/{food}", balance)
+	handler.HandleFunc("/fooddata/{date}/{food}", getpage)
 
 	fmt.Println("Listening on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(port, handler))
