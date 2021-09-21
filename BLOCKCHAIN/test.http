@@ -1,35 +1,26 @@
-http://localhost:8080/fooddata/
+http://localhost:8080/fooddata
+//사용법 보기
 
 ###
 
-http://localhost:8080/fooddata/blocks
+http://localhost:8080/fooddata/admin/provide/1stBrigade/Kimchi/750
+// 1stBrigade에 750만큼의 김치를 제공(초기 제공, 관리자 권한)
+
+###
+http://localhost:8080/fooddata/Kimchi/1stBrigade/1stGeneration/280
+// 1stBrigade에서 1stGeneration로 280만큼의 김치를 전달한다는 트랜잭션 생성 (일반 권한)
 
 ###
 
-POST http://localhost:8080/fooddata/blocks
-
-###
-
-http://localhost:8080/blocks/fooddata/{hash}
-
-###
-http://localhost:8080/fooddata/transactions/delivery/1/11/Kimchi/280
-###
-http://localhost:8080/fooddata/transactions/delivery/11/111/Kimchi/150
-###
-http://localhost:8080/fooddata/transactions/delivery/11/112/Kimchi/50
-
-###
-
-http://localhost:8080/fooddata/transactions/provide/1/Kimchi/750
-
-###
-http://localhost:8080/fooddata/transactions/mempool
-
-###
-
-http://localhost:8080/fooddata/transactions/balance/11/Kimchi
+POST http://localhost:8080/fooddata/admin/approve
+// mempool에 있는 데이터 생성 승인 (관리자 권한)
 
 ###
 
 http://localhost:8080/fooddata/2021-09-21/Kimchi
+// 2021-09-21에 김치에 대한 부식작전 현황 보기(일반 권한)
+
+###
+
+http://localhost:8080/fooddata/admin/mempool
+// mempool보기(아직 user용으로 다듬어지지 않음. 추후 관리자 계층이 아직 승인되지 않은 데이터를 확인하기 위한 용도로 수정할 예정) (관리자 권한)
