@@ -58,7 +58,7 @@ python manage.py runserver
     - 특정 유저 정보 수정
  
 
-- POST /login/
+- POST /account/login/
     - 로그인 json 형식은 이렇습니다:
         '''
         {

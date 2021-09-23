@@ -9,5 +9,5 @@ urlpatterns = [
     path('api/', include('post.urls')),
     path('account/', include('account.urls')),
 
-    path('', RedirectView.as_view(url='/api/', permanent=True)),    #blank auto redirect
+    path('', RedirectView.as_view(url='account/', permanent=True)),    #blank auto redirect
 ]

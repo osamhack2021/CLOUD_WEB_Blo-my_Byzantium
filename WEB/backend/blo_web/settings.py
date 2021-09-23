@@ -25,11 +25,9 @@ SECRET_KEY = 'django-insecure-#*^ythd6zimr-a_bv83wj&!#^a-sgniyr@=fgrcu^bqp_2vffs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
 ALLOWED_HOSTS = ['*']
-
-
-CORS_ORIGIN_ALLOW_ALL = True       #CORS 오류해결
-
 
 # Application definition
 
@@ -41,31 +39,32 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'post',
-    'rest_framework',
     'corsheaders',
+    'rest_framework',
+    'post',
     'account.apps.AccountConfig',
 ]
-
+"""
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]
-}
+}"""
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "django.middleware.common.CommonMiddleware",
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True        #CORS 오류해결
 
 ROOT_URLCONF = 'blo_web.urls'
 
@@ -142,13 +141,3 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
-
-
-"""CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8000',
-    'http://localhost:3000',
-    'http://localhost:8080',
-]
-"""
