@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
+CORS_ALLOW_ALL_ORIGINS = True       #CORS 오류해결
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -141,7 +144,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-CORS_ALLOW_ALL_ORIGINS = True       #CORS 오류해결
 
 
 """CORS_ORIGIN_WHITELIST = [
