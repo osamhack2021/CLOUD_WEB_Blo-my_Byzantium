@@ -8,20 +8,27 @@ from rest_framework.parsers import JSONParser
 
 
 
+
+
 @csrf_exempt
 def account_list(request):
     if request.method == 'GET':
         query_set = Account.objects.all()
         serializer = AccountSerializer(query_set, many=True)
-        return JsonResponse(serializer.data, safe=False)
 
+        #response = JsonResponse(serializer.data, safe=False)
+        #response_allow_header(response)
+
+        return response_allow_header(JsonResponse(serializer.data, safe=False))
+        
+        
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = AccountSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return response_allow_header(JsonResponse(serializer.data, status=201))
+        return response_allow_header(JsonResponse(serializer.errors, status=400))
 
 
 
@@ -32,19 +39,19 @@ def account(request, pk):
 
     if request.method == 'GET':
         serializer = AccountSerializer(obj)
-        return JsonResponse(serializer.data, safe=False)
+        return response_allow_header(JsonResponse(serializer.data, safe=False))
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         serializer = AccountSerializer(obj, data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return response_allow_header(JsonResponse(serializer.data, status=201))
+        return response_allow_header(JsonResponse(serializer.errors, status=400))
 
     elif request.method == 'DELETE':
         obj.delete()
-        return HttpResponse(status=204)
+        return response_allow_header(HttpResponse(status=204))
 
 
 
@@ -56,6 +63,15 @@ def login(request):
         obj = Account.objects.get(military_id = search_military_id)
 
         if data['password'] == obj.password:
-            return HttpResponse(status=200)
+            return response_allow_header(HttpResponse(status=200))
         else:
-            return HttpResponse(status=400)
+            return response_allow_header(HttpResponse(status=400))
+
+
+
+
+
+
+def response_allow_header(jsonrequest):                                 #강제 CORS 헤더 허용
+    jsonrequest["Access-Control-Allow-Origin"] = '*'
+    return jsonrequest
