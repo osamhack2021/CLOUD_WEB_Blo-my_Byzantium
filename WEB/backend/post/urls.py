@@ -1,7 +1,7 @@
 #backend/post/urls.py
 from django.urls import path
+from post import views
 
-from . import views
 
 urlpatterns = [
     path('', views.ListPost.as_view()),

@@ -1,6 +1,6 @@
 #urls.py
 from django.conf.urls import url, include
-from account import views
+from . import views
 from django.urls import path
 
 
