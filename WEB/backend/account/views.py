@@ -2,9 +2,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Account
+from .models import User
 from .serializers import AccountSerializer
 from rest_framework.parsers import JSONParser
+from rest_framework.authtoken.models import Token
 
 
 
@@ -13,7 +14,7 @@ from rest_framework.parsers import JSONParser
 @csrf_exempt
 def account_list(request):
     if request.method == 'GET':
-        query_set = Account.objects.all()
+        query_set = User.objects.all()
         serializer = AccountSerializer(query_set, many=True)
 
         #response = JsonResponse(serializer.data, safe=False)
@@ -34,8 +35,7 @@ def account_list(request):
 
 @csrf_exempt
 def account(request, pk):
-    
-    obj = Account.objects.get(pk=pk)
+    obj = User.objects.get(pk=pk)
 
     if request.method == 'GET':
         serializer = AccountSerializer(obj)
@@ -59,8 +59,8 @@ def account(request, pk):
 def login(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        search_military_id = data['military_id']
-        obj = Account.objects.get(military_id = search_military_id)
+        search_username = data['username']
+        obj = User.objects.get(username = search_username)
 
         if data['password'] == obj.password:
             return response_allow_header(HttpResponse(status=200))

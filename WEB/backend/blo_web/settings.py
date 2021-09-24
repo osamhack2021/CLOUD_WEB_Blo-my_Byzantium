@@ -41,8 +41,9 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
+    'account',
     'post',
-    'account.apps.AccountConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -100,6 +101,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'account.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
