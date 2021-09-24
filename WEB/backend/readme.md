@@ -37,7 +37,7 @@ python manage.py runserver
             "username" : "20-00000000" ,     #군번필드는 중첩되어서는 안되고, 블록 데이터베이스의 owner와 연동됩니다
             "password" : "pass123!" , 
             "permission" : 2 , 
-            "name" : "유저이름" , 
+            "name" : "이름" , 
             "rank" : "상병" , 
             "affiliated_unit" : "소속부대" , 
             "phone_number" : "010-9999-9999" , 
@@ -62,7 +62,7 @@ python manage.py runserver
     - 로그인 json 형식은 이렇습니다:
         '''
         {
-            "military_id" : "20-00000000" ,
+            "username" : "20-00000000" ,
             "password" : "pass123!"
         }
         '''
