@@ -1,0 +1,54 @@
+http://localhost:8080/firearmAssets
+//사용법 보기
+
+###
+///튜토리얼 시작
+// 이해심화를 위해 1)을 한 후와 3)을 한 후 test.http 파일 맨 아래에 있는 mempool보기를 사용할 수 있음
+
+http://localhost:8080/firearmAssets/admin/makeFireArm/1234567/K2/make
+// 1) 총기번호가 '1234567' K2 소총을 만듦. 비고에는 'make'를 작성함(관리자 권한)
+
+###
+
+POST http://localhost:8080/firearmAssets/admin/approve
+// 2) mempool에 있는 데이터 생성 승인 (관리자 권한)
+
+###
+
+http://localhost:8080/firearmAssets/ownerchange/1234567/20-12345678
+// 3) 1234567의 owner를 20-12345678로 변경. 총기수령
+
+###
+
+POST http://localhost:8080/firearmAssets/admin/approve
+// 4) mempool에 있는 데이터 생성 승인 (관리자 권한)
+
+###
+
+http://localhost:8080/firearmAssets/move/1234567/1P/1Co/1Bn/1Div
+// 5) 1234567의 location을 변경
+
+###
+POST http://localhost:8080/firearmAssets/admin/approve
+// 6) mempool에 있는 데이터 생성 승인 (관리자 권한)
+
+###
+
+http://localhost:8080/firearmAssets/notes/1234567/Slamfire
+// 7) 1234567의 note 변경. ( 경계작전으로 인한 총기 수불, 휴가, 파견 등 총기 소유주, 소유부대 변경 없이 간단한 메모 작성시 사용)
+
+###
+
+POST http://localhost:8080/firearmAssets/admin/approve
+// 8) mempool에 있는 데이터 생성 승인 (관리자 권한)
+
+###
+
+http://localhost:8080/firearmAssets/see/1234567
+// 9) 1234567의 대한 데이터 보기.
+
+//튜토리얼 종료
+###
+
+http://localhost:8080//firearmAssets/admin/mempool
+// mempool보기(아직 user용으로 다듬어지지 않음. 추후 관리자 계층이 아직 승인되지 않은 데이터를 확인하기 위한 용도로 수정할 예정) (관리자 권한)
