@@ -78,12 +78,10 @@ func UTxOutsByAddress(b *blockchain, address, food string) []*UTxOut {
 
 func Remained(b *blockchain, address, food string) int {
 	txOuts := UTxOutsByAddress(b, address, food)
-	fmt.Println(txOuts)
 	var amount int
 	for _, txOut := range txOuts {
 		amount += txOut.Amount
 	}
-	fmt.Println(amount)
 	return amount
 }
 
@@ -112,9 +110,6 @@ func GetBlockchain() *blockchain {
 
 func BalanceByAddressNfood(b *blockchain, address, food string) int {
 	txOuts := UTxOutsByAddress(b, address, food)
-	for _, tx := range txOuts {
-		fmt.Println(*tx)
-	}
 	var amount int
 	amount = 0
 	for _, txOut := range txOuts {
@@ -165,10 +160,6 @@ func GetFoodblockBydateNfood(date, food string) (fbs []*Foodblock) {
 				}
 			}
 		}
-	}
-
-	for _, f := range fbs {
-		fmt.Println(*f)
 	}
 	return fbs
 }

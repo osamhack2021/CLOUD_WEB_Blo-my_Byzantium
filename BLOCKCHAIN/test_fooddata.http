@@ -24,8 +24,8 @@ POST http://localhost:8080/fooddata/admin/approve
 
 ###
 
-http://localhost:8080/fooddata/see/2021-09-22/Kimchi
-//5) 2021-09-22에 김치에 대한 부식작전 현황 보기(일반 권한)
+http://localhost:8080/fooddata/see/2021-09-25/Kimchi
+//5) 2021-09-25에 김치에 대한 부식작전 현황 보기(일반 권한)
 //  날짜는 자동생성이기 때문에 테스트를 진행하는 당일 날짜로 바꿔서 진행바람
 
 //튜토리얼 종료
