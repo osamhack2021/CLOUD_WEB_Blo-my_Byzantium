@@ -1,3 +1,18 @@
+# 하이퍼레저 페브릭(Hyperledger Fabric) 데모
+## Getting Started
+하이퍼레져 도커 바이너리 설치, 새로운 환경일때마다 실행해야함.
+```bash
+$ curl -sSL https://bit.ly/2ysbOFE | bash -s
+```
+
+```bash
+$ /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/fabcar
+```
+
+## 문제점
+하이퍼레저 네트웍 시작/종료 시 터미널이 날아감. 터미널 재실행후 재개
+
+
 ### 본 페이지는 샘플입니다. 아래의 *[샘플 양식에 포함되어 있는 항목은 필수 기재사항]*   입니다.
 해당 내용은 모두 예시이며 설명이 부족하거나 추가하고싶은 부분이 있으면 개발자님이 추가해서 작성하셔도 무관합니다. (동영상, 이미지, 텍스트 적용 전부 자유)
 
