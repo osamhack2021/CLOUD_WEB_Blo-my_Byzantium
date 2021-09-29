@@ -41,9 +41,9 @@ async function main() {
         const contract = network.getContract('blomy');
 
         // Evaluate the specified transaction.
-        // queryCar transaction - requires 1 argument, ex: ('queryCar', 'CAR4')
-        // queryAllCars transaction - requires no arguments, ex: ('queryAllCars')
-        const result = await contract.evaluateTransaction('queryAllCars');
+        // queryFirearm transaction - requires 1 argument, ex: ('queryFirearm', 'FIREARM4')
+        // queryAllFirearms transaction - requires no arguments, ex: ('queryAllFirearms')
+        const result = await contract.evaluateTransaction('queryAllFirearms');
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
         // Disconnect from the gateway.

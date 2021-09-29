@@ -12,102 +12,72 @@ class Blomy extends Contract {
 
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger ===========');
-        const cars = [
-            {
-                color: 'blue',
-                make: 'Toyota',
-                model: 'Prius',
-                owner: 'Tomoko',
-            },
-            {
-                color: 'red',
-                make: 'Ford',
-                model: 'Mustang',
-                owner: 'Brad',
-            },
-            {
-                color: 'green',
-                make: 'Hyundai',
-                model: 'Tucson',
-                owner: 'Jin Soo',
-            },
-            {
-                color: 'yellow',
-                make: 'Volkswagen',
-                model: 'Passat',
-                owner: 'Max',
-            },
-            {
-                color: 'black',
-                make: 'Tesla',
-                model: 'S',
-                owner: 'Adriana',
-            },
-            {
-                color: 'purple',
-                make: 'Peugeot',
-                model: '205',
-                owner: 'Michel',
-            },
-            {
-                color: 'white',
-                make: 'Chery',
-                model: 'S22L',
-                owner: 'Aarav',
-            },
-            {
-                color: 'violet',
-                make: 'Fiat',
-                model: 'Punto',
-                owner: 'Pari',
-            },
-            {
-                color: 'indigo',
-                make: 'Tata',
-                model: 'Nano',
-                owner: 'Valeria',
-            },
-            {
-                color: 'brown',
-                make: 'Holden',
-                model: 'Barina',
-                owner: 'Shotaro',
-            },
+        const firearms = [
+              {
+                "serialNumber": "76982975",
+                "model": "K-2",
+                "owner": "21-73847385",
+                "notes": ""
+              },
+              {
+                "serialNumber": "95885216",
+                "model": "K-2",
+                "owner": "21-73333385",
+                "notes": "Dud"
+              },
+              {
+                "serialNumber": "68204105",
+                "model": "K2C1",
+                "owner": "21-73645485",
+                "notes": ""
+              },
+              {
+                "serialNumber": "79077509",
+                "model": "K-3",
+                "owner": "21-12347385",
+                "notes": ""
+              },
+              {
+                "serialNumber": "96372174",
+                "model": "K2C1",
+                "owner": "21-73811185",
+                "notes": "Hang fire"
+              }
         ];
 
-        for (let i = 0; i < cars.length; i++) {
-            cars[i].docType = 'car';
-            await ctx.stub.putState('CAR' + i, Buffer.from(JSON.stringify(cars[i])));
-            console.info('Added <--> ', cars[i]);
+        for (let i = 0; i < firearms.length; i++) {
+            firearms[i].docType = 'firearm';
+            await ctx.stub.putState('FIREARM' + i, Buffer.from(JSON.stringify(firearms[i])));
+            console.info('Added <--> ', firearms[i]);
         }
         console.info('============= END : Initialize Ledger ===========');
     }
 
-    async queryCar(ctx, carNumber) {
-        const carAsBytes = await ctx.stub.getState(carNumber); // get the car from chaincode state
-        if (!carAsBytes || carAsBytes.length === 0) {
-            throw new Error(`${carNumber} does not exist`);
+    async queryFirearm(ctx, serialNumber) {
+        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
+        if (!firearmAsBytes || firearmAsBytes.length === 0) {
+            throw new Error(`${serialNumber} does not exist`);
         }
-        console.log(carAsBytes.toString());
-        return carAsBytes.toString();
+        console.log(firearmAsBytes.toString());
+        return firearmAsBytes.toString();
     }
 
-    async createCar(ctx, carNumber, make, model, color, owner) {
-        console.info('============= START : Create Car ===========');
+    async createFirearm(ctx, firearmNumber, serialNumber, model, owner, notes ) {
+        console.info('============= START : Create Firearm ===========');
 
-        const car = {
-            color,
-            docType: 'car',
-            make,
+        const firearm = {
+            serialNumber,
+            docType: 'firearm',
             model,
             owner,
+            notes,
         };
 
-        await ctx.stub.putState(carNumber, Buffer.from(JSON.stringify(car)));
-        console.info('============= END : Create Car ===========');
+        await ctx.stub.putState(firearmNumber, Buffer.from(JSON.stringify(firearm)));
+        console.info('============= END : Create Firearm ===========');
     }
 
-    async queryAllCars(ctx) {
+    async queryAllFirearms(ctx) {
         const startKey = '';
         const endKey = '';
         const allResults = [];
@@ -126,18 +96,18 @@ class Blomy extends Contract {
         return JSON.stringify(allResults);
     }
 
-    async changeCarOwner(ctx, carNumber, newOwner) {
-        console.info('============= START : changeCarOwner ===========');
+    async changeFirearmOwner(ctx, serialNumber, newOwner) {
+        console.info('============= START : changeFirearmOwner ===========');
 
-        const carAsBytes = await ctx.stub.getState(carNumber); // get the car from chaincode state
-        if (!carAsBytes || carAsBytes.length === 0) {
-            throw new Error(`${carNumber} does not exist`);
+        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
+        if (!firearmAsBytes || firearmAsBytes.length === 0) {
+            throw new Error(`${serialNumber} does not exist`);
         }
-        const car = JSON.parse(carAsBytes.toString());
-        car.owner = newOwner;
+        const firearm = JSON.parse(firearmAsBytes.toString());
+        firearm.owner = newOwner;
 
-        await ctx.stub.putState(carNumber, Buffer.from(JSON.stringify(car)));
-        console.info('============= END : changeCarOwner ===========');
+        await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
+        console.info('============= END : changeFirearmOwner ===========');
     }
 
 }
