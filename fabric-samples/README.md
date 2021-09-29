@@ -46,3 +46,4 @@ $ node query.js
 [localhost:5984/_utils](localhost:5984/_utils) 로 로그인
 admin/adminpw
 
+![image](https://user-images.githubusercontent.com/10104871/135261417-f0914f35-0268-4165-8795-d988ae163089.png)
