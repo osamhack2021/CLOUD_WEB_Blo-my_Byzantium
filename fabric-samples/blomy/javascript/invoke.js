@@ -40,9 +40,9 @@ async function main() {
         const contract = network.getContract('blomy');
 
         // Submit the specified transaction.
-        // createCar transaction - requires 5 argument, ex: ('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom')
-        // changeCarOwner transaction - requires 2 args , ex: ('changeCarOwner', 'CAR12', 'Dave')
-        await contract.submitTransaction('createCar', 'CAR12', 'Honda', 'Accord', 'Black', 'Tom');
+        // createFirearm transaction - requires 6 argument, ex: ('createFirearm', 'Firearm12', '96372174', 'K2C1', '21-22922385', 'Case head separation')
+        // changeFirearmOwner transaction - requires 3 args , ex: ('changeFirearmOwner', 'FIREARM12', '21-22922385')
+        await contract.submitTransaction('createFirearm', 'Firearm12', '96372174', 'K2C1', '21-22922385', 'Case head separation');
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
