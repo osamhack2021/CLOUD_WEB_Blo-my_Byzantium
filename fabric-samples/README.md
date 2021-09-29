@@ -44,4 +44,5 @@ $ node query.js
 
 ## couchDB 데이터 확인
 [localhost:5984/_utils](localhost:5984/_utils) 로 로그인
+admin/adminpw
 
