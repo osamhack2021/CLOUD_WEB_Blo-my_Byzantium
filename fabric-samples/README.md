@@ -51,6 +51,7 @@ admin/adminpw
 ## Hyperledger Explorer 구현
 실행
 ```bash
+$ cd explorer
 $ docker-compose up -d
 ```
 종료
