@@ -59,7 +59,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	contract := network.GetContract("fabcar")
+	contract := network.GetContract("blomy")
 
 	result, err := contract.EvaluateTransaction("queryAllCars")
 	if err != nil {

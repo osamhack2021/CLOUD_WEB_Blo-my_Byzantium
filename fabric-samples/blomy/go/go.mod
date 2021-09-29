@@ -1,4 +1,4 @@
-module fabcar
+module blomy
 
 go 1.14
 
