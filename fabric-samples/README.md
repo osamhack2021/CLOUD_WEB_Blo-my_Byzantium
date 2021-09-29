@@ -49,6 +49,14 @@ admin/adminpw
 ![image](https://user-images.githubusercontent.com/10104871/135261417-f0914f35-0268-4165-8795-d988ae163089.png)
 
 ## Hyperledger Explorer 구현
+실행
+```bash
+$ docker-compose up -d
+```
+종료
+```bash
+$ $ docker-compose down -v
+```
 [localhost:8080](localhost:8080)
 로그인: exploreradmin/exploreradminpw
 
