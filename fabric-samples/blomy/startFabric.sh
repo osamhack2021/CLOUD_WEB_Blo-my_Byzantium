@@ -14,13 +14,13 @@ CC_SRC_LANGUAGE=${1:-"go"}
 CC_SRC_LANGUAGE=`echo "$CC_SRC_LANGUAGE" | tr [:upper:] [:lower:]`
 
 if [ "$CC_SRC_LANGUAGE" = "go" -o "$CC_SRC_LANGUAGE" = "golang" ] ; then
-	CC_SRC_PATH="../chaincode/fabcar/go/"
+	CC_SRC_PATH="../chaincode/blomy/go/"
 elif [ "$CC_SRC_LANGUAGE" = "javascript" ]; then
-	CC_SRC_PATH="../chaincode/fabcar/javascript/"
+	CC_SRC_PATH="../chaincode/blomy/javascript/"
 elif [ "$CC_SRC_LANGUAGE" = "java" ]; then
-	CC_SRC_PATH="../chaincode/fabcar/java"
+	CC_SRC_PATH="../chaincode/blomy/java"
 elif [ "$CC_SRC_LANGUAGE" = "typescript" ]; then
-	CC_SRC_PATH="../chaincode/fabcar/typescript/"
+	CC_SRC_PATH="../chaincode/blomy/typescript/"
 else
 	echo The chaincode language ${CC_SRC_LANGUAGE} is not supported by this script
 	echo Supported chaincode languages are: go, java, javascript, and typescript
@@ -37,15 +37,15 @@ rm -rf go/wallet/*
 pushd ../test-network
 ./network.sh down
 ./network.sh up createChannel -ca -s couchdb
-./network.sh deployCC -ccn fabcar -ccv 1 -cci initLedger -ccl ${CC_SRC_LANGUAGE} -ccp ${CC_SRC_PATH}
+./network.sh deployCC -ccn blomy -ccv 1 -cci initLedger -ccl ${CC_SRC_LANGUAGE} -ccp ${CC_SRC_PATH}
 popd
 
 cat <<EOF
 
 Total setup execution time : $(($(date +%s) - starttime)) secs ...
 
-Next, use the FabCar applications to interact with the deployed FabCar contract.
-The FabCar applications are available in multiple programming languages.
+Next, use the Blomy applications to interact with the deployed Blomy contract.
+The Blomy applications are available in multiple programming languages.
 Follow the instructions for the programming language of your choice:
 
 JavaScript:
@@ -58,7 +58,7 @@ JavaScript:
 
   Then run the following applications to enroll the admin user, and register a new user
   called appUser which will be used by the other applications to interact with the deployed
-  FabCar contract:
+  Blomy contract:
     node enrollAdmin
     node registerUser
 
@@ -83,7 +83,7 @@ TypeScript:
 
   Then run the following applications to enroll the admin user, and register a new user
   called appUser which will be used by the other applications to interact with the deployed
-  FabCar contract:
+  Blomy contract:
     node dist/enrollAdmin
     node dist/registerUser
 
@@ -116,7 +116,7 @@ Go:
     cd go
 
   Then, install dependencies and run the test using:
-    go run fabcar.go
+    go run blomy.go
 
   The test will invoke the sample client app which perform the following:
     - Import user credentials into the wallet (if they don't already exist there)
