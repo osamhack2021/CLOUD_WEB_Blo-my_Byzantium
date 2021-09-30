@@ -28,7 +28,7 @@ $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
 admin 생성 후 app유저 생성
 ```bash
 $ node enrollAdmin.js
-$ node node registerUser.js
+$ node registerUser.js
 ```
 새로운 asset 생성
 ```bash
