@@ -18,35 +18,35 @@ class Blomy extends Contract {
                 "serialNumber": "76982975",
                 "model": "K-2",
                 "owner": "21-73847385",
-                "withOwner": true,
+                "iswithOwner": true,
                 "notes": ""
               },
               {
                 "serialNumber": "95885216",
                 "model": "K-2",
                 "owner": "21-73333385",
-                "withOwner": false,
+                "iswithOwner": false,
                 "notes": "Dud"
               },
               {
                 "serialNumber": "68204105",
                 "model": "K2C1",
                 "owner": "21-73645485",
-                "withOwner": true,
+                "iswithOwner": true,
                 "notes": ""
               },
               {
                 "serialNumber": "79077509",
                 "model": "K-3",
                 "owner": "21-12347385",
-                "withOwner": true,
+                "iswithOwner": true,
                 "notes": ""
               },
               {
                 "serialNumber": "96372174",
                 "model": "K2C1",
                 "owner": "21-73811185",
-                "withOwner": true,
+                "iswithOwner": true,
                 "notes": "Hang fire"
               }
         ];
@@ -60,7 +60,7 @@ class Blomy extends Contract {
     }
 
     // 2. 새 총기 등록
-    async createFirearm(ctx, serialNumber, model, owner, withOwner, notes ) {
+    async createFirearm(ctx, serialNumber, model, owner, iswithOwner, notes ) {
         console.info('============= START : Create Firearm ===========');
 
         const firearm = {
@@ -68,7 +68,7 @@ class Blomy extends Contract {
             docType: 'firearm',
             model,
             owner,
-            withOwner,
+            iswithOwner,
             notes,
         };
 
