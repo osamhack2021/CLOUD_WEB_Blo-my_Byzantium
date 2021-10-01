@@ -48,14 +48,14 @@ class Blomy extends Contract {
 
         for (let i = 0; i < firearms.length; i++) {
             firearms[i].docType = 'firearm';
-            await ctx.stub.putState('FIREARM' + i, Buffer.from(JSON.stringify(firearms[i])));
+            await ctx.stub.putState(firearms[i].serialNumber, Buffer.from(JSON.stringify(firearms[i])));
             console.info('Added <--> ', firearms[i]);
         }
         console.info('============= END : Initialize Ledger ===========');
     }
 
     // 2. 새 총기 등록
-    async createFirearm(ctx, firearmNumber, serialNumber, model, owner, notes ) {
+    async createFirearm(ctx, serialNumber, model, owner, notes ) {
         console.info('============= START : Create Firearm ===========');
 
         const firearm = {
@@ -66,7 +66,7 @@ class Blomy extends Contract {
             notes,
         };
 
-        await ctx.stub.putState(firearmNumber, Buffer.from(JSON.stringify(firearm)));
+        await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
         console.info('============= END : Create Firearm ===========');
     }
 
@@ -81,9 +81,9 @@ class Blomy extends Contract {
     }
 
     // 4. 총기 과거 이력 조회
-    async GetAssetHistory(ctx, assetName) {
+    async GetAssetHistory(ctx, serialNumber) {
 
-		let resultsIterator = await ctx.stub.getHistoryForKey(assetName);
+		let resultsIterator = await ctx.stub.getHistoryForKey(serialNumber);
 		let results = await this._GetAllResults(resultsIterator, true);
 
 		return JSON.stringify(results);
