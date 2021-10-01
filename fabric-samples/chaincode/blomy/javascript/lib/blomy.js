@@ -110,6 +110,51 @@ class Blomy extends Contract {
         console.info('============= END : changeFirearmOwner ===========');
     }
 
+    async GetAssetHistory(ctx, assetName) {
+
+		let resultsIterator = await ctx.stub.getHistoryForKey(assetName);
+		let results = await this._GetAllResults(resultsIterator, true);
+
+		return JSON.stringify(results);
+	}
+    
+    // This is JavaScript so without Funcation Decorators, all functions are assumed
+	// to be transaction functions
+	//
+	// For internal functions... prefix them with _
+	async _GetAllResults(iterator, isHistory) {
+		let allResults = [];
+		let res = await iterator.next();
+		while (!res.done) {
+			if (res.value && res.value.value.toString()) {
+				let jsonRes = {};
+				console.log(res.value.value.toString('utf8'));
+				if (isHistory && isHistory === true) {
+					jsonRes.TxId = res.value.txId;
+					jsonRes.Timestamp = res.value.timestamp;
+					try {
+						jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
+					} catch (err) {
+						console.log(err);
+						jsonRes.Value = res.value.value.toString('utf8');
+					}
+				} else {
+					jsonRes.Key = res.value.key;
+					try {
+						jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
+					} catch (err) {
+						console.log(err);
+						jsonRes.Record = res.value.value.toString('utf8');
+					}
+				}
+				allResults.push(jsonRes);
+			}
+			res = await iterator.next();
+		}
+		iterator.close();
+		return allResults;
+	}
+
 }
 
 module.exports = Blomy;
