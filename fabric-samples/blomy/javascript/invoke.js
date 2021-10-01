@@ -42,7 +42,10 @@ async function main() {
         // Submit the specified transaction.
         // createFirearm transaction - requires 6 argument, ex: ('createFirearm', 'Firearm12', '96372174', 'K2C1', '21-22922385', 'Case head separation')
         // changeFirearmOwner transaction - requires 3 args , ex: ('changeFirearmOwner', 'FIREARM12', '21-22922385')
-        await contract.submitTransaction('createFirearm', 'Firearm12', '96372174', 'K2C1', '21-22922385', 'Case head separation');
+        await contract.submitTransaction('createFirearm', 'FIREARM12', '96372174', 'K2C1', '21-22922385', 'Case head separation');
+        console.log('Transaction has been submitted');
+
+        await contract.submitTransaction('changeFirearmOwner', 'FIREARM2', '21-22922385');
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
