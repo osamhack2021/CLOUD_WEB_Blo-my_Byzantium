@@ -63,8 +63,10 @@ $ $ docker-compose down -v
 
 ![image](https://user-images.githubusercontent.com/10104871/135264221-378468ac-e59f-470e-9751-16d6251f3711.png)
 
+##이해를 돕기 위한 그림 및 플로우차트
+
+![image](https://user-images.githubusercontent.com/10104871/135603887-16943a4e-eff4-4667-b6f1-14a7b6ae1be2.png)
 
 참조:
 https://github.com/hyperledger/fabric-samples
-
 https://github.com/hyperledger/blockchain-explorer
