@@ -10,6 +10,7 @@ const { Contract } = require('fabric-contract-api');
 
 class Blomy extends Contract {
 
+    // 1. 총기 장부 initialization
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger ===========');
         const firearms = [
@@ -53,15 +54,7 @@ class Blomy extends Contract {
         console.info('============= END : Initialize Ledger ===========');
     }
 
-    async queryFirearm(ctx, serialNumber) {
-        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
-        if (!firearmAsBytes || firearmAsBytes.length === 0) {
-            throw new Error(`${serialNumber} does not exist`);
-        }
-        console.log(firearmAsBytes.toString());
-        return firearmAsBytes.toString();
-    }
-
+    // 2. 새 총기 등록
     async createFirearm(ctx, firearmNumber, serialNumber, model, owner, notes ) {
         console.info('============= START : Create Firearm ===========');
 
@@ -77,6 +70,41 @@ class Blomy extends Contract {
         console.info('============= END : Create Firearm ===========');
     }
 
+    // 3. 총기 정보 조회
+    async queryFirearm(ctx, serialNumber) {
+        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
+        if (!firearmAsBytes || firearmAsBytes.length === 0) {
+            throw new Error(`${serialNumber} does not exist`);
+        }
+        console.log(firearmAsBytes.toString());
+        return firearmAsBytes.toString();
+    }
+
+    // 4. 총기 과거 이력 조회
+    async GetAssetHistory(ctx, assetName) {
+
+		let resultsIterator = await ctx.stub.getHistoryForKey(assetName);
+		let results = await this._GetAllResults(resultsIterator, true);
+
+		return JSON.stringify(results);
+	}
+
+    // 5. 총기의 주인 변경
+    async changeFirearmOwner(ctx, serialNumber, newOwner) {
+        console.info('============= START : changeFirearmOwner ===========');
+
+        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
+        if (!firearmAsBytes || firearmAsBytes.length === 0) {
+            throw new Error(`${serialNumber} does not exist`);
+        }
+        const firearm = JSON.parse(firearmAsBytes.toString());
+        firearm.owner = newOwner;
+
+        await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
+        console.info('============= END : changeFirearmOwner ===========');
+    }
+
+    // 6. 모든 총기 조회
     async queryAllFirearms(ctx) {
         const startKey = '';
         const endKey = '';
@@ -95,28 +123,6 @@ class Blomy extends Contract {
         console.info(allResults);
         return JSON.stringify(allResults);
     }
-
-    async changeFirearmOwner(ctx, serialNumber, newOwner) {
-        console.info('============= START : changeFirearmOwner ===========');
-
-        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
-        if (!firearmAsBytes || firearmAsBytes.length === 0) {
-            throw new Error(`${serialNumber} does not exist`);
-        }
-        const firearm = JSON.parse(firearmAsBytes.toString());
-        firearm.owner = newOwner;
-
-        await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
-        console.info('============= END : changeFirearmOwner ===========');
-    }
-
-    async GetAssetHistory(ctx, assetName) {
-
-		let resultsIterator = await ctx.stub.getHistoryForKey(assetName);
-		let results = await this._GetAllResults(resultsIterator, true);
-
-		return JSON.stringify(results);
-	}
     
     // This is JavaScript so without Funcation Decorators, all functions are assumed
 	// to be transaction functions
