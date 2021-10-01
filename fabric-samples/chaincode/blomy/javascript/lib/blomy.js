@@ -137,7 +137,7 @@ class Blomy extends Contract {
 				console.log(res.value.value.toString('utf8'));
 				if (isHistory && isHistory === true) {
 					jsonRes.TxId = res.value.txId;
-					jsonRes.Timestamp = res.value.timestamp;
+					jsonRes.Timestamp = (await this._toDate(res.value.timestamp)).toString('utf-8');
 					try {
 						jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
 					} catch (err) {
@@ -160,6 +160,12 @@ class Blomy extends Contract {
 		iterator.close();
 		return allResults;
 	}
+
+    // Makes timestamps readable
+    async _toDate(timestamp) {
+        const milliseconds = (timestamp.seconds.low + ((timestamp.nanos / 1000000) / 1000)) * 1000;
+        return new Date(milliseconds);
+    }
 
 }
 
