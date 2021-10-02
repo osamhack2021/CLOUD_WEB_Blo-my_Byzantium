@@ -6,31 +6,32 @@ import {
   useAuthDispatch,
 } from "../../utils/contexts/AuthContext";
 
-const loginRequest = axios.create({
-  baseURL: "",
-  headers: {
-    "Content-Type": "plain/text",
-  },
-});
 export default function Login() {
   const authState = useAuthState();
   const authDispatch = useAuthDispatch();
   const handleSubmit = (loginInput: { username: string; password: string }) => {
-    loginRequest
-      .post("/account/login", {
-        username: loginInput.username,
-        password: loginInput.password,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          authDispatch({
-            type: "LOGIN",
-            username: loginInput.username,
-            accessToken: "",
-            isAuth: true,
-          });
-        }
-      });
+    axios({
+      url: "https://osamhack2021-cloud-web-blo-my-byzantium-v5jxjj4w2qx5-8000.githubpreview.dev/account/login/",
+      method: "post",
+      headers: {
+        "Content-Type": "text/plain",
+      },
+      data: {
+        username: "20-12345677",
+        password: "test123",
+      },
+      withCredentials: true,
+    }).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        authDispatch({
+          type: "LOGIN",
+          username: loginInput.username,
+          accessToken: "",
+          isAuth: true,
+        });
+      }
+    });
   };
   return authState.isAuth ? (
     <div>{`${authState.username}`}</div>
