@@ -11,43 +11,63 @@ const { Contract } = require('fabric-contract-api');
 class Blomy extends Contract {
 
     // 1. 총기 장부 initialization
+    // 순서대로 총기번호, 화기명, 보유자, 보유부대, 비고, 마지막 변경사유, 변경사항(수령(CREATE), 반납(CHECKIN), 불출(CHECKOUT), 대대반납(DELETE))
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger ===========');
         const firearms = [
               {
-                "serialNumber": "76982975",
+                "serialNumber": "111111",
+                "model": "K-1A",
+                "owner": "21-1111111",
+                "affiliatedUnit": "1div11regt1bn1co1p",
+                "misc": "ready for deployment",
+                "updateReason": "for new recruit",
+                "opType": "CREATE"
+              },
+              {
+                "serialNumber": "222222",
                 "model": "K-2",
-                "owner": "21-73847385",
-                "iswithOwner": true,
-                "notes": ""
+                "owner": "21-2222222",
+                "affiliatedUnit": "1div11regt1bn1co2p",
+                "misc": "ready for deployment",
+                "updateReason": "for new recruit",
+                "opType": "CREATE"
               },
               {
-                "serialNumber": "95885216",
-                "model": "K-2",
-                "owner": "21-73333385",
-                "iswithOwner": false,
-                "notes": "Dud"
-              },
-              {
-                "serialNumber": "68204105",
-                "model": "K2C1",
-                "owner": "21-73645485",
-                "iswithOwner": true,
-                "notes": ""
-              },
-              {
-                "serialNumber": "79077509",
+                "serialNumber": "333333",
                 "model": "K-3",
-                "owner": "21-12347385",
-                "iswithOwner": true,
-                "notes": ""
+                "owner": "21-3333333",
+                "affiliatedUnit": "1div11regt1bn1co3p",
+                "misc": "ready for deployment",
+                "updateReason": "for new recruit",
+                "opType": "CREATE"
               },
               {
-                "serialNumber": "96372174",
+                "serialNumber": "444444",
                 "model": "K2C1",
-                "owner": "21-73811185",
-                "iswithOwner": true,
-                "notes": "Hang fire"
+                "owner": "21-4444444",
+                "affiliatedUnit": "1div11regt2bn6coHQ",
+                "misc": "ready for deployment",
+                "updateReason": "for new recruit",
+                "opType": "CREATE"
+              },
+              {
+                "serialNumber": "555555",
+                "model": "K-1A",
+                "owner": "21-5555555",
+                "affiliatedUnit": "1div11regt2bn6coHQ",
+                "misc": "ready for deployment",
+                "updateReason": "for new recruit",
+                "opType": "CREATE"
+              },
+              {
+                "serialNumber": "666666",
+                "model": "K2C1",
+                "owner": "21-6666666",
+                "affiliatedUnit": "1div11regt2bn6coHQ",
+                "misc": "ready for deployment",
+                "updateReason": "for new recruit",
+                "opType": "CREATE"
               }
         ];
 
@@ -60,7 +80,7 @@ class Blomy extends Contract {
     }
 
     // 2. 새 총기 등록
-    async createFirearm(ctx, serialNumber, model, owner, iswithOwner, notes ) {
+    async createFirearm(ctx, serialNumber, model, owner, affiliatedUnit, misc, updateReason ) {
         console.info('============= START : Create Firearm ===========');
 
         const firearm = {
@@ -68,8 +88,10 @@ class Blomy extends Contract {
             docType: 'firearm',
             model,
             owner,
-            iswithOwner,
-            notes,
+            affiliatedUnit,
+            misc,
+            updateReason,
+            opType: 'CREATE'
         };
 
         await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
@@ -96,7 +118,7 @@ class Blomy extends Contract {
 	}
 
     // 5. 총기의 주인 변경
-    async changeFirearmOwner(ctx, serialNumber, newOwner) {
+    async changeFirearmOwner(ctx, serialNumber, newOwner, affiliatedUnit, misc, updateReason) {
         console.info('============= START : changeFirearmOwner ===========');
 
         const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
@@ -105,6 +127,10 @@ class Blomy extends Contract {
         }
         const firearm = JSON.parse(firearmAsBytes.toString());
         firearm.owner = newOwner;
+        firearm.affiliatedUnit = affiliatedUnit;
+        firearm.misc = misc;
+        firearm.updateReason = updateReason;
+        firearm.opType = "CHECKOUT"
 
         await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
         console.info('============= END : changeFirearmOwner ===========');
