@@ -3,6 +3,7 @@ import Divider from "@mui/material/Divider";
 import FirearmList from "../components/firearms/FirearmList";
 import { FirearmListElement } from "../utils/types";
 import FirearmSearch from "../components/firearms/FirearmSearch";
+import FirearmStatus from "../components/firearms/FirearmStatus";
 
 export const SearchContext = React.createContext<{
   searchText: string;
@@ -29,7 +30,12 @@ export default function FireArmsPage() {
     <SearchContext.Provider value={value}>
       <FirearmSearch />
       <Divider sx={{ mt: 3 }} />
-      {searchText.length > 0 && <FirearmList items={items} />}
+      {searchText.length > 0 && (
+        <>
+          <FirearmStatus firearmElement={items[0]} />
+          <FirearmList items={items} />
+        </>
+      )}
     </SearchContext.Provider>
   );
 }
