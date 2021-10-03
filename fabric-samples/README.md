@@ -1,3 +1,4 @@
+
 # 하이퍼레저 페브릭(Hyperledger Fabric) 데모
 ## 환경 셋업
 1. 하이퍼레져 도커 이미지 및 바이너리 설치, 새로운 환경일때마다 실행해야함.
@@ -49,9 +50,14 @@ admin/adminpw
 ![image](https://user-images.githubusercontent.com/10104871/135261417-f0914f35-0268-4165-8795-d988ae163089.png)
 
 ## Hyperledger Explorer 구현
-실행
+준비(needs a running hyperledger network in place)
 ```bash
 $ cd explorer
+$ npm install
+$ node prepare.js
+```
+실행
+```bash
 $ docker-compose up -d
 ```
 종료
@@ -68,5 +74,5 @@ $ $ docker-compose down -v
 ![image](https://user-images.githubusercontent.com/10104871/135603887-16943a4e-eff4-4667-b6f1-14a7b6ae1be2.png)
 
 참조:
-https://github.com/hyperledger/fabric-samples
-https://github.com/hyperledger/blockchain-explorer
+- https://github.com/hyperledger/fabric-samples
+- https://github.com/hyperledger/blockchain-explorer
