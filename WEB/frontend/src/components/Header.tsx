@@ -7,16 +7,19 @@ export default function Header() {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        marginLeft: "1em",
-        marginRight: "1em",
+        paddingTop: "0.5em",
+        paddingBottom: "0.5em",
+        paddingLeft: "1em",
+        paddingRight: "1em",
+        backgroundColor: "#eae7ed",
       }}
     >
-      <img src={Logo} alt="Logo" style={{ height: "100px" }} />
+      <img src={Logo} alt="Logo" style={{ height: "70px" }} />
       {/* Hard Coded -- Should be Changed */}
       <div
         style={{
-          fontSize: "2.5em",
-          lineHeight: "100px",
+          // fontSize: "2.5em",
+          lineHeight: "70px",
         }}
       >
         OOO 상병님

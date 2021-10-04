@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import FireArmsPage from "./pages/FireArmsPage";
 import Header from "./components/Header";
