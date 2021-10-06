@@ -79,7 +79,7 @@ class Blomy extends Contract {
         console.info('============= END : Initialize Ledger ===========');
     }
 
-    // 2. 새 총기 등록
+    // 2. 수령(CREATE)
     async createFirearm(ctx, serialNumber, model, owner, affiliatedUnit, misc, updateReason ) {
         console.info('============= START : Create Firearm ===========');
 
@@ -98,7 +98,48 @@ class Blomy extends Contract {
         console.info('============= END : Create Firearm ===========');
     }
 
-    // 3. 총기 정보 조회
+    // 3. 반납(CHECKIN)
+    async checkinFirearm(ctx, serialNumber, misc, updateReason) {
+        console.info('============= START : checkinFirearm ===========');
+
+        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
+        if (!firearmAsBytes || firearmAsBytes.length === 0) {
+            throw new Error(`${serialNumber} does not exist`);
+        }
+        const firearm = JSON.parse(firearmAsBytes.toString());
+        firearm.misc = misc;
+        firearm.updateReason = updateReason;
+        firearm.opType = "CHECKIN"
+
+        await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
+        console.info('============= END : checkinFirearm ===========');
+    }
+    // 4. 불출(CHECKOUT)
+    async checkoutFirearm(ctx, serialNumber, misc, updateReason) {
+        console.info('============= START : checkoutFirearm ===========');
+
+        const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
+        if (!firearmAsBytes || firearmAsBytes.length === 0) {
+            throw new Error(`${serialNumber} does not exist`);
+        }
+        const firearm = JSON.parse(firearmAsBytes.toString());
+        firearm.misc = misc;
+        firearm.updateReason = updateReason;
+        firearm.opType = "CHECKOUT"
+
+        await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
+        console.info('============= END : checkoutFirearm ===========');
+    }
+    // 5. 대대 반납(DELETE)
+    async deleteFirearm(ctx, serialNumber) {
+        const exists = await this._AssetExists(ctx, serialNumber);
+        if (!exists) {
+            throw new Error(`The firearm ${serialNumber} does not exist`);
+        }
+        return ctx.stub.deleteState(serialNumber);
+    }
+
+    // 6. 총기 정보 조회
     async queryFirearm(ctx, serialNumber) {
         const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
         if (!firearmAsBytes || firearmAsBytes.length === 0) {
@@ -108,7 +149,7 @@ class Blomy extends Contract {
         return firearmAsBytes.toString();
     }
 
-    // 4. 총기 과거 이력 조회
+    // 7. 총기 과거 이력 조회
     async GetAssetHistory(ctx, serialNumber) {
 
 		let resultsIterator = await ctx.stub.getHistoryForKey(serialNumber);
@@ -117,26 +158,27 @@ class Blomy extends Contract {
 		return JSON.stringify(results);
 	}
 
-    // 5. 총기의 주인 변경
-    async changeFirearmOwner(ctx, serialNumber, newOwner, affiliatedUnit, misc, updateReason) {
-        console.info('============= START : changeFirearmOwner ===========');
+    // 8. 총기 속성 변경(CHANGE)
+    async changeFirearmAttributes(ctx, serialNumber, model, owner, affiliatedUnit, misc, updateReason ) {
+        console.info('============= START : changeFirearmAttributes ===========');
 
         const firearmAsBytes = await ctx.stub.getState(serialNumber); // get the firearm from chaincode state
         if (!firearmAsBytes || firearmAsBytes.length === 0) {
             throw new Error(`${serialNumber} does not exist`);
         }
         const firearm = JSON.parse(firearmAsBytes.toString());
-        firearm.owner = newOwner;
+        firearm.model = model;
+        firearm.owner = owner;
         firearm.affiliatedUnit = affiliatedUnit;
         firearm.misc = misc;
         firearm.updateReason = updateReason;
-        firearm.opType = "CHECKOUT"
+        firearm.opType = "CHANGE"
 
         await ctx.stub.putState(serialNumber, Buffer.from(JSON.stringify(firearm)));
-        console.info('============= END : changeFirearmOwner ===========');
+        console.info('============= END : changeFirearmAttributes ===========');
     }
 
-    // 6. 모든 총기 조회
+    // 9. 모든 총기 조회
     async queryAllFirearms(ctx) {
         const startKey = '';
         const endKey = '';
@@ -197,6 +239,12 @@ class Blomy extends Contract {
     async _toDate(timestamp) {
         const milliseconds = (timestamp.seconds.low + ((timestamp.nanos / 1000000) / 1000)) * 1000;
         return new Date(milliseconds);
+    }
+
+    // AssetExists returns true when asset with given ID exists in world state.
+    async _AssetExists(ctx, id) {
+        const assetJSON = await ctx.stub.getState(id);
+        return assetJSON && assetJSON.length > 0;
     }
 
 }

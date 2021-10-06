@@ -45,7 +45,33 @@ async function main() {
         // await contract.submitTransaction('createFirearm', '963722174', 'K2C1', '21-22922385', false, 'Case head separation');
         // console.log('Transaction has been submitted');
 
-        await contract.submitTransaction('changeFirearmOwner', '111111', '21-2222222', '1div11regt1bn1co2p', 'No problem', "Change of one's speciality");
+        // 오동재 상병의 모의 총기 이력
+        // 1. 생성
+        //await contract.submitTransaction('createFirearm', '1234567', 'K-1A', '박한성', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령");
+        //console.log('Transaction has been submitted');
+
+        // 2. 불출
+        await contract.submitTransaction('checkoutFirearm', '1234567', '이상 무', '전입 신병 총기 수여식');
+        console.log('Transaction has been submitted');
+
+        // 3. 반납
+        await contract.submitTransaction('checkinFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 반납');
+        console.log('Transaction has been submitted');
+
+        // 4. 변경
+        await contract.submitTransaction('changeFirearmAttributes', '1234567', 'K-1A', '오동재', '5div12regt3bn5coHQ', '지급 대기', "보직 변경");
+        console.log('Transaction has been submitted');
+
+        // 5. 불출
+        await contract.submitTransaction('checkoutFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 조정 지급');
+        console.log('Transaction has been submitted');
+
+        // 6. 반납
+        await contract.submitTransaction('checkinFirearm', '1234567', '장전 손잡이 고장', '기능고장으로 인한 정비');
+        console.log('Transaction has been submitted');
+
+        // 7. 불출
+        await contract.submitTransaction('checkoutFirearm', '1234567', '이상 무', '총기 정비 후 재지급');
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
