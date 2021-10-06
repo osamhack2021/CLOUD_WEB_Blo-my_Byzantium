@@ -1,5 +1,5 @@
 export interface FirearmListElement {
-  status: number;
+  status: string;
   fireArmNumber: string;
   owner: string;
   reason: string;

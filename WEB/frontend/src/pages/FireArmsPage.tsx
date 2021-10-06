@@ -16,7 +16,7 @@ export default function FireArmsPage() {
   items[0] = {
     time: "oct 2nd",
     owner: "moon",
-    status: 1,
+    status: "불출",
     fireArmNumber: "aaa",
     reason: "gone",
   };

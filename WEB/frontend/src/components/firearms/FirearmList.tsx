@@ -1,6 +1,6 @@
 import React from "react";
-import { Chrono } from "react-chrono";
 import { FirearmListElement } from "../../utils/types";
+import Timeline from "../Timeline";
 
 interface Props {
   items: FirearmListElement[];
@@ -8,24 +8,15 @@ interface Props {
 
 export default function FirearmList(props: Props) {
   const { items } = props;
-  return (
-    <div style={{ width: "70%", marginLeft: "20%" }}>
-      <Chrono
-        useReadMore={false}
-        theme={{
-          primary: "gray",
-          secondary: "gray",
-          titleColor: "black",
-        }}
-        items={items.map((e) => ({
-          title: e.time,
-          cardTitle: `${e.status}`,
-          cardSubtitle: `총기번호: ${e.fireArmNumber} / 소유자: ${e.owner}`,
-          cardDetailedText: `${e.reason}`,
-        }))}
-        mode="VERTICAL"
-        hideControls
-      />
-    </div>
-  );
+  const firearmInfos = items.map((item) => ({
+    status: `${item.status}`,
+    time: item.time,
+    out: true,
+    extraData: [
+      `총기 번호: ${item.fireArmNumber}`,
+      `총기 소유자: ${item.owner}`,
+      `총기 입고 사유: ${item.reason}`,
+    ],
+  }));
+  return <Timeline items={firearmInfos} />;
 }
