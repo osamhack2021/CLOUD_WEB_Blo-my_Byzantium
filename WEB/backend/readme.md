@@ -1,10 +1,10 @@
 ## 서버실행방법
 
-'''
+```
 cd WEB/backend
 pip install -r requirements.txt
 python manage.py runserver
-'''
+```
 
 
 
@@ -32,7 +32,7 @@ python manage.py runserver
     - 계정 생성
     - serializer.py , fields 부분에 있는 값을 json으로 요청
     - 계정생성 json 형식은 이렇습니다:
-        '''
+        ```
         {
             "username" : "20-00000000" ,     #군번필드는 중첩되어서는 안되고, 블록 데이터베이스의 owner와 연동됩니다
             "password" : "pass123!" , 
@@ -43,7 +43,7 @@ python manage.py runserver
             "phone_number" : "010-9999-9999" , 
             "email" : "armyblockchain@gmail.com"
         }
-        '''
+        ```
         //주의할점은 permission은 int값입니다. 문자열이 아닙니다
         //또한 json은 " (쌍따옴표)로 감싸야 오류가 발생하지 않습니다.
 
@@ -60,12 +60,12 @@ python manage.py runserver
 
 - POST /account/login/
     - 로그인 json 형식은 이렇습니다:
-        '''
+        ```
         {
             "username" : "20-00000000" ,
             "password" : "pass123!"
         }
-        '''
+        ```
 
 
 
