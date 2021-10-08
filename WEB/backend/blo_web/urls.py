@@ -8,5 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('post.urls')),
     path('account/', include('account.urls')),
+    path('firearm/', include('firearm.urls')),
     path('', RedirectView.as_view(url='account/', permanent=False)),    #blank auto redirect
 ]

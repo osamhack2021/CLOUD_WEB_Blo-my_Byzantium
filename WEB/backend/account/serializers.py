@@ -12,3 +12,4 @@ class AccountSerializer(serializers.ModelSerializer):
     
 
         # id는 유저고유번호입니다.
+        # username은 군번필드입니다

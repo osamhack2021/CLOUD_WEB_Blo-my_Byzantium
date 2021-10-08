@@ -1,5 +1,4 @@
 #serializers.py
-from django.db.models import fields
 from rest_framework import serializers
 from .models import Firearm
 
@@ -7,7 +6,29 @@ from .models import Firearm
 class ModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Firearm
-        fields = ['serialnumber','owner','affiliated_Unit','update_note']
-    
+        fields = ['opType','SerialNumber','Owner','Affiliated_Unit', 'Misc','UpdateReason']
 
-        # id는 유저고유번호입니다.
+
+class CreatedataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Firearm
+        fields = ['opType','SerialNumber','Owner','Affiliated_Unit','Misc','UpdateReason']
+
+
+class changeFirearmOwnerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Firearm
+        fields = ['opType','SerialNumber','Owner','UpdateReason']
+
+        
+
+class changeMisc(serializers.ModelSerializer):
+    class Meta:
+        model = Firearm
+        fields = ['opType','SerialNumber','Misc','UpdateReason']
+
+
+class changeLocation(serializers.ModelSerializer):
+    class Meta:
+        model = Firearm
+        fields = ['opType','SerialNumber','Affiliated_Unit']

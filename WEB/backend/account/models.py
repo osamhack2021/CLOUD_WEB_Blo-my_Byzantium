@@ -13,7 +13,7 @@ class User(AbstractUser):
     password = models.CharField(max_length = 30)            # 비밀번호
     validated_password = str(password)
     validated_password = make_password(validated_password)
-    validated_password = models.CharField()
+    validated_password = models.CharField(max_length = 30, default='')
 
 
     permission = models.IntegerField(default = 2)                         # 관리등급(0이 관리자, 1은 블록생성가능 , 2는 블록의이동만 가능)
