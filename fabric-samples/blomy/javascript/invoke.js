@@ -44,40 +44,6 @@ async function main(tx_params) {
         // changeFirearmOwner transaction - requires 3 args , ex: ('changeFirearmOwner', 'FIREARM12', '21-22922385')
         // await contract.submitTransaction('createFirearm', '963722174', 'K2C1', '21-22922385', false, 'Case head separation');
         // console.log('Transaction has been submitted');
-/*
-        // 오동재 상병의 모의 총기 이력
-        // 1. 생성
-        await contract.submitTransaction('createFirearm', '1234567', 'K-1A', '박한성', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령");
-        console.log('Transaction has been submitted');
-
-        // 2. 불출
-        await contract.submitTransaction('checkoutFirearm', '1234567', '이상 무', '전입 신병 총기 수여식');
-        console.log('Transaction has been submitted');
-
-        // 3. 반납
-        await contract.submitTransaction('checkinFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 반납');
-        console.log('Transaction has been submitted');
-
-        // 4. 변경
-        await contract.submitTransaction('changeFirearmAttributes', '1234567', 'K-1A', '오동재', '5div12regt3bn5coHQ', '지급 대기', "보직 변경");
-        console.log('Transaction has been submitted');
-
-        // 5. 불출
-        await contract.submitTransaction('checkoutFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 조정 지급');
-        console.log('Transaction has been submitted');
-
-        // 6. 반납
-        await contract.submitTransaction('checkinFirearm', '1234567', '장전 손잡이 고장', '기능고장으로 인한 정비');
-        console.log('Transaction has been submitted');
-
-        // 7. 불출
-        await contract.submitTransaction('checkoutFirearm', '1234567', '이상 무', '총기 정비 후 재지급');
-        console.log('Transaction has been submitted');
-
-        // 8. 대대 반납
-        await contract.submitTransaction('deleteFirearm', '1234567');
-        console.log('Transaction has been submitted');
-*/
 
         await contract.submitTransaction(...tx_params);
         console.log(tx_params + ' Transaction has been submitted');
@@ -91,13 +57,38 @@ async function main(tx_params) {
     }
 }
 // 같은 asset에 대한 transaction은 분리하는걸 추천한다. 순서가 뒤바뀌기때문. 여럿 asset의 변경, 생성, 삭제 등은 한 블럭에 들어갈 수 있다.
-const tx1_params = ['createFirearm', '1000000', 'K-1A', '박한성', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령"];
-const tx2_params = ['createFirearm', '2000000', 'K-1A', '박한성', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령"];
-const tx3_params = ['createFirearm', '3000000', 'K-1A', '박한성', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령"];
-//const tx1_params = ['deleteFirearm', '1234567'];
-//const tx2_params = ['checkoutFirearm', '1234567', '이상 무', '전입 신병 총기 수여식'];
-//const tx3_params = ['checkinFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 반납'];
+// 함수콜
+//const tx1_params = ['createFirearm', '1000000', 'K-1A', '박한성', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령"];
+//main(tx1_params)
 
-main(tx1_params);
-main(tx2_params);
-main(tx3_params);
+// 1. 총기 20정 생성
+var newFirearms = require('./newFirearms.json');
+
+newFirearms.forEach(function(newFirearm, index){
+
+    newFirearm = Object.values(newFirearm)
+    newFirearm.unshift('createFirearm')
+    newFirearm.pop()
+
+    main(newFirearm);
+});
+
+
+// 2. 오동재 상병의 총기 이력 생성
+async function mockTx1(){
+    try {
+        await main(['createFirearm', '1234567', 'K-1A', '박한성', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령"]);
+        await main(['checkoutFirearm', '1234567', '이상 무', '전입 신병 총기 수여식']);
+        await main(['checkinFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 반납']);
+        await main(['changeFirearmAttributes', '1234567', 'K-1A', '오동재', '5div12regt3bn5coHQ', '지급 대기', "보직 변경"]);
+        await main(['checkoutFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 조정 지급']);
+        await main(['checkinFirearm', '1234567', '장전 손잡이 고장', '기능고장으로 인한 정비']);
+        await main(['checkoutFirearm', '1234567', '이상 무', '총기 정비 후 재지급']);
+        await main(['deleteFirearm', '1234567']);
+    } catch (error) {
+        console.error(`Failed to submit transaction: ${error}`);
+        process.exit(1);
+    }
+}
+
+mockTx1();
