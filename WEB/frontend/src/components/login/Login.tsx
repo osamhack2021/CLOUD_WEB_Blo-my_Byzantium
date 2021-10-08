@@ -7,9 +7,16 @@ import {
 } from "../../utils/contexts/AuthContext";
 
 export default function Login() {
-  const authState = useAuthState();
   const authDispatch = useAuthDispatch();
   const handleSubmit = (loginInput: { username: string; password: string }) => {
+    authDispatch({
+      type: "LOGIN",
+      username: loginInput.username,
+      accessToken: "",
+      isAuth: true,
+    });
+    window.localStorage.setItem("isAuth", JSON.stringify(true));
+    /*
     axios({
       url: "https://osamhack2021-cloud-web-blo-my-byzantium-v5jxjj4w2qx5-8000.githubpreview.dev/account/login/",
       method: "post",
@@ -32,12 +39,7 @@ export default function Login() {
         });
       }
     });
+    */
   };
-  return authState.isAuth ? (
-    <div>{`${authState.username}`}</div>
-  ) : (
-    <div>
-      <LoginPresenter handleSubmit={handleSubmit} />
-    </div>
-  );
+  return <LoginPresenter handleSubmit={handleSubmit} />;
 }
