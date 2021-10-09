@@ -6,8 +6,9 @@ const cors = require('cors');
 
 
 app.set('port', process.env.PORT || 3000);
-app.use(cors());
-
+app.use(cors({
+    origin: '*'
+}));
 const router = express.Router();
 
 // 의미없는 테스트 페이지 구현 웹페이지의 가장 초기화면 
