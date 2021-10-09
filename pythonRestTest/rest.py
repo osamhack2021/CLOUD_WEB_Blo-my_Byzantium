@@ -1,5 +1,6 @@
 import requests, json
 
+URL = 'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev'
 
 headers = {'User-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36'}
 #요청 헤더 부분 크게 의미없음 
@@ -9,57 +10,58 @@ session = {'__Host-vso-pf':'C39318278852A6B1E048EA6965C124C4%3AW2Yea6XpeinAZyznI
 
 def query(serialNumber):
 
-    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/query/{serialNumber}' 
+    url =f'{URL}/query/{serialNumber}' 
 
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
-    print(res.text)
+    return res.text
     #요청에대한 응답을 출력하는 부분 
 
 def createFirearm(serialNumber,model,owner,affiliatedUnit,status,updateReason):
 
-    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/createFirearm/{serialNumber}/{model}/{owner}/{affiliatedUnit}/{status}/{updateReason}' 
+    url =f'{URL}/{serialNumber}/{model}/{owner}/{affiliatedUnit}/{status}/{updateReason}' 
 
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
-
-    print(res.text)
-    #요청에대한 응답을 출력하는 부분 
+    
+    return query(serialNumber)
 
 def checkoutFirearm(serialNumber,status,updateReason):
 
-    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/checkoutFirearm/{serialNumber}/{status}/{updateReason}' 
+    url =f'{URL}/{serialNumber}/{status}/{updateReason}' 
 
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
-    print(res.text)
-    #요청에대한 응답을 출력하는 부분 
+    return query(serialNumber)
+
+
 
 def checkinFirearm(serialNumber,status,updateReason):
-    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/checkinFirearm/{serialNumber}/{status}/{updateReason}' 
+    url =f'{URL}/{serialNumber}/{status}/{updateReason}' 
 
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
-    print(res.text)
-    #요청에대한 응답을 출력하는 부분 
+    return query(serialNumber)
+
+
 
 def changeFirearmAttributes(serialNumber,model,owner,affiliatedUnit,status,updateReason):
-    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/changeFirearmAttributes/{serialNumber}/{model}/{owner}/{affiliatedUnit}/{status}/{updateReason}' 
+    url =f'{URL}/{serialNumber}/{model}/{owner}/{affiliatedUnit}/{status}/{updateReason}' 
 
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
-    print(res.text)
-    #요청에대한 응답을 출력하는 부분 
+    return query(serialNumber)
+
 
 def deleteFirearm(serialNumber):
-    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/deleteFirearm/{serialNumber}' 
+    url =f'{URL}/{serialNumber}' 
 
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
-    print(res.text)
-    #요청에대한 응답을 출력하는 부분 
+    return query(serialNumber)
+
