@@ -11,20 +11,28 @@ export default function FirearmStatus({ firearmElement }: Props) {
   return (
     <div style={{ position: "relative" }}>
       <img
-        style={{ height: "600px", opacity: "0.3" }}
+        style={{ height: "600px", opacity: "0.3", objectFit: "cover" }}
         src={firearmBackground}
         alt="firearm-background"
       />
       <div
         style={{
+          top: "0px",
+          left: "0px",
           position: "absolute",
-          top: "20%",
-          left: "20%",
+          height: "600px",
+          width: "100vw",
           display: "flex",
           justifyContent: "space-evenly",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <div
             style={{
               fontWeight: "bold",
@@ -57,7 +65,17 @@ export default function FirearmStatus({ firearmElement }: Props) {
             최종 변경 사유: 총기 정비 후 재지급
           </div>
         </div>
-        <Button>업데이트</Button>
+        <div style={{ margin: "auto 0" }}>
+          <button
+            type="submit"
+            className="update-button"
+            onClick={() => {
+              console.log("Clicked");
+            }}
+          >
+            업데이트
+          </button>
+        </div>
       </div>
     </div>
   );

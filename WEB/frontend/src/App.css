@@ -5,6 +5,44 @@ body {
   margin: 0px;
 }
 
+button,
+button::after {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.update-button {
+  left: -10vw;
+  background: none;
+  border: 3px solid #000;
+  border-radius: 5px;
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #000;
+  position: relative;
+}
+
+.update-button:hover {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.update-button::after {
+  height: 0;
+  left: 50%;
+  top: 50%;
+  width: 0;
+}
+
+.update-button:hover:after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
 .timeline-container {
   display: flex;
   flex-direction: column;
