@@ -43,15 +43,24 @@ def seeFireArmAssetWithSerialNum(request,SerialNum):
 
 
 
+@csrf_exempt
+def changeMisc(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = changeMiscSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return response_allow_header(JsonResponse(serializer.data, status=201))
+        return response_allow_header(JsonResponse(serializer.errors, status=400))
+
+
+
 
 
 """
 
 @csrf_exempt
 def changeFirearmOwner(request,OwnerSearch):
-
-@csrf_exempt
-def changeMisc(request):
 
 
 
@@ -65,10 +74,6 @@ def approve(request):
     
 @csrf_exempt
 def seeFireArmAssetWithOwn(request):
-
-
-
-
 
 """
 

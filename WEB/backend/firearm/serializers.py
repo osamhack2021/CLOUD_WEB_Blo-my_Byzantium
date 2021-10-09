@@ -22,7 +22,7 @@ class changeFirearmOwnerSerializer(serializers.ModelSerializer):
 
         
 
-class changeMisc(serializers.ModelSerializer):
+class changeMiscSerializer(serializers.ModelSerializer):
     class Meta:
         model = Firearm
         fields = ['opType','SerialNumber','Misc','UpdateReason']
