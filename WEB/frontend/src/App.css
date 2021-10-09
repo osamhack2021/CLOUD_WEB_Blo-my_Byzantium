@@ -5,8 +5,43 @@ body {
   margin: 0px;
 }
 
-button,
-button::after {
+/* FirearmStatus */
+.firearm-status-container {
+  position: relative;
+}
+
+.firearm-status-content {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  height: 600px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.firearm-status-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.firearm-status-title {
+  font-weight: bold;
+  font-size: 10vmin;
+  margin-bottom: 30px;
+  color: #3d4147;
+}
+
+.firearm-status-body {
+  font-size: 5vmin;
+  font-weight: bold;
+  color: #3d4147;
+}
+
+/*  UpdateButton */
+.update-button,
+.update-button::after {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;

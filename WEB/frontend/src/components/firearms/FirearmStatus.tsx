@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
+import axios from "axios";
 import firearmBackground from "../../images/firearmBackground.png";
 import { FirearmListElement } from "../../utils/types";
 
@@ -8,71 +9,45 @@ type Props = {
 };
 
 export default function FirearmStatus({ firearmElement }: Props) {
+  const baseUrl =
+    "https://osamhack2021-cloud-web-blo-my-byzantium-v5jxjj4w2qx5-8080.githubpreview.dev/";
+  const onClick = () => {
+    axios({
+      method: "get",
+      url: `${baseUrl}/firearmAssets`,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
   return (
-    <div style={{ position: "relative" }}>
+    <div className="firearm-status-container">
       <img
-        style={{ height: "600px", opacity: "0.3", objectFit: "cover" }}
+        style={{
+          height: "600px",
+          width: "100%",
+          opacity: "0.3",
+          objectFit: "cover",
+        }}
         src={firearmBackground}
         alt="firearm-background"
       />
-      <div
-        style={{
-          top: "0px",
-          left: "0px",
-          position: "absolute",
-          height: "600px",
-          width: "100vw",
-          display: "flex",
-          justifyContent: "space-evenly",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              fontWeight: "bold",
-              fontSize: "64px",
-              marginBottom: "30px",
-              color: "#3d4147",
-            }}
-          >
-            총기 현황
+      <div className="firearm-status-content">
+        <div className="firearm-status-text">
+          <div className="firearm-status-title">총기 현황</div>
+          <div className="firearm-status-body">
+            {`총기번호: ${firearmElement.fireArmNumber}`}
           </div>
-          <div
-            style={{ fontSize: "32px", fontWeight: "bold", color: "#3d4147" }}
-          >{`총기번호: ${firearmElement.fireArmNumber}`}</div>
-          <div
-            style={{ fontSize: "32px", fontWeight: "bold", color: "#3d4147" }}
-          >
-            총기명: K2
-          </div>
-          <div
-            style={{ fontSize: "32px", fontWeight: "bold", color: "#3d4147" }}
-          >{`총기소유주: ${firearmElement.owner}`}</div>
-          <div
-            style={{ fontSize: "32px", fontWeight: "bold", color: "#3d4147" }}
-          >
+          <div className="firearm-status-body">총기명: K2</div>
+          <div className="firearm-status-body">{`총기소유주: ${firearmElement.owner}`}</div>
+          <div className="firearm-status-body">
             부대: 5사단 12여단 3대대 5중대 중대본부
           </div>
-          <div
-            style={{ fontSize: "32px", fontWeight: "bold", color: "#3d4147" }}
-          >
+          <div className="firearm-status-body">
             최종 변경 사유: 총기 정비 후 재지급
           </div>
         </div>
-        <div style={{ margin: "auto 0" }}>
-          <button
-            type="submit"
-            className="update-button"
-            onClick={() => {
-              console.log("Clicked");
-            }}
-          >
+        <div className="update-button-container">
+          <button type="submit" className="update-button" onClick={onClick}>
             업데이트
           </button>
         </div>
