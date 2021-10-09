@@ -1,4 +1,4 @@
-const {getHistory, modifyTransaction} = require('./HistoryQuery.js');
+const {getHistory, modifyTransaction} = require('./callChaincode.js');
 const express = require('express');
 const http = require('http');
 const app = express();
@@ -17,11 +17,11 @@ router.route('/').get((req,res)=>{
 
 
 //query 요청에 대한 응답 부분 총기에관한 serial번호를 입력받아서 AssetHistory(transaction)을 json형태로 출력하는 부분
-router.route('/query/:serial').get((req,res)=>{
-    const serial = String(req.params.serial);
+router.route('/query/:serialNumber').get((req,res)=>{
+    const serialNumber = String(req.params.serialNumber);
     console.log('------AssetHitory 호출--------')
-    console.log(`serial = ${serial}`);
-    getHistory(serial).then((value)=>{ // 하이퍼레저에서 query에 대한 응답을 가져오는 부분
+    console.log(`serialNumber = ${serialNumber}`);
+    getHistory(serialNumber).then((value)=>{ // 하이퍼레저에서 query에 대한 응답을 가져오는 부분
         res.writeHead(200, {"Content-Type":'text/html;charset=utf8'});
 		res.write(value);
 		res.end();
@@ -30,83 +30,83 @@ router.route('/query/:serial').get((req,res)=>{
 
 })
 
-router.route('/createFirearm/:serial/:firearm/:owner/:belong/:status/:reason').get((req,res)=>{
-    const serial = String(req.params.serial);
-    const firearm = String(req.params.firearm);
+router.route('/createFirearm/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason').get((req,res)=>{
+    const serialNumber = String(req.params.serialNumber);
+    const model = String(req.params.model);
     const owner = String(req.params.owner);
-    const belong = String(req.params.belong);
+    const affiliatedUnit = String(req.params.affiliatedUnit);
     const status = String(req.params.status);
-    const reason = String(req.params.reason);
+    const updateReason = String(req.params.updateReason);
     console.log('---------총기 생성 호출----------');
-    console.log(`serial = ${serial}`);
-    console.log(`fiream = ${firearm}`);
+    console.log(`serial = ${serialNumber}`);
+    console.log(`fiream = ${model}`);
     console.log(`owner = ${owner}`);
-    console.log(`belong = ${belong}`);
+    console.log(`belong = ${affiliatedUnit}`);
     console.log(`status = ${status}`);
-    console.log(`reason = ${reason}`);
-    modifyTransaction(['createFirearm',serial,firearm,owner,belong,status,reason]).then((value)=>{
+    console.log(`updateReason = ${updateReason}`);
+    modifyTransaction(['createFirearm',serialNumber,model,owner,affiliatedUnit,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
         res.end()
     })
 })
 
-router.route('/checkoutFirearm/:serial/:status/:reason').get((req,res)=>{
-    const serial = String(req.params.serial);
+router.route('/checkoutFirearm/:serialNumber/:status/:updateReason').get((req,res)=>{
+    const serialNumber = String(req.params.serialNumber);
     const status = String(req.params.status);
-    const reason = String(req.params.reason);
+    const updateReason = String(req.params.updateReason);
     console.log('-----총기 불출 호출------');
-    console.log(`serial = ${serial}`);
+    console.log(`serialNumber = ${serialNumber}`);
     console.log(`status = ${status}`);
-    console.log(`reason = ${reason}`);
-    modifyTransaction(['checkoutFirearm',serial,status,reason]).then((value)=>{
+    console.log(`updateReason = ${updateReason}`);
+    modifyTransaction(['checkoutFirearm',serialNumber,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
         res.end()
     })
 })
 
-router.route('/checkinFirearm/:serial/:status/:reason').get((req,res)=>{
-    const serial = String(req.params.serial);
+router.route('/checkinFirearm/:serialNumber/:status/:updateReason').get((req,res)=>{
+    const serialNumber = String(req.params.serialNumber);
     const status = String(req.params.status);
-    const reason = String(req.params.reason);
+    const updateReason = String(req.params.updateReason);
     console.log('-------총기 반납 호출 ---------');
-    console.log(`serial = ${serial}`);
+    console.log(`serialNumber = ${serialNumber}`);
     console.log(`status = ${status}`);
-    console.log(`reason = ${reason}`);
-    modifyTransaction(['checkinFirearm',serial,status,reason]).then((value)=>{
+    console.log(`updateReason = ${updateReason}`);
+    modifyTransaction(['checkinFirearm',serialNumber,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
         res.end()
     })
 })
 
-router.route('/changeFirearmAttributes/:serial/:firearm/:owner/:belong/:status/:reason').get((req,res)=>{
-    const serial = String(req.params.serial);
-    const firearm = String(req.params.firearm);
+router.route('/changeFirearmAttributes/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason').get((req,res)=>{
+    const serialNumber = String(req.params.serialNumber);
+    const model = String(req.params.model);
     const owner = String(req.params.owner);
-    const belong = String(req.params.belong);
+    const affiliatedUnit = String(req.params.affiliatedUnit);
     const status = String(req.params.status);
-    const reason = String(req.params.reason);
+    const updateReason = String(req.params.updateReason);
     console.log('-------총기 속성 변경 호출-------');
-    console.log(`serial = ${serial}`);
-    console.log(`fiream = ${firearm}`);
+    console.log(`serialNumber = ${serialNumber}`);
+    console.log(`model = ${model}`);
     console.log(`owner = ${owner}`);
-    console.log(`belong = ${belong}`);
+    console.log(`affiliatedUnit = ${affiliatedUnit}`);
     console.log(`status = ${status}`);
-    console.log(`reason = ${reason}`);
-    modifyTransaction(['changeFirearmAttributes',serial,firearm,owner,belong,status,reason]).then((value)=>{
+    console.log(`updateReason = ${updateReason}`);
+    modifyTransaction(['changeFirearmAttributes',serialNumber,model,owner,affiliatedUnit,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
         res.end()
     });
 })
 
-router.route('/deleteFirearm/:serial').get((req,res)=>{
-    const serial = String(req.params.serial);
+router.route('/deleteFirearm/:serialNumber').get((req,res)=>{
+    const serialNumber = String(req.params.serialNumber);
     console.log('-------총기 삭제---------')
-    console.log(`serial = ${serial}`);
-    modifyTransaction(['deleteFirearm',serial]).then((value)=>{
+    console.log(`serialNumber = ${serialNumber}`);
+    modifyTransaction(['deleteFirearm',serialNumber]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
         res.end()

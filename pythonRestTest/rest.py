@@ -1,16 +1,65 @@
 import requests, json
 
-url ='https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/query/' +'111111' 
-#요청 URL 임시 시리얼 '111111'이부분을 변수로 입력받으면 됨
 
 headers = {'User-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36'}
 #요청 헤더 부분 크게 의미없음 
 
-session = {'__Host-vso-pf':'5A2749913E9A8D136A0C189D2CC1181B%3Asx3OSIPBLCV0oM1OyBYKEQU3k%2BZh4Uzm0pPDhhU7xnHnyLll5GqNoQluT2aJSG%2FcnybnyfdgpcRdPXbZlglPunucHDmtgKpVcnALGwBamGpdR6BH1WeR%2BWXcYavj21Elt1HZZiQ%2FnGae5sp5L8kgcOHo%2Bd1lsLQGUDzIYw6JBmF70tasrMk%2BV3BVtYTX0Dyszi%2B4LuUguT5Wgd0yeGFFByJcKXPZHSnVPdJHhWet4jxIASsPx4ZTW2ibxAPaX%2F0SebBndP8oA%2FWvXm2EwmeSU9jxVrMgk6ywv%2FBJOgnvUpBO3VfbANxVQRV2ZAau9V7%2FcH3O6ZrH94CIFLA1IHi13VQLraychnZuaGfkIWgCflj21tNFMYpZrbTPwE23GkcXoZEFWL2NKWBiGbyi64hG9l30AJfWGdJmFkDotsySuhdko1jwhKaOXwdGxLBK7ruXVv7sp9h1ZrbRaEds9q861WvHp%2B3BDcq%2FW3EMpdjz7wUQ0AtCuiYD%2BcSF0tu3fIHY8EvUycmozAzDCKMt1gFrVDof9tEsslwQWVAcq4MJZpeBBencL9XG7Nd9uEX6LDI%2FlNLVF0QOGOYUSBk16WAu30h9qZs88zVBo7F9DtOTyxS2pJH9%2FXmXOrdnPPE4k5PnjUdlVyf9B1zDpiyLRkTQiMrBnWX1Hji1VzLnkOmjKPZbHRmaKdPTEeh8%2Fx59OWNmJLGo%2FoTQmLbq7OHLUSRnBmfYYTLm11SDChmbk9RhMVcOBtvQRtGJY0obxnQ08Gptvj%2BWWE2FGGuUzqSnOeezbiuBcDR5sX%2F6rmDZvTQzupwEHUK14GLIKmAHRB53i6B3wm37ws6n8Zhs5kZ0lQ4FHfcMT8LDIVBW6yJa0YFoORTuiaFWdjrhB1NLXupA7Uzr4RlaGyxnsmQzm5q1dejC07Y2psPDGHIYhK6t1u7JKY4I1KomMDEKvHeJt61Hiyax8cazxUFxjAjKQkHDKX2qKZ02wFINblkgxu9TdMv8apr0B4yCNWr3Y4lrqxvFCb8y8wGV8pzPQ3yX1zj3dYeHAqgiOHffF2zaClaolGxLE2IyPntuOCzRk661TES3bRPk7CBQ61u3jrhIHN4RqgT85Q%2FHHhACTXb%2FFUTu9eYTOirmZ6XaJA3Pq7QnWYnl8ZVYt%2BtvA5CceL1tT7%2Ftcm3h%2BzG2fjuVIH0qmdmv%2BizybZXU1BnFHChM4q%2Fhu0Bikmo%2BmVEZq0AEh4afThx%2FtersWj4diqiZbRgyhsQBeyXkwJfPsY2o43RgGQ7LBC2Ez2b%2FXPr4vyE78YZhyGQcayrBZFssWJxDal%2BcBpCQFv%2BHHlzNxZs1p%2BmLlVR5XvFg%2B7VWIslB5nOer9y3WflrDVe2NBDLihYpLqAHb0hZEeu0C%2Fqi2KL4j4BaF2TSlhvWZui0zsHZ6nMiJ6nnnpPliPhxsbprle2uaUkrjSYWDZkh9YL0i6ucki1MdqNPuFoETFz1Eq8RjZ%2Fdaa4Zaa6XEtDC2V0dJLDoZ7Utfsv560ESOCaXbTyLLF0jVoBy84HKgyFa1CjSvCAlDlhcLuGaHWrmFYCgqiasClIFOhDibu1phAOdtAsAM198jCh%2BcIB4HsNyYmlVkXOgJj0dcU%2B0DIaWyYatsblRviY9CQRDMG20LYmXKEgJMP9n7j3b8Vwapos42w48s8JMC3B5%2FAU%2BaIURVnfHx1wdMzqDi0rbD2tO%2F4RA0uOxZ7ERknovftH5fyD277MZdRa7R6djewPlkPAk7N3oo2KdtSaIoXl2pa%2BGsZvatjzbgvbXS2aMrpcYNf2s8iWsNs5ufRVJN%2BxBdTYS35S4TAudi4bhli8f0f4prcAPSU%2FyvBUDUUYXekbmBm%2BJ4kNRsxBHWnJInl2s%2FE%2BxGRDfL%2Byb%2FUbpHkDrNcCwFY8raSS6ijOyiAS58RdJagfj5rybcBYVTrTvM3cbLtTT%2Bvh8kNJbLX606d9fiJ2cE4AXVtDVk9ljKWqn1ZNzMJg%2FH%2FQCwE7rHPMnQd3FOZgj0mH3avHSu4dLeBqp3Krwd5R6oFEuBNHeBE0Vt0Vxtsx%2FlCxG5pYauC%2FdicKqz3E7vEtrwNvHsEuzMWBQn3JqXXOS3ADwVJsJOIx9slC0IMGdjqNClzx%2Bc5vwgk5w%2BDRv0RRfbfDOUekwZvgKpKCymB0rAOX1wRVhrwkOb%2FfgyyHe7DeLwv7XSLcO64djXBayc58%2Fro6qfz2bzXUmyOQpBP5C33Pg4DE9I6rqEV%2B2V4ZCIQc7w%2FTv7vqv1Zps9TWA78sPxTWoBPiUpG7VD7BHOHnqTxucNb0mSIc76c4XPxb19N3A4D1pug9%2FwYMt1k3ufQJuFnwT%2FqH9qWkhQLSOtRM%3D'}
+session = {'__Host-vso-pf':'C39318278852A6B1E048EA6965C124C4%3AW2Yea6XpeinAZyznIR%2FTgUdL7F3Z57rSOSETHIwWqgiL1jrMB30dc%2FrwPZPAA0riM2aXOErLTcoULEtdmEXvWWlsVlD1dIC3GNdXvT0Z2YY6bT8k6DyuL9SuRJpB5qczXxV4Evkrn%2BaSo87sTqnKEb6UKPYWjYNdgZpn2TSGiTwgKD0ub1ls%2F3hHAN6eEMWcJt1WhMd7VcoGgd62nQ05cFQlkYmDZiHeYCmb%2BZhLM6KcQzdfqWNrljQ1JcWjM2oLMKTCg5qotuJ90Cki1Z8rEXFZkmpsC4%2F%2BUVGdxzxnW9Do7e1eAl2%2BWllHCdb6B9%2FQAy8gpPIwKQPu6lKKj4nJ44EfQwDmWQY6cSyGGDElTcGpIp2vsJEF%2BzKbGkwCypuz%2BNK221vOg70uIyvEFl8UdqJKdrGKpNkYG21DpIhTm1%2ByzoM5BoIKFHni9g1jqY3WyWvYFykNBdRCn2B5hl1wqRCxjVtauJld9I%2Bin2CH2Wf9RDg%2Fd7%2BXqIkv%2BGnT%2BgkCqpFj%2F1GvHTyk1wu8T1GEdWvnalQuSjiVN%2FB3b5Kan%2Fu3IVCY4%2Fr3BnDKnpyOP8rnTTYycDuLHdh%2B6MznNhYnHADD50MKs3zSsqI%2BaX16%2FOktDr0SwjV%2FVk6w7bB5SUb5SK5zLoD4EZ1jzAszpqEXwtqzKWr1YJfLtPrl8xkqUya6%2B3Xtoe9Ur4PsxGYpo%2FeIEelObopO1TZa4jkS9vwJYR4hCzLNdDLzArRwHB%2FrsTOSmwf7c3FOW0bLLLNLU0RXXaHIKsp%2B%2BbsdunAhHSqWHM7AuESpsh%2BMxFziKl3bDb8kKNPfa22n%2FsU8xxhLw341d01vawTSgsLRnRR7bwMbAYWnp5mq5zHTs5zczmjbxXKaAB42fTpL5sJO6pCCuMjT6VjfYP9GWAJ3HqNTihrSE1DWv%2FFdUV7U0oxqMxRJSzUKOC%2F6H9bPvJRRRBl%2FRI4aJRMTYnAnqfOyGiGi%2Fe56uI%2FEt%2FMQH8hh%2B45p2DcbkZ1uESgJQjps3gfAz9W4RN8TvvWGnPogLTHTMJKLK2dO4Nf7V08263i4OENPzQe%2Fr%2BKdFUimp5RROf68hKZqy7hpTiWJNezRjn18MLcU0afSNu2nhwXRwn8eMrb6GfojcQy26VDccXi5fDPkRXQ%2BC8zIL8tOAIgwaBsf%2BChAug262G1u4wl4oouMjKN7vsqZbwS1CeEkWsjRhUsEtcEJyeujJi%2Bda%2B7506VtRUWFAXO7okdMQlUT%2BLuqQsvBV4M97JvD63qkDTh8t6PopqCrypzb2%2BhhhcCuaBe%2BP3D8gFOJseg47oj6%2BXBia9S%2FM%2FxrGCLt7TxUqNHi6ucChJu6o5VBVlLssuUkyAVa1lcb5Jt%2BKAH1zQKO9ipHQfRQ2vLJycd7i7Sez3ETmNMclH1L2g11dWXkgONC%2Ba1OYMHtBtYYoEt0ZCG8vQoVOlFwK3CY9oB0jGeBR%2FUUca0ftS4tNVpZ65GEv2ubkIKJ3AHcw8dtE1Ibnnlfdryef2WgRTXjQbWnx1%2Bc0AtwickIt9BuvALn04gHJQ4LNmUx9cQtWX%2B0gOc%2B%2FGw6fN3iuXkAc5%2FAghKt8D6C%2BTk4ejl%2FSQ8FVSnIifIVYVeL7vV7Hp6S%2B9dKeIrZjF1Qbw%2BHfe9wediAMQdRPpY9yN6%2Fl1PRhuZJ%2FJ%2FSAKBnfhJODImGNC5sZUeP7zz0VD0M4exdpqx3%2BwNnMBssMQjH14IheIolRF54q2bFdLsjZYZN4gh03%2BSewBUrBjbXTELejrH2jSqZkRUtpDRKAdd4%2FO7WJ1ECxmVvQkmQPKyoYlBlYdO6200rpYAIgIo3NtweZocNxAzcxUwFQulBkfgi8JdmsbZtgqAPoodscLmVjgLGUiwpeio0aL1%2FQR0J2YSEbveR5%2FhZRFBpgbk7%2FSeGad%2B3CWLkPV7sfjlZkSkgzGLDZXrB86czeCsrVDYtqsppRI%2BSr99npmYxKu8xl64IKBJqmwgF%2FS52RAoFoYHu52Tbgy%2FcJ88bI5BmQsAU63rHN2%2F68fFxi6jSb%2FDFlCYfmCk2vacspVJc9wRhlOk0aVL3JPiD3BsjmXRa367InJ%2FQnLUgRVhNaPGB7dtUNRSbGSZSzhwkOoORsPkePwdW4tYfvOk%2FVvUaEnsKOsuDDUh7Sc5M0WR1Qo%2BAmjL2Xzc12QEVJIGPYjyHRMLG5PFrjyTbFMmykT5o32EhNhtzEksNszcVjRhvU1h0NnFQ7obdw43kD0saYW0Q7k13gpIKQxMbqlS7jRFYtWNHZYa1pEDkC%2Ftuk7YsMMvMPvcK6T0toeWaZ28xKaQwNZvtjSWLX6Oq641NGnySmZyO7s9XZLgTOQDIp7H%2BCrKQAzA%3D'}
 #codespace상에서의 오류로 인해 어쩔수 없이 추가한 부분 실제 서버 구동시 필요없는 부분 
 
-res = requests.get(url, headers=headers, cookies=session)
-#실제 요청을 시도하는 부분
+def query(serialNumber):
 
-print(res.text)
-#요청에대한 응답을 출력하는 부분 
+    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/query/{serialNumber}' 
+
+    res = requests.get(url, headers=headers, cookies=session)
+    #실제 요청을 시도하는 부분
+
+    print(res.text)
+    #요청에대한 응답을 출력하는 부분 
+
+def createFirearm(serialNumber,model,owner,affiliatedUnit,status,updateReason):
+
+    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/createFirearm/{serialNumber}/{model}/{owner}/{affiliatedUnit}/{status}/{updateReason}' 
+
+    res = requests.get(url, headers=headers, cookies=session)
+    #실제 요청을 시도하는 부분
+
+    print(res.text)
+    #요청에대한 응답을 출력하는 부분 
+
+def checkoutFirearm(serialNumber,status,updateReason):
+
+    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/checkoutFirearm/{serialNumber}/{status}/{updateReason}' 
+
+    res = requests.get(url, headers=headers, cookies=session)
+    #실제 요청을 시도하는 부분
+
+    print(res.text)
+    #요청에대한 응답을 출력하는 부분 
+
+def checkinFirearm(serialNumber,status,updateReason):
+    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/checkinFirearm/{serialNumber}/{status}/{updateReason}' 
+
+    res = requests.get(url, headers=headers, cookies=session)
+    #실제 요청을 시도하는 부분
+
+    print(res.text)
+    #요청에대한 응답을 출력하는 부분 
+
+def changeFirearmAttributes(serialNumber,model,owner,affiliatedUnit,status,updateReason):
+    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/changeFirearmAttributes/{serialNumber}/{model}/{owner}/{affiliatedUnit}/{status}/{updateReason}' 
+
+    res = requests.get(url, headers=headers, cookies=session)
+    #실제 요청을 시도하는 부분
+
+    print(res.text)
+    #요청에대한 응답을 출력하는 부분 
+
+def deleteFirearm(serialNumber):
+    url =f'https://osamhack2021-cloud-web-blo-my-byzantium-7v7qrp7g6hwxwp-3000.githubpreview.dev/deleteFirearm/{serialNumber}' 
+
+    res = requests.get(url, headers=headers, cookies=session)
+    #실제 요청을 시도하는 부분
+
+    print(res.text)
+    #요청에대한 응답을 출력하는 부분 
