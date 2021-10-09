@@ -39,6 +39,72 @@ $ node invoke.js
 ```bash
 $ node query.js 
 ```
+## REST API 사용
+### rest api 서버 실행
+```
+cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
+```
+```
+node rest.js
+```
+### ● http://localhost:3000/
+dummy page.
+
+### ● http://localhost:3000/query/:serialNumber
+serialNumber에 대한 총기 정보 출력.
+
+example response ( query/1234567 )
+```
+[
+  {
+    "TxId": "e7b9ebd086cbde4350ac34f005874e633115c2d01e3ad6ca800a74e6564ab156",
+    "Timestamp": "Sat Oct 09 2021 07:53:40 GMT+0000 (Coordinated Universal Time)",
+    "Value": {
+      "affiliatedUnit": "5div12regt3bn5coHQ",
+      "docType": "firearm",
+      "misc": "이상 무",
+      "model": "K-1A",
+      "opType": "CHECKOUT",
+      "owner": "오동재",
+      "serialNumber": "1234567",
+      "updateReason": "총기 정비 후 재지급"
+    }
+  },
+  {
+    "TxId": "329ada020c18e8b277021f906dc2c734b361fe0ef19cd66eeb81d831f2d29a12",
+    "Timestamp": "Sat Oct 09 2021 07:53:38 GMT+0000 (Coordinated Universal Time)",
+    "Value": {
+      "affiliatedUnit": "5div12regt3bn5coHQ",
+      "docType": "firearm",
+      "misc": "장전 손잡이 고장",
+      "model": "K-1A",
+      "opType": "CHECKIN",
+      "owner": "오동재",
+      "serialNumber": "1234567",
+      "updateReason": "기능고장으로 인한 정비"
+    }
+  }
+]
+```
+### ● http://localhost:3000/createFirearm/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason
+
+총기 생성
+
+### ● http://localhost:3000/checkoutFirearm/:serialNumber/:status/:updateReason
+
+총기 불출
+
+### ● http://localhost:3000/checkinFirearm/:serialNumber/:status/:updateReason
+
+총기 반납
+
+### ● http://localhost:3000/changeFirearmAttributes/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason
+
+총기 상태 변경
+
+### ● http://localhost:3000/deleteFirearm/:serialNumber
+
+총기 삭제
 
 ## 문제점
 하이퍼레저 네트웍 시작/종료 시 터미널이 날아감. 터미널 재실행후 재개
