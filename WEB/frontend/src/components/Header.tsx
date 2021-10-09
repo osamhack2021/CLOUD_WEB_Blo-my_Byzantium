@@ -1,7 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Logo from "../images/logo.png";
 
 export default function Header() {
+  const history = useHistory();
   return (
     <div
       style={{
@@ -12,9 +14,16 @@ export default function Header() {
         paddingLeft: "1em",
         paddingRight: "1em",
         backgroundColor: "#eae7ed",
+        borderBottom: "1px solid gray",
       }}
     >
-      <img src={Logo} alt="Logo" style={{ height: "70px" }} />
+      <button
+        type="button"
+        style={{ border: "0" }}
+        onClick={() => history.push("/")}
+      >
+        <img src={Logo} alt="Logo" style={{ height: "70px" }} />
+      </button>
       {/* Hard Coded -- Should be Changed */}
       <div
         style={{

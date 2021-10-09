@@ -39,7 +39,28 @@ body {
   color: #3d4147;
 }
 
+@media all and (orientation: portrait) {
+  .firearm-status-content {
+    flex-direction: column;
+  }
+  .update-button {
+    left: 0;
+    margin: auto;
+  }
+  .firearm-status-text {
+    margin: 0 auto;
+  }
+  .update-button-container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 /*  UpdateButton */
+.update-button-container {
+  margin: auto 0;
+}
 .update-button,
 .update-button::after {
   -webkit-transition: all 0.3s;
@@ -53,7 +74,7 @@ body {
   background: none;
   border: 3px solid #000;
   border-radius: 5px;
-  font-size: 1.6em;
+  font-size: 4vmin;
   font-weight: bold;
   color: #000;
   position: relative;
@@ -78,6 +99,7 @@ body {
   width: 100%;
 }
 
+/*  Timeline */
 .timeline-container {
   display: flex;
   flex-direction: column;
