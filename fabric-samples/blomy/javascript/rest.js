@@ -20,8 +20,7 @@ router.route('/').get((req,res)=>{
 router.route('/query/:serial').get((req,res)=>{
     const serial = String(req.params.serial);
     console.log('------AssetHitory 호출--------')
-    console.log(serial);
-    console.log('------------------------------')
+    console.log(`serial = ${serial}`);
     getHistory(serial).then((value)=>{ // 하이퍼레저에서 query에 대한 응답을 가져오는 부분
         res.writeHead(200, {"Content-Type":'text/html;charset=utf8'});
 		res.write(value);
@@ -45,7 +44,6 @@ router.route('/createFirearm/:serial/:firearm/:owner/:belong/:status/:reason').g
     console.log(`belong = ${belong}`);
     console.log(`status = ${status}`);
     console.log(`reason = ${reason}`);
-    console.log('--------------------------------')
     modifyTransaction(['createFirearm',serial,firearm,owner,belong,status,reason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
@@ -106,7 +104,8 @@ router.route('/changeFirearmAttributes/:serial/:firearm/:owner/:belong/:status/:
 
 router.route('/deleteFirearm/:serial').get((req,res)=>{
     const serial = String(req.params.serial);
-    console.log(`serial=${serial}`);
+    console.log('-------총기 삭제---------')
+    console.log(`serial = ${serial}`);
     modifyTransaction(['deleteFirearm',serial]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
