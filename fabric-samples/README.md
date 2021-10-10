@@ -11,6 +11,8 @@ $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
 $ npm install
 $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/chaincode/blomy/javascript
 $ npm install
+$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/chaincode/blomyfood/javascript
+$ npm install
 ```
 3. 블록체인 네트워크 실행(총기 채널 자동 실행됨)
 ```bash
