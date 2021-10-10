@@ -6,6 +6,7 @@ import FireArmsPage from "./pages/FireArmsPage";
 import SelectMenuPage from "./pages/SelectMenuPage";
 import Header from "./components/Header";
 import { useAuthState, useAuthDispatch } from "./utils/contexts/AuthContext";
+import FoodDataPage from "./pages/FoodDataPage";
 
 function App() {
   const { isAuth } = useAuthState();
@@ -27,6 +28,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           {isAuth ? <SelectMenuPage /> : <LoginPage />}
+        </Route>
+        <Route path="/fooddata">
+          <FoodDataPage />
         </Route>
         <Route path="/firearms">
           <FireArmsPage />

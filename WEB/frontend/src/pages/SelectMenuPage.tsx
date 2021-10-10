@@ -21,6 +21,9 @@ export default function SelectMenuPage() {
           display: "flex",
           flexDirection: "column",
         }}
+        onClick={() => {
+          history.push("/fooddata");
+        }}
       >
         <img src={FoodData} alt="FoodData" />
         <div style={{ color: "#B695E5", fontSize: "3em" }}>부식 작전</div>
@@ -34,7 +37,7 @@ export default function SelectMenuPage() {
           flexDirection: "column",
         }}
       >
-        <img src={Firearm} alt="FoodData" />
+        <img src={Firearm} alt="Firearm" />
         <div style={{ color: "#B695E5", fontSize: "3em" }}>총기 수불</div>
       </Button>
     </div>
