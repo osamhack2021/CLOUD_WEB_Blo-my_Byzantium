@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 9090);
 app.use(cors({
     origin: '*'
 }));
@@ -14,7 +14,7 @@ const router = express.Router();
 // 의미없는 테스트 페이지 구현 웹페이지의 가장 초기화면 
 router.route('/').get((req,res)=>{
    res.send('<h1>test page</h1>');
-})
+});
 
 
 //query 요청에 대한 응답 부분 총기에관한 serial번호를 입력받아서 AssetHistory(transaction)을 json형태로 출력하는 부분
@@ -26,10 +26,8 @@ router.route('/query/:serialNumber').get((req,res)=>{
         res.writeHead(200, {"Content-Type":'text/html;charset=utf8'});
 		res.write(value);
 		res.end();
-        }
-    )
-
-})
+        });
+});
 
 router.route('/createFirearm/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason').get((req,res)=>{
     const serialNumber = String(req.params.serialNumber);
@@ -48,9 +46,9 @@ router.route('/createFirearm/:serialNumber/:model/:owner/:affiliatedUnit/:status
     modifyTransaction(['createFirearm',serialNumber,model,owner,affiliatedUnit,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
-        res.end()
-    })
-})
+        res.end();
+    });
+});
 
 router.route('/checkoutFirearm/:serialNumber/:status/:updateReason').get((req,res)=>{
     const serialNumber = String(req.params.serialNumber);
@@ -63,7 +61,7 @@ router.route('/checkoutFirearm/:serialNumber/:status/:updateReason').get((req,re
     modifyTransaction(['checkoutFirearm',serialNumber,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
-        res.end()
+        res.end();
     })
 })
 
@@ -78,9 +76,9 @@ router.route('/checkinFirearm/:serialNumber/:status/:updateReason').get((req,res
     modifyTransaction(['checkinFirearm',serialNumber,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
-        res.end()
-    })
-})
+        res.end();
+    });
+});
 
 router.route('/changeFirearmAttributes/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason').get((req,res)=>{
     const serialNumber = String(req.params.serialNumber);
@@ -101,7 +99,7 @@ router.route('/changeFirearmAttributes/:serialNumber/:model/:owner/:affiliatedUn
         res.write(value);
         res.end()
     });
-})
+});
 
 router.route('/deleteFirearm/:serialNumber').get((req,res)=>{
     const serialNumber = String(req.params.serialNumber);
@@ -112,7 +110,7 @@ router.route('/deleteFirearm/:serialNumber').get((req,res)=>{
         res.write(value);
         res.end()
     });
-})
+});
 
 
 app.use('/',router);
@@ -122,5 +120,5 @@ app.all('*', function(req,res){
 
 
 const server = http.createServer(app).listen(app.get('port'), function(){
-	console.log('3000 port open');
-})
+	console.log('9090 port open');
+});

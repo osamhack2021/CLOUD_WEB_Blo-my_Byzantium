@@ -47,10 +47,10 @@ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
 ```
 node rest.js
 ```
-### ● http://localhost:3000/
+### ● http://localhost:9090/
 dummy page.
 
-### ● http://localhost:3000/query/:serialNumber
+### ● http://localhost:9090/query/:serialNumber
 serialNumber에 대한 총기 정보 출력.
 
 example response ( query/1234567 )
@@ -86,23 +86,23 @@ example response ( query/1234567 )
   }
 ]
 ```
-### ● http://localhost:3000/createFirearm/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason
+### ● http://localhost:9090/createFirearm/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason
 
 총기 생성
 
-### ● http://localhost:3000/checkoutFirearm/:serialNumber/:status/:updateReason
+### ● http://localhost:9090/checkoutFirearm/:serialNumber/:status/:updateReason
 
 총기 불출
 
-### ● http://localhost:3000/checkinFirearm/:serialNumber/:status/:updateReason
+### ● http://localhost:9090/checkinFirearm/:serialNumber/:status/:updateReason
 
 총기 반납
 
-### ● http://localhost:3000/changeFirearmAttributes/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason
+### ● http://localhost:9090/changeFirearmAttributes/:serialNumber/:model/:owner/:affiliatedUnit/:status/:updateReason
 
 총기 상태 변경
 
-### ● http://localhost:3000/deleteFirearm/:serialNumber
+### ● http://localhost:9090/deleteFirearm/:serialNumber
 
 총기 삭제
 
