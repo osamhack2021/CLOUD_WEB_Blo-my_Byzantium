@@ -1,15 +1,32 @@
-var tp = {"Timestamp":{
-    "seconds": {
-    "low": 1570417284,
-    "high": 0,
-    "unsigned": false
-   },
-    "nanos": 435000000
-   }};
+const unit = {
+  "affiliatedUnit": "1div11regt1bn1co1p",
+  "foods": [
+      {
+          "name" : "kimchi",
+          "amount" : "50",
+      },
+      {
+          "name" : "tuna",
+          "amount" : "90"
+      }
+  ],
+  "opType": "CREATE"
+};
 
-function toDate(timestamp) {
-    const milliseconds = (timestamp.seconds.low + ((timestamp.nanos / 1000000) / 1000)) * 1000;
-    return new Date(milliseconds);
-  }
+var foodname = "kimchi";
+var amount = "1000";
+amount = Number(amount);
+const checkFood = food => food.name === foodname;
 
-console.log(toDate(tp.Timestamp));
+if(unit.foods.some(checkFood)){
+    let currentAmount = Number(unit.foods.find(food => food.name ===foodname).amount);
+    unit.foods.find(food => food.name ===foodname).amount = currentAmount + amount;
+    console.log(1);
+}else{
+    unit.foods.push({
+        "name": foodname,
+        "amount": amount
+    });
+}
+
+console.log(unit);
