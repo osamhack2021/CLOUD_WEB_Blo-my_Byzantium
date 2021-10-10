@@ -11,7 +11,7 @@ const path = require('path');
 const fs = require('fs');
 
 
-const getHistory = async function(serialNumber) {
+const firearmQuery = async function(serialNumber) {
     try {
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -44,17 +44,17 @@ const getHistory = async function(serialNumber) {
         // queryFirearm transaction - requires 1 argument, ex: ('queryFirearm', 'FIREARM4')
         // queryAllFirearms transaction - requires no arguments, ex: ('queryAllFirearms')
         const result = await contract.evaluateTransaction('GetAssetHistory', serialNumber);
-
+    
         // Disconnect from the gateway.
         await gateway.disconnect();
         return result.toString();
+        
     } catch (error) {
-        console.error(`Failed to evaluate transaction: ${error}`);
-        process.exit(1);
+        return `Failed to evaluate transaction: ${error}`;
     }
 }
 
-async function modifyTransaction(tx_params) {
+async function modifyFirearmTransaction(tx_params) {
     try {
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -89,17 +89,18 @@ async function modifyTransaction(tx_params) {
         // await contract.submitTransaction('createFirearm', '963722174', 'K2C1', '21-22922385', false, 'Case head separation');
         // console.log('Transaction has been submitted');
 
-        await contract.submitTransaction(...tx_params);
-        return tx_params + ' Transaction has been submitted';
-
+        const result = await contract.submitTransaction(...tx_params);
+        
+        
         // Disconnect from the gateway.
         await gateway.disconnect();
+        return result;
 
     } catch (error) {
         return `Failed to submit transaction: ${error}`;
-        process.exit(1);
     }
 }
 
 
-module.exports = {getHistory, modifyTransaction}
+exports.firearmQuery = firearmQuery;
+exports.modifyFirearmTransaction = modifyFirearmTransaction;
