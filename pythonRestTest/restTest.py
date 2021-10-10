@@ -1,8 +1,8 @@
-import rest 
+import rest, json
 #임시로 만든 파이썬 스크립트이고 rest를 불러와서 사용 
 # query 결과를 반환함으로 변수에 반환값을 저장해서 사용하면 될듯 함
 
-serialNumber = 101010 #임시 시리얼 번호 지정
+serialNumber = 111111 #임시 시리얼 번호 지정
 
 
 #print(rest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기'))
@@ -25,6 +25,9 @@ serialNumber = 101010 #임시 시리얼 번호 지정
 # result = rest.deleteFirearm(serialNumber)
 #deleteFirearm 호출 및 query함수 결과 반환
 
-print(rest.query(serialNumber))
-result = rest.query(serialNumber)
+result = rest.query(serialNumber) #query 함수 호출 
+print(type(result)) #query 함수 리턴 값의 타입 (dict)
+print(result)   #query 함수 serialNumber에 대한 리턴 값 출력
+print(result['TxId'])
+
 #rest.py의 query함수 호출 
