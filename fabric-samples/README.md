@@ -36,6 +36,8 @@ $ . networkDown.sh
 $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy
 $ ./networkMonitor.sh
 ```
+![image](https://user-images.githubusercontent.com/10104871/136693813-0f116e05-3dba-4a31-94d1-fab2bee221a5.png)
+
 
 ## method 사용
 자바스크립트 실행파일 위치
