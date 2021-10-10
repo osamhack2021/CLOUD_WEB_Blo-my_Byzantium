@@ -23,7 +23,7 @@ $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/test-network
 $ ./networkFood.sh up createChannel -ca -s couchdb
 $ ./networkFood.sh deployCC -ccn blomyfood -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/blomyfood/javascript
 ```
-4. 사용 후 종료
+5. 사용 후 종료
 ```bash
 $ . networkDown.sh
 ```
