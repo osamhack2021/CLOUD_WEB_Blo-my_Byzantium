@@ -29,6 +29,14 @@ $ ./networkFood.sh deployCC -ccn blomyfood -ccv 1 -cci initLedger -ccl javascrip
 ```bash
 $ . networkDown.sh
 ```
+
+## 네트워크모니터 툴(디버깅)
+1. 새 터미널을 열고 밑 커맨드 실행
+```bash
+$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy
+$ ./networkMonitor.sh
+```
+
 ## method 사용
 자바스크립트 실행파일 위치
 ```bash
