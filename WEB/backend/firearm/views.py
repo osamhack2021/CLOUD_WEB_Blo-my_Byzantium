@@ -16,8 +16,6 @@ from rest_framework.parsers import JSONParser
 API_URL = "https://osamhack2021-cloud-web-blo-my-byzantium-q96vvq5p24w9x-9090.githubpreview.dev" 
 
 #fabric의 로컬 API의 URL이므로, 매 환경마다 변경해야합니다
-username = 'beomsun0829'
-token = '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'
 
 
 
