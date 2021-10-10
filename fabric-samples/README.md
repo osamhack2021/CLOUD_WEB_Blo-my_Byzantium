@@ -144,11 +144,19 @@ example response ( query/1234567 )
 
 ### ● http://localhost:9090/checkinFood/:affiliatedUnit/:foodName/:amount
 
+부식 반입
+
 ### ● http://localhost:9090/checkoutFood/:affiliatedUnit/:foodName/:amount
+
+부식 불출
 
 ### ● http://localhost:9090/GetUnitHistory/:affiliatedUnit
 
+부대 거래 내역 조회 
+
 ### ● http://localhost:9090/queryAllUnits
+
+모든 부대 거래 내역 조회
 
 
 
