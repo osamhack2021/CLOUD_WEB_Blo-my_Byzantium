@@ -28,7 +28,7 @@ class changeMiscSerializer(serializers.ModelSerializer):
         fields = ['opType','SerialNumber','Misc','UpdateReason']
 
 
-class changeLocation(serializers.ModelSerializer):
+class changeLocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Firearm
         fields = ['opType','SerialNumber','Affiliated_Unit']

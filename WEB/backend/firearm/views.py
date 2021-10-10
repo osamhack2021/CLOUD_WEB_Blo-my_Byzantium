@@ -55,18 +55,24 @@ def changeMisc(request):
 
 
 
+@csrf_exempt
+def changeLocation(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = changeLocationSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return response_allow_header(JsonResponse(serializer.data, status=201))
+        return response_allow_header(JsonResponse(serializer.errors, status=400))
+
+
+
 
 
 """
 
 @csrf_exempt
 def changeFirearmOwner(request,OwnerSearch):
-
-
-
-@csrf_exempt
-def changeLocation(request):
-
     
 @csrf_exempt
 def approve(request):
