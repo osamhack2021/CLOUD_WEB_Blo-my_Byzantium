@@ -12,10 +12,16 @@ $ npm install
 $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/chaincode/blomy/javascript
 $ npm install
 ```
-3. 블록체인 네트워크 실행
+3. 블록체인 네트워크 실행(총기 채널 자동 실행됨)
 ```bash
 $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy
 $ . startFabric.sh javascript
+```
+4. 부식 채널 실행
+```bash
+$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/test-network
+$ ./networkFood.sh up createChannel -ca -s couchdb
+$ ./networkFood.sh deployCC -ccn blomyfood -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/blomyfood/javascript
 ```
 4. 사용 후 종료
 ```bash
@@ -34,10 +40,12 @@ $ node registerUser.js
 새로운 asset 생성
 ```bash
 $ node invoke.js
+$ node invokefood.js
 ```
 모든 asset query
 ```bash
 $ node query.js 
+$ node queryfood.js
 ```
 ## REST API 사용
 ### rest api 서버 실행
