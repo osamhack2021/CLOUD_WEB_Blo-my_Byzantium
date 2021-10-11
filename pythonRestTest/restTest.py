@@ -5,43 +5,49 @@ import firearmRest, foodRest, json
 serialNumber = 111111 #임시 시리얼 번호 지정
 
 affiliatedUnit = '39div'
+foodName = 'kimchi'
+amount = 10
+while True :
+    func = input('조회할 함수 입력: ')
 
-#print(firearmRest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기'))
-# result = firearmRest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기')
-#createFirearm호출 및 query함수 결과 반환
-
-#print(firearmRest.checkoutFirearm(serialNumber,'이상무','근무로 인한 총기 불출'))
-# result = firearmRest.checkoutFirearm(serialNumber,'이상무','근무로 인한 총기 불출')
-#checkoutFirearm 호출 및 query함수 결과 반환 
-
-#print(firearmRest.checkinFirearm(serialNumber,'장전 손잡이 이상','총기 고장으로 인한 반납'))
-# result = firearmRest.checkinFirearm(serialNumber,'장전 손잡이 이상','총기 고장으로 인한 반납')
-#checkinFirearm 호출 및 query함수 결과 반환 
-
-#print(firearmRest.changeFirearmAttributes(serialNumber,'k1',' ','39div','이상무','잘 모름'))
-# result = firearmRest.changeFirearmAttributes(serialNumber,'k1',' ','39div','이상무','잘 모름')
-#changeFirearmAttributes 호출 및 query함수 결과 반환
-
-#print(firearmRest.deleteFirearm(serialNumber))
-# result = firearmRest.deleteFirearm(serialNumber)
-#deleteFirearm 호출 및 query함수 결과 반환
-
-result = firearmRest.query(serialNumber) #query 함수 호출 
-print(type(result)) #query 함수 리턴 값의 타입 (dict)
-print(result)   #query 함수 serialNumber에 대한 리턴 값 출력
-print(result['TxId'])
-#print(firearmRest.query(serialNumber))
-
-#print(foodRest.createUnit(affiliatedUnit))
-
-#print(foodRest.queryUnit(affiliatedUnit))
-
-#print(foodRest.checkinFood(affilatedUnit,foodName,amount))
-
-#print(foodRest.checkoutFood(affilatedUnit,foodName,amount))
-
-#print(foodRest.GetUnitHistory(affilatedUnit))
-
-#print(foodRest.queryAllUnits())
-
-#rest.py의 query함수 호출 
+    if func == 'createFirearm':
+        result =firearmRest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기')
+        print(result)
+    elif func == 'checkoutFirearm':
+        result =firearmRest.checkoutFirearm(serialNumber,'이상무','근무로 인한 총기 불출')
+        print(result)
+    elif func =='checkinFirearm':
+        result =firearmRest.checkinFirearm(serialNumber,'장전 손잡이 이상','총기 고장으로 인한 반납')
+        print(result)
+    elif func =='changeFirearmAttributes':
+        result =firearmRest.changeFirearmAttributes(serialNumber,'k1',' ','39div','이상무','잘 모름')
+        print(result)
+    elif func =='deleteFirearm':
+        result =firearmRest.deleteFirearm(serialNumber)
+        print(result)
+    elif func =='query':
+        result =firearmRest.query(serialNumber)
+        print(result)
+    elif func =='createUnit':
+        result =foodRest.createUnit(affiliatedUnit)
+        print(result)
+    elif func =='queryUnit':
+        result =foodRest.queryUnit(affiliatedUnit)
+        print(result)
+    elif func =='checkinFood':
+        result =foodRest.checkinFood(affiliatedUnit,foodName,amount)
+        print(result)
+    elif func =='checkoutFood':
+        result =foodRest.checkoutFood(affiliatedUnit,foodName,amount)
+        print(result)
+    elif func =='GetUnitHistory':
+        result =foodRest.GetUnitHistory(affiliatedUnit)
+        #오류있음
+        print(result)
+    elif func =='queryAllUnits':
+        result =foodRest.queryAllUnits()
+        #오류있음
+        print(result)
+    else:  
+        print('종료')
+    
