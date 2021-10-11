@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { SearchContext } from "../pages/FireArmsPage";
 
 type Props = {
-  children: React.ReactChild | React.ReactChild[];
+  children?: React.ReactChild | React.ReactChild[];
   placeholder: string;
 };
 
@@ -49,3 +49,6 @@ export default function SearchBar(props: Props) {
     </>
   );
 }
+SearchBar.defaultProps = {
+  children: undefined,
+};
