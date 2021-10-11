@@ -78,6 +78,13 @@ body {
   font-weight: bold;
   color: #000;
   position: relative;
+  box-shadow: 2px 2px 2px black;
+}
+
+.update-button:active {
+  margin-left: 2px;
+  margin-top: 2px;
+  box-shadow: none;
 }
 
 .update-button:hover {
