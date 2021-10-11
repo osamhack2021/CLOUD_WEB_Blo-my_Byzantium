@@ -3,7 +3,7 @@ const http = require('http');
 const app = express();
 const cors = require('cors');
 const firearm = require('./firearmRouter.js');
-const food = require('./foodRouter.js')
+const food = require('./foodRouter.js');
 app.set('port', process.env.PORT || 9090);
 app.use(cors({
     origin: '*'

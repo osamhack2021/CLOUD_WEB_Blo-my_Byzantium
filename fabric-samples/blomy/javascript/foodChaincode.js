@@ -47,10 +47,10 @@ async function foodQuery(affiliatedUnit) {
         // Disconnect from the gateway.
         await gateway.disconnect();
 
-        return result.toString()
+        return result.toString();
         
     } catch (error) {
-        console.log('failed')
+        console.log('failed');
         process.exit(1);
     }
 }
