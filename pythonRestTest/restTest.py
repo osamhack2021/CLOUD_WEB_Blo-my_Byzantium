@@ -1,36 +1,36 @@
 import firearmRest, foodRest, json
-#임시로 만든 파이썬 스크립트이고 rest를 불러와서 사용 
+#임시로 만든 파이썬 스크립트 firearmRest과 foodRest를 불러와서 사용 
 # query 결과를 반환함으로 변수에 반환값을 저장해서 사용하면 될듯 함
 
 serialNumber = 111111 #임시 시리얼 번호 지정
 
 affiliatedUnit = '39div'
 
-#print(rest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기'))
-# result = rest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기')
+#print(firearmRest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기'))
+# result = firearmRest.createFirearm(serialNumber,'k5','정현구','39div','이상무','신병 전입 불출 대기')
 #createFirearm호출 및 query함수 결과 반환
 
-#print(rest.checkoutFirearm(serialNumber,'이상무','근무로 인한 총기 불출'))
-# result = rest.checkoutFirearm(serialNumber,'이상무','근무로 인한 총기 불출')
+#print(firearmRest.checkoutFirearm(serialNumber,'이상무','근무로 인한 총기 불출'))
+# result = firearmRest.checkoutFirearm(serialNumber,'이상무','근무로 인한 총기 불출')
 #checkoutFirearm 호출 및 query함수 결과 반환 
 
-#print(rest.checkinFirearm(serialNumber,'장전 손잡이 이상','총기 고장으로 인한 반납'))
-# result = rest.checkinFirearm(serialNumber,'장전 손잡이 이상','총기 고장으로 인한 반납')
+#print(firearmRest.checkinFirearm(serialNumber,'장전 손잡이 이상','총기 고장으로 인한 반납'))
+# result = firearmRest.checkinFirearm(serialNumber,'장전 손잡이 이상','총기 고장으로 인한 반납')
 #checkinFirearm 호출 및 query함수 결과 반환 
 
-#print(rest.changeFirearmAttributes(serialNumber,'k1',' ','39div','이상무','잘 모름'))
-# result = rest.changeFirearmAttributes(serialNumber,'k1',' ','39div','이상무','잘 모름')
+#print(firearmRest.changeFirearmAttributes(serialNumber,'k1',' ','39div','이상무','잘 모름'))
+# result = firearmRest.changeFirearmAttributes(serialNumber,'k1',' ','39div','이상무','잘 모름')
 #changeFirearmAttributes 호출 및 query함수 결과 반환
 
-#print(rest.deleteFirearm(serialNumber))
-# result = rest.deleteFirearm(serialNumber)
+#print(firearmRest.deleteFirearm(serialNumber))
+# result = firearmRest.deleteFirearm(serialNumber)
 #deleteFirearm 호출 및 query함수 결과 반환
 
-#result = rest.query(serialNumber) #query 함수 호출 
-#print(type(result)) #query 함수 리턴 값의 타입 (dict)
-#print(result)   #query 함수 serialNumber에 대한 리턴 값 출력
-#print(result['TxId'])
-#print(rest.query(serialNumber))
+result = firearmRest.query(serialNumber) #query 함수 호출 
+print(type(result)) #query 함수 리턴 값의 타입 (dict)
+print(result)   #query 함수 serialNumber에 대한 리턴 값 출력
+print(result['TxId'])
+#print(firearmRest.query(serialNumber))
 
 #print(foodRest.createUnit(affiliatedUnit))
 
