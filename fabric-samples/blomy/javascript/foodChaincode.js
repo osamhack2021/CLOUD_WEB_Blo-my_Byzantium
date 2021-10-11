@@ -7,10 +7,56 @@
 'use strict';
 
 const { Gateway, Wallets } = require('fabric-network');
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 
-async function main(tx_params) {
+
+async function foodQuery(affiliatedUnit) {
+    try {
+        // load the network configuration
+        const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
+        const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
+
+        // Create a new file system based wallet for managing identities.
+        const walletPath = path.join(process.cwd(), 'wallet');
+        const wallet = await Wallets.newFileSystemWallet(walletPath);
+
+        // Check to see if we've already enrolled the user.
+        const identity = await wallet.get('appUser');
+        if (!identity) {
+            console.log('An identity for the user "appUser" does not exist in the wallet');
+            console.log('Run the registerUser.js application before retrying');
+            return;
+        }
+
+        // Create a new gateway for connecting to our peer node.
+        const gateway = new Gateway();
+        await gateway.connect(ccp, { wallet, identity: 'appUser', discovery: { enabled: true, asLocalhost: true } });
+
+        // Get the network (channel) our contract is deployed to.
+        const network = await gateway.getNetwork('myfoodchannel');
+
+        // Get the contract from the network.
+        const contract = network.getContract('blomyfood');
+
+        // Evaluate the specified transaction.
+        // queryFirearm transaction - requires 1 argument, ex: ('queryFirearm', 'FIREARM4')
+        // queryAllFirearms transaction - requires no arguments, ex: ('queryAllFirearms')
+        const result = await contract.evaluateTransaction('queryUnit', affiliatedUnit);
+
+        // Disconnect from the gateway.
+        await gateway.disconnect();
+
+        return result.toString()
+        
+    } catch (error) {
+        console.log('failed')
+        process.exit(1);
+    }
+}
+
+
+ async function modifyFoodTransaction(tx_params) {
     try {
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '..', '..', 'test-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
@@ -46,11 +92,12 @@ async function main(tx_params) {
         // console.log('Transaction has been submitted');
 
         // await contract.submitTransaction();
-        await contract.submitTransaction(...tx_params);
-        console.log(tx_params + ' Transaction has been submitted');
+        const result = await contract.submitTransaction(...tx_params);
+        await gateway.disconnect();
+        return tx_params + `Transaction has been submitted\n result: ${result}`;
 
         // Disconnect from the gateway.
-        await gateway.disconnect();
+       
 
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
@@ -58,17 +105,6 @@ async function main(tx_params) {
     }
 }
 
-async function mockTx1(){
-    try {
-        await main(['createUnit', '5div12regt3bn5co2p']);
-        // await main(['checkinFood', '5div12regt3bn5co2p', 'kimchi', 400]);
-        // await main(['checkinFood', '5div12regt3bn5co2p', 'soup', 200]);
-        // await main(['checkinFood', '5div12regt3bn5co2p', 'kimchi', 400]);
-        await main(['checkinFood', '1div11regt1bn1co1p', 'tuna', 3110]);
-    } catch (error) {
-        console.error(`Failed to submit transaction: ${error}`);
-        process.exit(1);
-    }
-}
 
-mockTx1();
+exports.foodQuery = foodQuery;
+exports.modifyFoodTransaction = modifyFoodTransaction;

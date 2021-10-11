@@ -70,6 +70,8 @@ node rest.js
 ### ● http://localhost:9090/
 dummy page.
 
+### 총기
+
 ### ● http://localhost:9090/query/:serialNumber
 serialNumber에 대한 총기 정보 출력.
 
@@ -125,6 +127,38 @@ example response ( query/1234567 )
 ### ● http://localhost:9090/deleteFirearm/:serialNumber
 
 총기 삭제
+
+### ● http://localhost:9090/queryAllFirearms
+
+총기 전체 조회
+
+### 부식 
+
+### ● http://localhost:9090/queryUnit/:affiliatedUnit
+
+부식 조회
+
+### ● http://localhost:9090/createUnit/:affiliatedUnit
+
+부대 생성
+
+### ● http://localhost:9090/checkinFood/:affiliatedUnit/:foodName/:amount
+
+부식 반입
+
+### ● http://localhost:9090/checkoutFood/:affiliatedUnit/:foodName/:amount
+
+부식 불출
+
+### ● http://localhost:9090/GetUnitHistory/:affiliatedUnit
+
+부대 거래 내역 조회 
+
+### ● http://localhost:9090/queryAllUnits
+
+모든 부대 거래 내역 조회
+
+
 
 ## 문제점
 하이퍼레저 네트웍 시작/종료 시 터미널이 날아감. 터미널 재실행후 재개
