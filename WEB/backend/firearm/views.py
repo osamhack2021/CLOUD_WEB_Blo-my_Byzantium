@@ -13,11 +13,8 @@ from .serializers import *
 from rest_framework.parsers import JSONParser
 
 
-API_URL = "https://osamhack2021-cloud-web-blo-my-byzantium-q96vvq5p24w9x-9090.githubpreview.dev" 
+API_URL = "http://localhost:9090/" 
 
-#fabric의 로컬 API의 URL이므로, 매 환경마다 변경해야합니다
-username = 'beomsun0829'
-token = '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'
 
 
 
@@ -43,12 +40,41 @@ def createdata(request):
 
 
 
+
+
+
+
 @csrf_exempt
-def seeFireArmAssetWithSerialNum(request,SerialNum):                #내부데이터용
+def seeFireArmAssetWithSerialNum(request,SerialNum):                            #내부데이터용
     if request.method == 'GET':
         query_set = Firearm.objects.filter(SerialNumber = SerialNum)
         serializer = ModelSerializer(query_set, many=True)
         return response_allow_header(JsonResponse(serializer.data, safe=False))
+
+
+
+@csrf_exempt
+def approve(request):
+    if request.method == 'GET':
+        query_set = Firearm.objects.all()
+        serializer = ModelSerializer(query_set, many=True)
+
+        if serializer.data[0]["opType"] == "createdata":                    #데이터 생성 api 호출
+            REQUEST_URL = API_URL + "createFirearm/" + serializer.data[0]["SerialNumber"] + "/" + \
+            "K2C" + "/" + serializer.data[0]["Owner"] + "/" + serializer.data[0]["Affiliated_Unit"] + "/" + \
+            "현재상태" + "/" + serializer.data[0]["UpdateReason"]
+
+            requests.get(REQUEST_URL)
+            Firearm.objects.first().delete()
+
+            return response_allow_header(JsonResponse({'opType' : 'createdata'}, safe=False))
+            
+
+
+        
+        
+
+        return response_allow_header(JsonResponse(serializer.data[0], safe=False))
 
 
     
@@ -56,14 +82,9 @@ def seeFireArmAssetWithSerialNum(request,SerialNum):                #내부데�
 @csrf_exempt
 def querySerialNumber(request,SerialNum):
     if request.method == 'GET':
-        params = {'param1' : '/query/','param2' : str(SerialNum)}
-        se = requests.Session()
-        req = se.get(API_URL, params = params)
-
-
-
-        print("\nlog : " + str(req.headers) + "\n")
-        return response_allow_header(JsonResponse(req, safe=False))
+        REQUEST_URL = API_URL + "query/" + str(SerialNum)
+        req = requests.get(REQUEST_URL)
+        return response_allow_header(JsonResponse(req.json(), safe=False))
 
 
 
@@ -77,6 +98,8 @@ def changeMisc(request):
             serializer.save()
             return response_allow_header(JsonResponse(serializer.data, status=201))
         return response_allow_header(JsonResponse(serializer.errors, status=400))
+
+
 
 
 
@@ -99,8 +122,6 @@ def changeLocation(request):
 @csrf_exempt
 def changeFirearmOwner(request,OwnerSearch):
     
-@csrf_exempt
-def approve(request):
 
     
 @csrf_exempt
