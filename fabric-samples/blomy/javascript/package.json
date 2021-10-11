@@ -20,7 +20,8 @@
         "express": "^4.17.1",
         "fabric-ca-client": "^2.2.4",
         "fabric-network": "^2.2.4",
-        "http": "0.0.1-security"
+        "http": "0.0.1-security",
+        "path": "^0.12.7"
     },
     "devDependencies": {
         "chai": "^4.2.0",
