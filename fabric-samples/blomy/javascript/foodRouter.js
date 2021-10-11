@@ -32,6 +32,8 @@ router.route('/getUnitFoodHistory/:affiliatedUnit/:foodName').get((req,res)=>{
 
 router.route('/createUnit/:affiliatedUnit').get((req,res)=>{
     const affiliatedUnit = String(req.params.affiliatedUnit);
+    console.log('---------부대 생성----------');
+    console.log(`affiliatedUnit = ${affiliatedUnit}`);    
     foodChaincode.modifyFoodTransaction(['createUnit',affiliatedUnit]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
