@@ -13,14 +13,8 @@ from .serializers import *
 from rest_framework.parsers import JSONParser
 
 
-<<<<<<< HEAD
 API_URL = "http://localhost:9090/" 
 
-=======
-API_URL = "http://localhost:9090" 
-
-#fabric의 로컬 API의 URL이므로, 매 환경마다 변경해야합니다
->>>>>>> 2fac4093a8fb142b1b43f705cc624a68c334c897
 
 
 
