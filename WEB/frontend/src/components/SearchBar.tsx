@@ -9,12 +9,12 @@ import { SearchContext } from "../pages/FireArmsPage";
 type Props = {
   children?: React.ReactChild | React.ReactChild[];
   placeholder: string;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function SearchBar(props: Props) {
   const [text, setText] = useState<string>("");
-  const { setSearchText } = useContext(SearchContext);
-  const { children, placeholder } = props;
+  const { children, placeholder, setSearchText } = props;
   return (
     <>
       <Paper

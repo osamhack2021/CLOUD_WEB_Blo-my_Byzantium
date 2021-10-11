@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { TextField } from "@mui/material";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateAdapter from "@mui/lab/AdapterMoment";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import SearchBar from "../SearchBar";
+import { SearchContext } from "../../pages/FoodDataPage";
 
 export default function FoodDataSearch() {
   const [value, setValue] = useState<Date | null>(new Date());
   const handleChange = (date: Date | null) => {
     setValue(date);
   };
+  const { setSearchText } = useContext(SearchContext);
   return (
     <div style={{ width: "60%", margin: "0 auto", paddingTop: "1em" }}>
       <div
@@ -19,6 +21,7 @@ export default function FoodDataSearch() {
       </div>
       <SearchBar
         placeholder="부대를 입력해주시오"
+        setSearchText={setSearchText}
         // onClick={() => console.log("not yet")}
       />
       <LocalizationProvider dateAdapter={DateAdapter}>

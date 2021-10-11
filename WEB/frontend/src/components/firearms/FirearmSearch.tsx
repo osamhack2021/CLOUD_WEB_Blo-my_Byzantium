@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "@mui/material";
 import SearchBar from "../SearchBar";
+import { SearchContext } from "../../pages/FireArmsPage";
 
 export default function FirearmSearch() {
   const buttonNames = ["총기 번호", "총기 소유자"];
   const [selected, setSelected] = useState(0);
+  const { setSearchText } = useContext(SearchContext);
   return (
     <div style={{ width: "60%", margin: "0 auto", paddingTop: "5em" }}>
       <SearchBar
         placeholder={`${buttonNames[selected]}를 입력해주시오`}
+        setSearchText={setSearchText}
         // onClick={() => console.log("not yet")}
       >
         {buttonNames.map((e, i) => (
