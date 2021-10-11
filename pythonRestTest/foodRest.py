@@ -12,7 +12,17 @@ def queryUnit(affiliatedUnit):
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
-    return json.loads(res.text[1:-1])
+    return res.json()
+    #요청에대한 응답을 출력하는 부분 
+
+def getUnitFoodHistory(affiliatedUnit, foodName):
+
+    url =f'{URL}/queryUnit/{affiliatedUnit}' 
+    print(url)
+    res = requests.get(url, headers=headers, cookies=session)
+    #실제 요청을 시도하는 부분
+
+    return res.json()
     #요청에대한 응답을 출력하는 부분 
 
 def createUnit(affiliatedUnit):
@@ -23,29 +33,29 @@ def createUnit(affiliatedUnit):
 
     return queryUnit(affiliatedUnit)
 
-def checkinFood(affilatedUnit,foodName,amount):
-    url =f'{URL}/checkinFood/{affiliatedunit}/{foodName}/{amount}' 
+def checkinFood(affiliatedUnit,foodName,amount):
+    url =f'{URL}/checkinFood/{affiliatedUnit}/{foodName}/{amount}' 
     print(url)
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
     return queryUnit(affiliatedUnit)
 
-def checkoutFood(affilatedUnit,foodName,amount):
-    url =f'{URL}/checkoutFood/{affiliatedunit}/{foodName}/{amount}' 
+def checkoutFood(affiliatedUnit,foodName,amount):
+    url =f'{URL}/checkoutFood/{affiliatedUnit}/{foodName}/{amount}' 
     print(url)
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
     return queryUnit(affiliatedUnit)
 
-def GetUnitHistory(affilatedUnit):
-    url =f'{URL}/getUnitHistory/{affiliatedunit}' 
+def GetUnitHistory(affiliatedUnit):
+    url =f'{URL}/getUnitHistory/{affiliatedUnit}' 
     print(url)
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
 
-    return json.loads(res.text[1:-1])
+    return res.json()
     #요청에대한 응답을 출력하는 부분 
 
 
@@ -54,6 +64,5 @@ def queryAllUnits():
     print(url)
     res = requests.get(url, headers=headers, cookies=session)
     #실제 요청을 시도하는 부분
-
-    return json.loads(res.text[1:-1])
+    return res.json()
     #요청에대한 응답을 출력하는 부분 
