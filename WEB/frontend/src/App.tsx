@@ -7,6 +7,7 @@ import SelectMenuPage from "./pages/SelectMenuPage";
 import Header from "./components/Header";
 import { useAuthState, useAuthDispatch } from "./utils/contexts/AuthContext";
 import FoodDataPage from "./pages/FoodDataPage";
+import ProtectedRoute from "./utils/routes/ProtectedRoute";
 
 function App() {
   const { isAuth } = useAuthState();
@@ -29,12 +30,13 @@ function App() {
         <Route exact path="/">
           {isAuth ? <SelectMenuPage /> : <LoginPage />}
         </Route>
-        <Route path="/fooddata">
+        <ProtectedRoute exact isAuth={isAuth} path="/fooddata">
           <FoodDataPage />
-        </Route>
-        <Route path="/firearms">
+        </ProtectedRoute>
+        <ProtectedRoute exact isAuth={isAuth} path="/firearms">
           <FireArmsPage />
-        </Route>
+        </ProtectedRoute>
+        <Route path="*" render={() => <div>404</div>} />
       </Switch>
     </Router>
   );
