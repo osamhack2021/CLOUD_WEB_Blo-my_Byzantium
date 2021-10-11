@@ -5,3 +5,8 @@ export interface FirearmListElement {
   reason: string;
   time: string;
 }
+
+export type foodDataSearchType = {
+  corps: string;
+  food: string;
+};

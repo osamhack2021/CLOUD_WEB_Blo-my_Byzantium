@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Button } from "@mui/material";
-import SearchBar from "../SearchBar";
+import SearchBar from "./FirearmSearchBar";
 import { SearchContext } from "../../pages/FireArmsPage";
 
 export default function FirearmSearch() {
