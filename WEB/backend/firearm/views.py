@@ -102,9 +102,10 @@ def approve(request):
         query_set = Firearm.objects.all()
         serializer = ModelSerializer(query_set, many=True)
 
-        
+        if not serializer.data :
+            return response_allow_header(JsonResponse({'opType' : 'Error: No Data in database'}, safe=False))
 
-        if serializer.data[0]["opType"] == "createdata":                    #데이터 생성 api
+        elif serializer.data[0]["opType"] == "createFirearm":                    #데이터 생성 api
             REQUEST_URL = API_URL + "createFirearm/" + serializer.data[0]["SerialNumber"] + "/" + \
             serializer.data[0]["Weapon_Model"] + "/" + serializer.data[0]["Owner"] + "/" + serializer.data[0]["Affiliated_Unit"] + "/" + \
             serializer.data[0]["status"] + "/" + serializer.data[0]["UpdateReason"]
@@ -117,7 +118,7 @@ def approve(request):
         
         elif serializer.data[0]["opType"] == "checkoutFirearm":                    #총기불출 api
             REQUEST_URL = API_URL + "checkoutFirearm/" + serializer.data[0]["SerialNumber"] + "/" + \
-            + serializer.data[0]["status"] + "/" + serializer.data[0]["UpdateReason"]
+            serializer.data[0]["status"] + "/" + serializer.data[0]["UpdateReason"]
 
             requests.get(REQUEST_URL)
             Firearm.objects.first().delete()
@@ -126,7 +127,7 @@ def approve(request):
 
         elif serializer.data[0]["opType"] == "checkinFirearm":                    #총기반납 api
             REQUEST_URL = API_URL + "checkinFirearm/" + serializer.data[0]["SerialNumber"] + "/" + \
-            + serializer.data[0]["status"] + "/" + serializer.data[0]["UpdateReason"]
+            serializer.data[0]["status"] + "/" + serializer.data[0]["UpdateReason"]
 
             requests.get(REQUEST_URL)
             Firearm.objects.first().delete()

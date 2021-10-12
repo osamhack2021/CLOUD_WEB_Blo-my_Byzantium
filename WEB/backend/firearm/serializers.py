@@ -6,7 +6,7 @@ from .models import Firearm
 class ModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber', 'model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
+        fields = ['opType','SerialNumber', 'Weapon_Model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
 
 
 
@@ -14,7 +14,7 @@ class ModelSerializer(serializers.ModelSerializer):
 class createFirearmSerializer(serializers.ModelSerializer):                             #총기 생성
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber', 'model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
+        fields = ['opType','SerialNumber', 'Weapon_Model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
 
 
 class checkoutFirearmSerializer(serializers.ModelSerializer):                           #총기 불출
@@ -32,7 +32,7 @@ class checkinFirearmSerializer(serializers.ModelSerializer):                    
 class changeFirearmAttributesSerializer(serializers.ModelSerializer):                   #총기 상태 변경
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber', 'model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
+        fields = ['opType','SerialNumber', 'Weapon_Model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
 
 
 class deleteFirearmSerializer(serializers.ModelSerializer):                              #총기 삭제

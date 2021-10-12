@@ -9,7 +9,7 @@ class Firearm(models.Model):
 
     SerialNumber = models.CharField(max_length = 50, default = '-')     
     Weapon_Model = models.CharField(max_length = 50, default = '-')    
-    Owner = models.CharField(max_length = 50)
+    Owner = models.CharField(max_length = 50, default = '-')
 
     Affiliated_Unit = models.TextField(default = '-')
     status = models.TextField(default = '-')
