@@ -4,6 +4,7 @@ import FirearmList from "../components/firearms/FirearmList";
 import { FirearmListElement, foodDataSearchType } from "../utils/types";
 import FoodDataSearch from "../components/fooddata/FoodDataSearch";
 import FoodDataStatus from "../components/fooddata/FoodDataStatus";
+import FoodDataUpdateModal from "../components/fooddata/FoodDataUpdateModal";
 
 export const SearchContext = React.createContext<{
   searchText: foodDataSearchType;
@@ -34,6 +35,7 @@ export default function FireArmsPage() {
     food: "",
   });
   const value = useMemo(() => ({ searchText, setSearchText }), [searchText]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <SearchContext.Provider value={value}>
@@ -41,8 +43,15 @@ export default function FireArmsPage() {
       <Divider sx={{ mt: 3 }} />
       {searchText.corps.length > 0 && searchText.food.length > 0 && (
         <>
-          <FoodDataStatus firearmElement={items[0]} />
+          <FoodDataStatus
+            setIsModalOpen={setIsModalOpen}
+            firearmElement={items[0]}
+          />
           <FirearmList items={items} />
+          <FoodDataUpdateModal
+            open={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
         </>
       )}
     </SearchContext.Provider>
