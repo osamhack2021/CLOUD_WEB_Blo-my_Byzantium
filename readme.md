@@ -12,20 +12,38 @@
 	<a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/osamhack2021/CLOUD_WEB_Blo-my_Byzantium"></a>
   </p>
 <p align="center">
-  <a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/doc/presentation"><img src = "./doc/images/button/presentation.png" width=250px></a>
+  <a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/blob/master/doc/presentation/blo-my_presentation.pdf"><img src = "./doc/images/button/presentation.png" width=250px></a>
   <a href="https://donggni0712.gitbook.io/blo-my/"><img src = "./doc/images/button/team_blog.png" width=250px></a>
   <a href="https://www.youtube.com/"><img src = "./doc/images/button/demo_video.png" width=250px></a>
 </p>
 
-## **무결성과 책임 추적성**     
+## **무결성과 책임 추적성** :closed_lock_with_key:
  블록체인의 위,변조 불가는 무결성과 책임 추적성이 중요한 분야에서 활용이 용이하다. 
  국방 분야의 군수, 방산 계약, 공문서 관리 등과 같은 분야에 블록체인을 도입한다면 데이터에 대한 신뢰도가 향상되고, 탈중앙화된 데이터 관리와 개인 키를 통한 암호화로 인해 높은 책임 추적성을 보장할 수 있다.
-## **오픈소스 프로젝트**   
+## **오픈소스 프로젝트** :open_file_folder:
  Blo-my는 블록체인의 이러한 특성들을 국방 데이터에 어떤식으로 활용할 수 있는 지를 보여주는 오픈 소스 프로젝트이다. 현재에는 총기수불, 부식 작전 데이터 다루는 프로젝트지만, Blo-my 데이터 유통의 원리만 활용한다면 다양한 국방데이터를 블록체인에 접목시킬 수 있다.
  또, Blo-my의 발전은 다양한 컨트리뷰터들에 의해서 이루어지므로 별도의 국방 예산 없이 발전이 이루어질 수 있다.
 
+# :books: 목차
+- :book:**프로젝트 소개**
+  - 프로젝트 개요
+  - 프로젝트 요약
+- :electric_plug:**컴퓨터 구성 / 필수 조건 안내**
+- :wrench:**사용 기술**
+  - 기술 스택
+  - Hyperledger-fabric
+- :floppy_disk:**설치 & 시작 안내**
+  - Hyperledgher-fabric 서버 실행
+  - Back-end 서버 실행
+  - Front-end 실행
+  - Hyperledgher-fabric 서버 개발자 기능
+- :computer:**제공 기능**
+  - 총기 수불
+  - 부식 작전
+- :family:**팀 정보**
+- :mag:**저작권 및 사용권 정보**
 
-# 프로젝트 소개
+# :book: 프로젝트 소개
 ## 프로젝트 개요  
 | 문제 상황 | 해결 방안 |
 |--------|--------|
@@ -36,13 +54,13 @@
 ## 프로젝트 요약
 - 무결성
 - 책임 추적성
-- 오픈 소스 프로젝트 
+- 오픈 소스 프로젝트
 
-# 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
+# :electric_plug: 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)
 * ECMAScript 6 지원 브라우저 사용
 * 권장: Google Chrome 버젼 77 이상
 
-# 사용 기술 (Technique)
+# :wrench: 사용 기술 (Technique)
 ## 기술 스택 (Technique Used)
 <img src = "./doc/images/technique-Used.png">
 
@@ -56,14 +74,14 @@
   - **플랫폼의 완성도** - 자체적인 네트워크를 개발하면 예상치 못한 버그, 네트워크 보안성 문제 등의 문제가 발생할 수 있다. 이미 검증된 오픈소스 프로젝트인 하이퍼레저 패브릭을 사용함으로써 블록체인 네트워크 구조의 완성도를 높일 수 있다.
 
 
-# 설치 & 시작 안내 (Installation Process & Getting Start)
+# :floppy_disk: 설치 & 시작 안내 (Installation Process & Getting Start)
 
 ### Git Clone
 ```bash
 $ git clone https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium.git
 ```
 
-### Hyperledgher-fabric 서버 실행
+## Hyperledgher-fabric 서버 실행
 1. 하이퍼레져 도커 이미지 및 바이너리 설치, 새로운 환경일때마다 실행해야함.
 ```bash
 $ curl -sSL https://bit.ly/2ysbOFE | bash -s
@@ -102,13 +120,13 @@ $ node invoke.js
 $ node invokefood.js
 ```
 
-### Back-end 서버 실행
+## Back-end 서버 실행
 ```bash
 $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB/backend
 $ pip install -r requirements.txt
 $ python manage.py runserver
 ```
-### Front-end 실행
+## Front-end 실행
 ```bash
 $ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB/frontend
 $ yarn
@@ -116,30 +134,36 @@ $ yarn build
 $ yarn start
 ```
 
-### Hyperledgher-fabric 서버 개발자 기능
+## Hyperledgher-fabric 서버 개발자 기능
 - /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/README.md 참조
 
-# 제공 기능 (Service)
+# :computer: 제공 기능 (Service)
 <img src = "./doc/images/authority.png">
  Blo-my에서는 용사와 간부로 유저 계층을 나누어 서비스를 제공한다. 계층별로 제공되는 서비스는 위와 같다.
 
 
-## 총기 수불
+## 총기 수불 :gun:
 |<img src = "./doc/images/service/FirArmAssetsSearch.gif" width=400px>|<img src = "./doc/images/service/FireArmAssetsNow.gif" width=400px>|
 |--|--|
 |▲총기 검색|▲총기 현황 조회|
 |<img src = "./doc/images/service/FireArmAssetsUpdate.gif" width=400px>|<img src = "./doc/images/service/FirArmAssetsLists.gif" width=400px>|
 |▲총기 업데이트|▲총기 목록 조회|
 
-## 부식 작전
+## 부식 작전:rice:
 |<img src = "./doc/images/service/Food.gif" width=300px>|<img src = "./doc/images/service/FoodDataSearch.gif" width=300px>|<img src = "./doc/images/service/FoodDataList.gif" width=300px>|
 |--|--|--|
 |▲부식 작전 페이지|▲부식 작전 내역 검색|▲부식 작전 목록 조회|
  
-# 팀 정보 (Team Information)
-<img src = "./doc/images/member.png">
+# :family: 팀 정보 (Team Information)
+|name|role|GitHub|Division|Rank|
+|--|--|--|--|--|
+|박한성|Hyperledger-fabric|<a href="https://github.com/hspark15429"><img src="http://img.shields.io/badge/hspark15429-655ced?style=social&logo=github"/></a>|육군|**一²** 일병|
+|송문경|Front-end|<a href="https://github.com/moonsong98"><img src="http://img.shields.io/badge/moonsong98-655ced?style=social&logo=github"/></a>|육군|**一³** 상병|
+|오동재|leader|<a href="https://github.com/donggni0712"><img src="http://img.shields.io/badge/donggni0712-655ced?style=social&logo=github"/></a>|육군|**一³** 상병|
+|정현구|Hyperledger-fabric|<a href="https://github.com/kojjok97"><img src="http://img.shields.io/badge/kojjok97-655ced?style=social&logo=github"/></a>|육군|**一⁴** 병장|
+|홍범순|Back-end|<a href="https://github.com/beomsun0829"><img src="http://img.shields.io/badge/beomsun0829-655ced?style=social&logo=github"/></a>|육군|**一³** 상병|
 
-# 저작권 및 사용권 정보 (Copyleft / End User License)
+# :mag: 저작권 및 사용권 정보 (Copyleft / End User License)
 ## License
 - Apache-2.0(IBM corp all rights reserved)
 ## 이모티콘 출처
