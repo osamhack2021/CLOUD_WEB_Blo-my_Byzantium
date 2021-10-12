@@ -6,29 +6,36 @@ from .models import Firearm
 class ModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber','Owner','Affiliated_Unit', 'Misc','UpdateReason']
+        fields = ['opType','SerialNumber', 'model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
 
 
-class CreatedataSerializer(serializers.ModelSerializer):
+
+
+class createFirearmSerializer(serializers.ModelSerializer):                             #총기 생성
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber','Owner','Affiliated_Unit','Misc','UpdateReason']
+        fields = ['opType','SerialNumber', 'model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
 
 
-class changeFirearmOwnerSerializer(serializers.ModelSerializer):
+class checkoutFirearmSerializer(serializers.ModelSerializer):                           #총기 불출
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber','Owner','UpdateReason']
+        fields = ['opType','SerialNumber', 'status','UpdateReason']
 
-        
 
-class changeMiscSerializer(serializers.ModelSerializer):
+class checkinFirearmSerializer(serializers.ModelSerializer):                            #총기 반납
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber','Misc','UpdateReason']
+        fields = ['opType','SerialNumber', 'status','UpdateReason']
 
 
-class changeLocationSerializer(serializers.ModelSerializer):
+class changeFirearmAttributesSerializer(serializers.ModelSerializer):                   #총기 상태 변경
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber','Affiliated_Unit']
+        fields = ['opType','SerialNumber', 'model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
+
+
+class deleteFirearmSerializer(serializers.ModelSerializer):                              #총기 삭제
+    class Meta:
+        model = Firearm
+        fields = ['opType','SerialNumber']
