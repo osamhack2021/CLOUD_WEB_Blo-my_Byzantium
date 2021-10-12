@@ -1,3 +1,4 @@
+
 // const unit = {
 //   "affiliatedUnit": "1div11regt1bn1co1p",
 //   "foods": [
@@ -140,3 +141,4 @@ var checkoutOnly = firearmHistory.filter(function (entry) {
 });
 
 console.log(JSON.stringify(checkoutOnly));
+

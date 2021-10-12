@@ -13,17 +13,22 @@ from .serializers import *
 from rest_framework.parsers import JSONParser
 
 
+
 API_URL = "http://localhost:9090/" 
 
 
 
 
+
 @csrf_exempt
+
 def showalldata(request):                                       #백엔드 쌓인 데이터 전체 출력
+
     if request.method == 'GET':
         query_set = Firearm.objects.all()
         serializer = ModelSerializer(query_set, many=True)
         return response_allow_header(JsonResponse(serializer.data, safe=False))
+
 
 
 @csrf_exempt
@@ -80,6 +85,7 @@ def deleteFirearm(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = deleteFirearmSerializer(data=data)
+
         if serializer.is_valid():
             serializer.save()
             return response_allow_header(JsonResponse(serializer.data, status=201))
@@ -88,11 +94,14 @@ def deleteFirearm(request):
 
 
 @csrf_exempt
+
 def seeFireArmAssetWithSerialNum(request,SerialNum):                            # 백엔드 내부데이터용
+
     if request.method == 'GET':
         query_set = Firearm.objects.filter(SerialNumber = SerialNum)
         serializer = ModelSerializer(query_set, many=True)
         return response_allow_header(JsonResponse(serializer.data, safe=False))
+
 
 
 

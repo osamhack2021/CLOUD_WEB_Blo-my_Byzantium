@@ -43,7 +43,9 @@ async function main() {
         // Evaluate the specified transaction.
         // queryFirearm transaction - requires 1 argument, ex: ('queryFirearm', 'FIREARM4')
         // queryAllFirearms transaction - requires no arguments, ex: ('queryAllFirearms')
+
         const result = await contract.evaluateTransaction('getUnitFoodHistory', '1div11regt1bn1co1p', 'kimchi');
+
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
         // Disconnect from the gateway.

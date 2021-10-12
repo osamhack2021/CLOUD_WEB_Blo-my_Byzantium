@@ -64,7 +64,9 @@ async function mockTx1(){
         // await main(['checkinFood', '5div12regt3bn5co2p', 'kimchi', 400]);
         // await main(['checkinFood', '5div12regt3bn5co2p', 'soup', 200]);
         // await main(['checkinFood', '5div12regt3bn5co2p', 'kimchi', 400]);
+
         await main(['checkinFood', '1div11regt1bn1co1p', 'tuna', 3110]);
+
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
         process.exit(1);

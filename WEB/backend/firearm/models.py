@@ -5,6 +5,7 @@ from django.db import models
 class Firearm(models.Model):
     objects = models.Manager()                                            # 오류제거용
 
+
     opType = models.TextField()
 
     SerialNumber = models.CharField(max_length = 50, default = '-')     

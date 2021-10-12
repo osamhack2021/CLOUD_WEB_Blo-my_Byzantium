@@ -1,7 +1,9 @@
 ## 서버실행방법
 
 ```
+
 cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB/backend
+
 sudo apt-get install pkg-config
 sudo apt-get install libcairo2-dev
 pip install -r requirements.txt
@@ -18,6 +20,7 @@ python manage.py runserver
  - pip      21.2.4
  - Django   3.2.7
  - sqlite3
+
 
 
 
@@ -115,6 +118,7 @@ python manage.py runserver
         {
             "opType" : "deleteFirearm" ,
             "SerialNumber" : "<총기번호>"
+
         }
         ```
 
@@ -126,4 +130,6 @@ python manage.py runserver
 
 
 
+
 ## 작업해야할목록
+

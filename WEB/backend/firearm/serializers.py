@@ -6,6 +6,7 @@ from .models import Firearm
 class ModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Firearm
+
         fields = ['opType','SerialNumber', 'Weapon_Model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason']
 
 
@@ -39,3 +40,4 @@ class deleteFirearmSerializer(serializers.ModelSerializer):                     
     class Meta:
         model = Firearm
         fields = ['opType','SerialNumber']
+

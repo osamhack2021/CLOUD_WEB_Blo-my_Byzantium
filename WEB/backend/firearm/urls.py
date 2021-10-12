@@ -7,6 +7,7 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.showalldata),
+
     path('queryAllFirearms', views.queryAllFirearms),
 
     path('createFirearm', views.createFirearm),
@@ -18,5 +19,6 @@ urlpatterns = [
     path('seeFireArmAssetWithSerialNum/<int:SerialNum>', views.seeFireArmAssetWithSerialNum),
     path('querySerialNumber/<int:SerialNum>', views.querySerialNumber),
     path('approve', views.approve),
+
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
