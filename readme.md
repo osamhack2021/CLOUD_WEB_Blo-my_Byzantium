@@ -1,6 +1,9 @@
 # Blo-my
 **Blo-my** Blo-my는 Blockchain Army의 약자로 블록체인을 활용한 국방 데이터 유통 프로젝트입니다.
-![title](/doc/images/logo.png)
+<div align="center">
+ <img src ="./doc/images/logo.png">
+</div>
+
 <p align="center">
 	<a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/search?l=JavaScript&type=code"><img alt="GitHub language count" src="https://img.shields.io/github/languages/count/osamhack2021/CLOUD_WEB_Blo-my_Byzantium"></a>
 	<a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/osamhack2021/CLOUD_WEB_Blo-my_Byzantium?color=success"></a>
@@ -9,9 +12,9 @@
 	<a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/osamhack2021/CLOUD_WEB_Blo-my_Byzantium"></a>
   </p>
 <p align="center">
-  <a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/doc/presentation"><img src = "./doc/images/button/presentaion.png" width=150px></a>
-  <a href="https://donggni0712.gitbook.io/blo-my/"><img src = "./doc/images/button/team_blog.png" width=150px></a>
-  <a href="https://www.youtube.com/"><img src = "./doc/images/button/demo_video.png" width=150px></a>
+  <a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/doc/presentation.png"><img src = "./doc/images/button/presentaion.png" width=250px></a>
+  <a href="https://donggni0712.gitbook.io/blo-my/"><img src = "./doc/images/button/team_blog.png" width=250px></a>
+  <a href="https://www.youtube.com/"><img src = "./doc/images/button/demo_video.png" width=250px></a>
 </p>
 
 ## **무결성과 책임 추적성**     
