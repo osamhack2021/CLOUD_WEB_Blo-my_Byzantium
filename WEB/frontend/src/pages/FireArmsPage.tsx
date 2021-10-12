@@ -4,6 +4,7 @@ import FirearmList from "../components/firearms/FirearmList";
 import { FirearmListElement } from "../utils/types";
 import FirearmSearch from "../components/firearms/FirearmSearch";
 import FirearmStatus from "../components/firearms/FirearmStatus";
+import FirearmUpdateModal from "../components/firearms/FirearmUpdateModal";
 
 export const SearchContext = React.createContext<{
   searchText: string;
@@ -24,6 +25,7 @@ export default function FireArmsPage() {
   for (let i = 1; i < 10; i += 1) items[i] = item;
   // End of Dummy Data
   const [searchText, setSearchText] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const value = useMemo(() => ({ searchText, setSearchText }), [searchText]);
 
   return (
@@ -32,8 +34,15 @@ export default function FireArmsPage() {
       <Divider sx={{ mt: 3 }} />
       {searchText.length > 0 && (
         <>
-          <FirearmStatus firearmElement={items[0]} />
+          <FirearmStatus
+            firearmElement={items[0]}
+            setIsModalOpen={setIsModalOpen}
+          />
           <FirearmList items={items} />
+          <FirearmUpdateModal
+            open={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
         </>
       )}
     </SearchContext.Provider>

@@ -17,7 +17,7 @@ export default function FoodDataSearch() {
       <div
         style={{ fontSize: "3em", fontWeight: "bold", paddingBottom: "0.5em" }}
       >
-        검색
+        부식 작전 검색
       </div>
       <SearchBar
         placeholder="부대를 입력해주시오"

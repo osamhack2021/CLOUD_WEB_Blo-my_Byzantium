@@ -6,12 +6,17 @@ import { FirearmListElement } from "../../utils/types";
 
 type Props = {
   firearmElement: FirearmListElement;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function FirearmStatus({ firearmElement }: Props) {
+export default function FirearmStatus({
+  firearmElement,
+  setIsModalOpen,
+}: Props) {
   const baseUrl =
     "https://osamhack2021-cloud-web-blo-my-byzantium-v5jxjj4w2qx5-8080.githubpreview.dev/";
   const onClick = () => {
+    setIsModalOpen(true);
     axios({
       method: "get",
       url: `${baseUrl}/firearmAssets`,
