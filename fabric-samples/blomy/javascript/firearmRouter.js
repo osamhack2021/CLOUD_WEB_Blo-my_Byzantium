@@ -12,7 +12,7 @@ router.route('/').get((req,res)=>{
 //query 요청에 대한 응답 부분 총기에관한 serial번호를 입력받아서 AssetHistory(transaction)을 json형태로 출력하는 부분
 router.route('/query/:serialNumber').get((req,res)=>{
     const serialNumber = String(req.params.serialNumber);
-    console.log('------AssetHitory 호출--------')
+    console.log('------AssetHitory 호출--------');
     console.log(`serialNumber = ${serialNumber}`);
     firearmChaincode.firearmQuery(serialNumber).then((value)=>{ // 하이퍼레저에서 query에 대한 응답을 가져오는 부분
         res.writeHead(200, {"Content-Type":'text/html;charset=utf8'});
@@ -54,8 +54,8 @@ router.route('/checkoutFirearm/:serialNumber/:status/:updateReason').get((req,re
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
         res.end();
-    })
-})
+    });
+});
 
 router.route('/checkinFirearm/:serialNumber/:status/:updateReason').get((req,res)=>{
     const serialNumber = String(req.params.serialNumber);
@@ -89,18 +89,18 @@ router.route('/changeFirearmAttributes/:serialNumber/:model/:owner/:affiliatedUn
     firearmChaincode.modifyFirearmTransaction(['changeFirearmAttributes',serialNumber,model,owner,affiliatedUnit,status,updateReason]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
-        res.end()
+        res.end();
     });
 });
 
 router.route('/deleteFirearm/:serialNumber').get((req,res)=>{
     const serialNumber = String(req.params.serialNumber);
-    console.log('-------총기 삭제---------')
+    console.log('-------총기 삭제---------');
     console.log(`serialNumber = ${serialNumber}`);
     firearmChaincode.modifyFirearmTransaction(['deleteFirearm',serialNumber]).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
-        res.end()
+        res.end();
     });
 });
 
@@ -109,8 +109,8 @@ router.route('/queryAllFirearms').get((req,res)=>{
     firearmChaincode.modifyFirearmTransaction(['queryAllFirearms']).then((value)=>{
         res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
         res.write(value);
-        res.end()
+        res.end();
     });
-})
+});
 
-module.exports = router
+module.exports = router;
