@@ -1,7 +1,9 @@
 ## 서버실행방법
 
 ```
-cd WEB/backend
+
+cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB/backend
+
 sudo apt-get install pkg-config
 sudo apt-get install libcairo2-dev
 pip install -r requirements.txt
@@ -25,49 +27,103 @@ python manage.py runserver
 
 ## 백엔드 API 사용법
 
-### Account 관리 (localhost/account)
- - GET /account/
-    - 전체 계정 목록 반환
-    - id는 유저고유번호입니다.
+### FireArm 관리 (http://localhost:8000/firearm)
+
+ - GET http://localhost:8000/firearm
+
+    - 총기 전체 조회(백엔드)
+    - 백엔드에 저장되어있는 모든 데이터를 json으로 반환
+    - 출력되는 정보 : 'opType','SerialNumber', 'Weapon_Model', 'Owner', 'Affiliated_Unit', 'status','UpdateReason'
+
+
+ - GET http://localhost:8000/firearm/queryAllFirearms
+
+    - 총기 전체 조회(하이퍼레저)
+    - 하이퍼레저에 저장되어있는 모든 데이터를 json으로 반환
+
+
+ - GET http://localhost:8000/firearm/approve
+
+    - 백엔드에 저장된 최상단 데이터를 opType에 맞게 하이퍼레저로 전송
+    - 큐에 저장된 데이터 삭제, opType를 반환.
+
  
- - POST /account/
-    - 계정 생성
-    - serializer.py , fields 부분에 있는 값을 json으로 요청
-    - 계정생성 json 형식은 이렇습니다:
+ - POST http://localhost:8000/firearm/createFirearm
+
+    - 총기 생성
+    - POST json 형식 :
         ```
         {
-            "username" : "20-00000000" ,     #군번필드는 중첩되어서는 안되고, 블록 데이터베이스의 owner와 연동됩니다
-            "password" : "pass123!" , 
-            "permission" : 2 , 
-            "name" : "이름" , 
-            "rank" : "상병" , 
-            "affiliated_unit" : "소속부대" , 
-            "phone_number" : "010-9999-9999" , 
-            "email" : "armyblockchain@gmail.com"
+            "opType" : "createFirearm" ,
+            "SerialNumber" : "<총기번호>" , 
+            "Weapon_Model" : "<총기모델명>" , 
+            "Owner" : "<총기 소유자 군번>" , 
+            "Affiliated_Unit" : "<총기 소유자의 소속부대>" , 
+            "status" : "<현재 상태>" , 
+            "UpdateReason" : "<update 이유 입력>"
         }
         ```
-        //주의할점은 permission은 int값입니다. 문자열이 아닙니다
-        //또한 json은 " (쌍따옴표)로 감싸야 오류가 발생하지 않습니다.
 
 
-- GET /account/(유저고유번호)
-    - 특정 유저정보 반환
-    
-- DELETE /account/(유저고유번호)
-    - 특정 유저 삭제
+ - POST http://localhost:8000/firearm/checkoutFirearm
 
-- PUT /account/(유저고유번호)
-    - 특정 유저 정보 수정
- 
-
-- POST /account/login/
-    - 로그인 json 형식은 이렇습니다:
+    - 총기 불출
+    - POST json 형식 :
         ```
         {
-            "username" : "20-00000000" ,
-            "password" : "pass123!"
+            "opType" : "checkoutFirearm" ,
+            "SerialNumber" : "<총기번호>" ,
+            "status" : "<현재 상태>" , 
+            "UpdateReason" : "<update 이유 입력>"
         }
         ```
+
+
+- POST http://localhost:8000/firearm/checkinFirearm
+
+    - 총기 반납
+    - POST json 형식 :
+        ```
+        {
+            "opType" : "checkinFirearm" ,
+            "SerialNumber" : "<총기번호>" ,
+            "status" : "<현재 상태>" , 
+            "UpdateReason" : "<update 이유 입력>"
+        }
+        ```
+
+
+ - POST http://localhost:8000/firearm/changeFirearmAttributes
+
+    - 총기 상태 변경
+    - POST json 형식 :
+        ```
+        {
+            "opType" : "changeFirearmAttributes" ,
+            "SerialNumber" : "<총기번호>" , 
+            "Weapon_Model" : "<총기모델명>" , 
+            "Owner" : "<총기 소유자 군번>" , 
+            "Affiliated_Unit" : "<총기 소유자의 소속부대>" , 
+            "status" : "<현재 상태>" , 
+            "UpdateReason" : "<update 이유 입력>"
+        }
+        ```
+
+
+- POST http://localhost:8000/firearm/deleteFirearm
+
+    - 총기 삭제
+    - POST json 형식 :
+        ```
+        {
+            "opType" : "deleteFirearm" ,
+            "SerialNumber" : "<총기번호>"
+
+        }
+        ```
+
+
+
 
 
 
@@ -77,5 +133,3 @@ python manage.py runserver
 
 ## 작업해야할목록
 
-SECRET_KEY 보호
-DEBUG False

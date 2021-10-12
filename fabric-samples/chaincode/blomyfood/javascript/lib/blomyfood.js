@@ -20,14 +20,17 @@ class BlomyFood extends Contract {
                     "foods": [
                         {
                             "name" : "kimchi",
-                            "amount" : 50,
+
+                            "amount" : 0,
                         },
                         {
                             "name" : "tuna",
-                            "amount" : 90
+                            "amount" : 0
                         }
                     ],
-                    "opType": "CREATE"
+                    "opType": "CREATE",
+                    "lastUpdated" : ""
+
               }
         ];
 
@@ -49,7 +52,10 @@ class BlomyFood extends Contract {
             foods: [
                 
             ],
-            opType: "CREATE"
+
+            opType: "CREATE",
+            lastUpdated : ""
+
         };
 
         await ctx.stub.putState(affiliatedUnit, Buffer.from(JSON.stringify(unit)));
@@ -81,6 +87,9 @@ class BlomyFood extends Contract {
         
         unit.opType = "CHECKIN";
 
+        unit.lastUpdated = foodname;
+
+
         await ctx.stub.putState(affiliatedUnit, Buffer.from(JSON.stringify(unit)));
         console.info('============= END : checkinFood ===========');
     }
@@ -108,6 +117,11 @@ class BlomyFood extends Contract {
             throw new Error(`${foodname} does not exist`);
         }
 
+
+        unit.opType = "CHECKOUT";
+        unit.lastUpdated = foodname;
+
+
         await ctx.stub.putState(affiliatedUnit, Buffer.from(JSON.stringify(unit)));
         console.info('============= END : checkoutFood ===========');
     }
@@ -130,6 +144,21 @@ class BlomyFood extends Contract {
 
 		return JSON.stringify(results);
 	}
+
+
+    // 7. 부대 부식 과거 이력 조회 (부식 필터)
+    async getUnitFoodHistory(ctx, affiliatedUnit, foodname) {
+
+		let resultsIterator = await ctx.stub.getHistoryForKey(affiliatedUnit);
+		let results = await this._GetAllResults(resultsIterator, true);
+        
+        var foodnameOnly = results.filter(function (tx) {
+            return tx.Value.lastUpdated === foodname;
+        });
+
+		return JSON.stringify(foodnameOnly);
+	}
+
 
     // 7. 모든 부대 조회
     async queryAllUnits(ctx) {

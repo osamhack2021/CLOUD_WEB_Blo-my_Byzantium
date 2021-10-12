@@ -5,16 +5,18 @@ from django.db import models
 class Firearm(models.Model):
     objects = models.Manager()                                            # 오류제거용
 
-    opType = models.TextField(default = '')
 
-    SerialNumber = models.CharField(max_length = 30)        
-    Owner = models.CharField(max_length = 30)
+    opType = models.TextField()
 
-    Affiliated_Unit = models.TextField()
-    Misc = models.TextField(default = '')
-    UpdateReason = models.TextField()
+    SerialNumber = models.CharField(max_length = 50, default = '-')     
+    Weapon_Model = models.CharField(max_length = 50, default = '-')    
+    Owner = models.CharField(max_length = 50, default = '-')
 
-    created = models.DateTimeField(auto_now_add=True)                     # 계정생성일자. 자동생성됨
+    Affiliated_Unit = models.TextField(default = '-')
+    status = models.TextField(default = '-')
+    UpdateReason = models.TextField(default = '-')
+
+    created = models.DateTimeField(auto_now_add = True)                     # 데이터생성일자. 자동생성됨
 
 
     class Meta:
