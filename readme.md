@@ -12,7 +12,7 @@
 	<a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/osamhack2021/CLOUD_WEB_Blo-my_Byzantium"></a>
   </p>
 <p align="center">
-  <a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/doc/presentation.png"><img src = "./doc/images/button/presentaion.png" width=250px></a>
+  <a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/doc/presentation"><img src = "./doc/images/button/presentation.png" width=250px></a>
   <a href="https://donggni0712.gitbook.io/blo-my/"><img src = "./doc/images/button/team_blog.png" width=250px></a>
   <a href="https://www.youtube.com/"><img src = "./doc/images/button/demo_video.png" width=250px></a>
 </p>
