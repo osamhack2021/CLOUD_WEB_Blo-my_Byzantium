@@ -27,7 +27,7 @@ export default function FirearmSearch() {
             onClick={() => {
               setSelected(i);
             }}
-            color="secondary"
+            color="info"
           >
             {e}
           </Button>
