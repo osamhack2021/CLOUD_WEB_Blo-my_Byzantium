@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'account',
     'post',
     'firearm',
+    'foods'
 ]
 
 REST_FRAMEWORK = {
