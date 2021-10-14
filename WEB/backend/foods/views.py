@@ -49,7 +49,7 @@ def queryUnit(request,search_unit):                                #하이퍼레
 
         
 @csrf_exempt
-def GetUnitHistory(request,search_unit):                                #하이퍼레저에 있는 특정부대 거래 내역 조회
+def GetUnitHistory(request,search_unit):                                #하이퍼레저에 있는 특정부대 과거 내역 조회
     if request.method == 'GET':
         REQUEST_URL = API_URL + "queryUnit/" + str(search_unit)
         req = requests.get(REQUEST_URL)

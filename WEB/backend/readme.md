@@ -123,8 +123,75 @@ python manage.py runserver
         ```
 
 
+### Foods 관리 (http://localhost:8000/foods)
 
 
+- GET http://localhost:8000/foods
+
+    - 부식 전체 조회(백엔드)
+    - 백엔드에 저장되어있는 모든 데이터 반환
+    - 출력되는 정보 : 'opType','Affiliated_Unit', 'FoodName', 'Amount'
+
+
+ - GET http://localhost:8000/foods/queryAllUnits
+
+    - 부식 전체 조회(하이퍼레저)
+
+- GET http://localhost:8000/foods/queryUnit/부대이름
+
+    - 특정부대 부식현황 조회(하이퍼레저)
+
+- GET http://localhost:8000/foods/GetUnitHistory/부대이름
+
+    - 특정부대 과거내역 조회(하이퍼레저)
+
+
+ - GET http://localhost:8000/foods/approve
+
+    - 백엔드에 저장된 최상단 데이터를 opType에 맞게 하이퍼레저로 전송
+    - 큐에 저장된 데이터 삭제, opType를 반환.
+
+ 
+ - POST http://localhost:8000/foods/createUnit
+
+    - 부대 생성
+    - POST json 형식 :
+        ```
+        {
+            "opType" : "createUnit" ,
+            "Affiliated_Unit" : "<부대이름>" , 
+            "FoodName" : "<부식이름>" , 
+            "Amount" : "<부식수량>"
+        }
+        ```
+
+ 
+ - POST http://localhost:8000/foods/checkinFood
+
+    - 부식 반입
+    - POST json 형식 :
+        ```
+        {
+            "opType" : "checkinFood" ,
+            "Affiliated_Unit" : "<부대이름>" , 
+            "FoodName" : "<부식이름>" , 
+            "Amount" : "<부식수량>"
+        }
+        ```
+
+ 
+ - POST http://localhost:8000/foods/checkoutFood
+
+    - 부식 불출
+    - POST json 형식 :
+        ```
+        {
+            "opType" : "checkoutFood" ,
+            "Affiliated_Unit" : "<부대이름>" , 
+            "FoodName" : "<부식이름>" , 
+            "Amount" : "<부식수량>"
+        }
+        ```
 
 
 
