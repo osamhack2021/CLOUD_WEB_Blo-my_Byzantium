@@ -110,6 +110,12 @@
 git clone https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium.git
 ```
 
+## :pushpin:요약
+[Hyperledger-fabric 서버 실행](#hyperledgher-fabric-서버-실행)부터 [front-end-실행](#front-end-실행) 실행까지 명령어는 start.sh에 함축되어있다. 아래 명령어를 실행하면 별도의 명령어 없이 Blo-my를 설치/실행 할 수 있다.
+```bash
+./start.sh
+```
+
 ## Hyperledgher-fabric 서버 실행
 1. 하이퍼레져 도커 이미지 및 바이너리 설치, 새로운 환경일때마다 실행해야함.
 ```bash
@@ -149,12 +155,20 @@ node invoke.js
 node invokefood.js
 ```
 
+8. Hyperledger-fabric rest 서버 실행
+```bash
+cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
+node rest.js
+```
+
 ## Back-end 서버 실행
 ```bash
 cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB/backend
 sudo apt-get install pkg-config
 sudo apt-get install libcairo2-dev
 pip install -r requirements.txt
+pip3 install requests --force-reinstall
+pip install lxml
 python manage.py runserver
 ```
 
