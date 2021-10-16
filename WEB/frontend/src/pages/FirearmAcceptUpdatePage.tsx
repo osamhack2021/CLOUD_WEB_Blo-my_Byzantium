@@ -53,7 +53,7 @@ export default function FirearmAcceptUpdatePage() {
   return (
     <div>
       <h1>총기 최신화 승인 대기 목록</h1>
-      {waitlist.map((e) => (
+      {waitlist.map((e, i) => (
         <div
           key={JSON.stringify(e)}
           style={{
@@ -81,7 +81,12 @@ export default function FirearmAcceptUpdatePage() {
             <div>{`총기 ${e.in ? "입고" : "불출"} 사유: ${e.reason}`}</div>
           </div>
           <div>
-            <Button>승인</Button> <Button>반려</Button>
+            <Button disabled={i > 0} style={{ opacity: i === 0 ? "100" : "0" }}>
+              승인
+            </Button>
+            <Button disabled={i > 0} style={{ opacity: i === 0 ? "100" : "0" }}>
+              반려
+            </Button>
           </div>
         </div>
       ))}
