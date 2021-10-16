@@ -9,5 +9,6 @@ urlpatterns = [
     path('api/', include('post.urls')),
     path('account/', include('account.urls')),
     path('firearm/', include('firearm.urls')),
+    path('foods/', include('foods.urls')),
     path('', RedirectView.as_view(url='account/', permanent=False)),    #blank auto redirect
 ]
