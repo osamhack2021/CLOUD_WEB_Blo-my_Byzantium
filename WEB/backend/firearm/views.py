@@ -170,7 +170,7 @@ def approve(request):
     
 
 @csrf_exempt
-def querySerialNumber(request,SerialNum):
+def querySerialNumber(request,SerialNum):                                       #하이퍼레저에서 총기검색
     if request.method == 'GET':
         REQUEST_URL = API_URL + "query/" + str(SerialNum)
         req = requests.get(REQUEST_URL)
