@@ -55,14 +55,25 @@ export default function Header() {
               type: "LOGOUT",
             });
             window.localStorage.removeItem("isAuth");
+            setAnchorEl(null);
           }}
         >
           로그아웃
         </MenuItem>
-        <MenuItem onClick={() => history.push("/firearm-accept-update")}>
+        <MenuItem
+          onClick={() => {
+            history.push("/firearm-accept-update");
+            setAnchorEl(null);
+          }}
+        >
           총기 최신화 승인 대기 목록
         </MenuItem>
-        <MenuItem onClick={() => history.push("/fooddata-accept-update")}>
+        <MenuItem
+          onClick={() => {
+            history.push("/fooddata-accept-update");
+            setAnchorEl(null);
+          }}
+        >
           부식작전 최신화 승인 대기 목록
         </MenuItem>
       </Menu>
