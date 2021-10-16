@@ -15,11 +15,11 @@ class Blomy extends Contract {
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger ===========');
         const firearms = [
-              {
+            {
                 "serialNumber": "111111",
                 "model": "K-1A",
-                "owner": "21-1111111",
-                "affiliatedUnit": "1div11regt1bn1co1p",
+                "owner": "21-11111111",
+                "affiliatedUnit": "5사단-12여단-3대대-5중대-2소대",
                 "misc": "ready for deployment",
                 "updateReason": "for new recruit",
                 "opType": "CREATE"
@@ -27,8 +27,8 @@ class Blomy extends Contract {
               {
                 "serialNumber": "222222",
                 "model": "K-2",
-                "owner": "21-2222222",
-                "affiliatedUnit": "1div11regt1bn1co2p",
+                "owner": "21-22222222",
+                "affiliatedUnit": "5사단-12여단-3대대-5중대-중대본부",
                 "misc": "ready for deployment",
                 "updateReason": "for new recruit",
                 "opType": "CREATE"
@@ -36,8 +36,8 @@ class Blomy extends Contract {
               {
                 "serialNumber": "333333",
                 "model": "K-3",
-                "owner": "21-3333333",
-                "affiliatedUnit": "1div11regt1bn1co3p",
+                "owner": "21-33333333",
+                "affiliatedUnit": "5사단-12여단-3대대-5중대-중대본부",
                 "misc": "ready for deployment",
                 "updateReason": "for new recruit",
                 "opType": "CREATE"
@@ -45,8 +45,8 @@ class Blomy extends Contract {
               {
                 "serialNumber": "444444",
                 "model": "K2C1",
-                "owner": "21-4444444",
-                "affiliatedUnit": "1div11regt2bn6coHQ",
+                "owner": "19-44444444",
+                "affiliatedUnit": "5사단-12여단-3대대-5중대-중대본부",
                 "misc": "ready for deployment",
                 "updateReason": "for new recruit",
                 "opType": "CREATE"
@@ -54,8 +54,8 @@ class Blomy extends Contract {
               {
                 "serialNumber": "555555",
                 "model": "K-1A",
-                "owner": "21-5555555",
-                "affiliatedUnit": "1div11regt2bn6coHQ",
+                "owner": "20-55555555",
+                "affiliatedUnit": "5사단-12여단-3대대-5중대-중대본부",
                 "misc": "ready for deployment",
                 "updateReason": "for new recruit",
                 "opType": "CREATE"
@@ -63,8 +63,8 @@ class Blomy extends Contract {
               {
                 "serialNumber": "666666",
                 "model": "K2C1",
-                "owner": "21-6666666",
-                "affiliatedUnit": "1div11regt2bn6coHQ",
+                "owner": "21-66666666",
+                "affiliatedUnit": "5사단-12여단-3대대-5중대-중대본부",
                 "misc": "ready for deployment",
                 "updateReason": "for new recruit",
                 "opType": "CREATE"

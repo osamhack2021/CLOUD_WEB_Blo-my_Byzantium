@@ -74,17 +74,30 @@ newFirearms.forEach(function(newFirearm, index){
 });
 
 
-// 2. 오동재 상병의 총기 이력 생성
+// 2. 총기 이력 생성
 async function mockTx1(){
     try {
-        await main(['createFirearm', '1234567', 'K-1A', '21-1357777', '5div12regt3bn5co2p', '지급 대기', "전입 신병 중대 총기수령"]);
+        await main(['createFirearm', '1234567', 'K-1A', '21-11111111', '5사단-12여단-3대대-5중대-2소대', '지급 대기', "전입 신병 중대 총기수령"]);
         await main(['checkoutFirearm', '1234567', '이상 무', '전입 신병 총기 수여식']);
         await main(['checkinFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 반납']);
-        await main(['changeFirearmAttributes', '1234567', 'K-1A', '21-1234567', '5div12regt3bn5coHQ', '지급 대기', "보직 변경"]);
+        await main(['changeFirearmAttributes', '1234567', 'K-1A', 'null', '5사단-12여단-3대대-5중대-중대본부', '지급 대기', "보직 변경"]);
         await main(['checkoutFirearm', '1234567', '이상 무', '보직 변경으로 인한 총기 조정 지급']);
         await main(['checkinFirearm', '1234567', '장전 손잡이 고장', '기능고장으로 인한 정비']);
         await main(['checkoutFirearm', '1234567', '이상 무', '총기 정비 후 재지급']);
-        await main(['deleteFirearm', '1234567']);
+        
+        await main(['checkoutFirearm', '222222', '이상 무', '경계 작전, 총기 불출']);
+        await main(['checkinFirearm', '222222', '이상 무', '경계 작전 복귀, 총기 반납']);
+        await main(['checkoutFirearm', '222222', '이상 무', '경계 작전, 총기 불출']);
+        await main(['checkinFirearm', '222222', '이상 무', '경계 작전 복귀, 총기 반납']);
+        await main(['checkoutFirearm', '222222', '이상 무', '경계 작전, 총기 불출']);
+        await main(['checkinFirearm', '222222', '이상 무', '경계 작전 복귀, 총기 반납']);
+        await main(['checkoutFirearm', '222222', '이상 무', '경계 작전, 총기 불출']);
+        await main(['checkinFirearm', '222222', '이상 무', '경계 작전 복귀, 총기 반납']);
+        await main(['checkoutFirearm', '222222', '이상 무', '경계 작전, 총기 불출']);
+        await main(['checkinFirearm', '222222', '이상 무', '경계 작전 복귀, 총기 반납']);
+        await main(['checkoutFirearm', '222222', '이상 무', '훈련, 총기 불출']);
+        await main(['checkinFirearm', '222222', '이상 무', '훈련 종료, 총기 반납']);
+
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
         process.exit(1);

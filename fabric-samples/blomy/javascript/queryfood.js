@@ -44,7 +44,7 @@ async function main() {
         // queryFirearm transaction - requires 1 argument, ex: ('queryFirearm', 'FIREARM4')
         // queryAllFirearms transaction - requires no arguments, ex: ('queryAllFirearms')
 
-        const result = await contract.evaluateTransaction('getUnitFoodHistory', '1div11regt1bn1co1p', 'kimchi');
+        const result = await contract.evaluateTransaction('getUnitFoodHistory', '5사단-12여단-3대대-대대본부', '김치');
 
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 

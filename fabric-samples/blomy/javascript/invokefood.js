@@ -60,13 +60,31 @@ async function main(tx_params) {
 
 async function mockTx1(){
     try {
-        await main(['createUnit', '5div12regt3bn5co2p']);
-        // await main(['checkinFood', '5div12regt3bn5co2p', 'kimchi', 400]);
-        // await main(['checkinFood', '5div12regt3bn5co2p', 'soup', 200]);
-        // await main(['checkinFood', '5div12regt3bn5co2p', 'kimchi', 400]);
+        await main(['createUnit', '5사단-12여단-지원중대']);
+        await main(['createUnit', '5사단-12여단-3대대-5중대-중대본부']);
+        await main(['createUnit', '5사단-12여단-3대대-5중대-2소대']);
+        await main(['createUnit', '5사단-12여단-3대대-대대본부']);
+        
+        await main(['checkinFood', '5사단-12여단-지원중대', '김치', 750]);
+        await main(['checkinFood', '5사단-12여단-지원중대', '열무-김치', 750]);
+        await main(['checkinFood', '5사단-12여단-지원중대', '깍두기', 300]);
+        await main(['checkinFood', '5사단-12여단-지원중대', '조각-닭', 1200]);
+        
+        await main(['checkoutFood', '5사단-12여단-지원중대', '김치', 750]);
+        await main(['checkoutFood', '5사단-12여단-지원중대', '열무-김치', 750]);
+        await main(['checkoutFood', '5사단-12여단-지원중대', '깍두기', 300]);
+        await main(['checkoutFood', '5사단-12여단-지원중대', '조각-닭', 1200]);
 
-        await main(['checkinFood', '1div11regt1bn1co1p', 'tuna', 3110]);
+        await main(['checkinFood', '5사단-12여단-3대대-대대본부', '김치', 250]);
+        await main(['checkinFood', '5사단-12여단-3대대-대대본부', '열무-김치', 250]);
+        await main(['checkinFood', '5사단-12여단-3대대-대대본부', '깍두기', 100]);
+        await main(['checkinFood', '5사단-12여단-3대대-대대본부', '조각-닭', 400]);
 
+        await main(['checkoutFood', '5사단-12여단-3대대-대대본부', '김치', 210]);
+        await main(['checkoutFood', '5사단-12여단-3대대-대대본부', '열무-김치', 210]);
+        await main(['checkoutFood', '5사단-12여단-3대대-대대본부', '깍두기', 90]);
+        await main(['checkoutFood', '5사단-12여단-3대대-대대본부', '조각-닭', 330]);
+   
     } catch (error) {
         console.error(`Failed to submit transaction: ${error}`);
         process.exit(1);

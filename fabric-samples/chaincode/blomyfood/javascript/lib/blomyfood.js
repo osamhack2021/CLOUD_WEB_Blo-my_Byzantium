@@ -15,24 +15,31 @@ class BlomyFood extends Contract {
     async initLedger(ctx) {
         console.info('============= START : Initialize Ledger ===========');
         const units = [
-              {
-                    "affiliatedUnit": "1div11regt1bn1co1p",
-                    "foods": [
-                        {
-                            "name" : "kimchi",
+            {
+                "affiliatedUnit": "5사단-12여단-지원중대",
+                "foods": [
+                    {
+                        "name" : "김치",
+                        "amount" : 750,
+                    },
+                    {
+                        "name" : "열무-김치",
+                        "amount" : 750
+                    },
+                    {
+                        "name" : "깍두기",
+                        "amount" : 300
+                    },
+                    {
+                        "name" : "조각-닭",
+                        "amount" : 1200
+                    }
+                ],
+                "opType": "CREATE",
+                "lastUpdated" : ""
 
-                            "amount" : 0,
-                        },
-                        {
-                            "name" : "tuna",
-                            "amount" : 0
-                        }
-                    ],
-                    "opType": "CREATE",
-                    "lastUpdated" : ""
-
-              }
-        ];
+          }
+    ];
 
         for (let i = 0; i < units.length; i++) {
             units[i].docType = 'unit';
