@@ -54,6 +54,7 @@ export default function Header() {
             authDispatch({
               type: "LOGOUT",
             });
+            window.localStorage.removeItem("isAuth");
           }}
         >
           로그아웃
