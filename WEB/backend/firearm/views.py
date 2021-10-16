@@ -36,7 +36,7 @@ def queryAllFirearms(request):                                       #하이퍼�
     if request.method == 'GET':
         REQUEST_URL = API_URL + 'queryAllFirearms'
         response = requests.get(REQUEST_URL).json()
-        return response_allow_header(JsonResponse(response, safe=False))
+        return response_allow_header(JsonResponse(response, safe=False, verify = False))
 
 
 
@@ -170,11 +170,11 @@ def approve(request):
     
 
 @csrf_exempt
-def querySerialNumber(request,SerialNum):
+def querySerialNumber(request,SerialNum):                                       #하이퍼레저에서 총기검색
     if request.method == 'GET':
         REQUEST_URL = API_URL + "query/" + str(SerialNum)
         req = requests.get(REQUEST_URL)
-        return response_allow_header(JsonResponse(req.json(), safe=False))
+        return response_allow_header(JsonResponse(req.json(), safe=False, verify = False))
 
 
 

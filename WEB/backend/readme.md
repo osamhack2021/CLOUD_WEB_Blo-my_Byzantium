@@ -41,6 +41,11 @@ python manage.py runserver
     - 총기 전체 조회(하이퍼레저)
     - 하이퍼레저에 저장되어있는 모든 데이터를 json으로 반환
 
+ - GET http://localhost:8000/firearm/querySerialNumber/총기번호
+
+    - 특정 총기의 과거 데이터 전체 조회 (하이퍼레저)
+    - [0] 인덱스가 현재 상태
+
 
  - GET http://localhost:8000/firearm/approve
 
