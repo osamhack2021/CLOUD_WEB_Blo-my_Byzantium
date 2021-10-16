@@ -11,7 +11,7 @@ cd ../blomyfood/javascript
 npm install
 cd ..
 cd ..
-cd ../workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy
+cd ../blomy
 . startFabric.sh javascript
 cd ../test-network
 ./networkFood.sh up createChannel -ca -s couchdb
