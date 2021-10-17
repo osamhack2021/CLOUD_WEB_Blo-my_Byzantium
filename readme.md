@@ -142,20 +142,20 @@ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/test-network
 ./networkFood.sh deployCC -ccn blomyfood -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/blomyfood/javascript
 ```
 
-6. admin 생성 후 app유저 생성
+5. admin 생성 후 app유저 생성
 ```bash
 cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
 node enrollAdmin.js
 node registerUser.js
 ```
 
-7. 새로운 asset 생성
+6. 새로운 asset 생성
 ```bash
 node invoke.js
 node invokefood.js
 ```
 
-8. Hyperledger-fabric rest 서버 실행
+7. Hyperledger-fabric rest 서버 실행
 ```bash
 cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
 node rest.js
