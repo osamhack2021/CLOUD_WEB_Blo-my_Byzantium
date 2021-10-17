@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useHistory } from "react-router-dom";
 import { useAuthDispatch } from "../utils/contexts/AuthContext";
 import Logo from "../images/logo.png";
@@ -8,74 +9,57 @@ export default function Header() {
   const history = useHistory();
   const authDispatch = useAuthDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleMenuclose = () => {
     setAnchorEl(null);
   };
+  const handleLogoButtonClick = () => history.push("/");
+  const menuItems = [
+    {
+      label: "총기 최신화 승인 대기 목록",
+      onClick: () => history.push("/firearm-accept-update"),
+    },
+    {
+      label: "부식작전 최신화 승인 대기 목록",
+      onClick: () => history.push("/fooddata-accept-update"),
+    },
+    {
+      label: "로그아웃",
+      onClick: () => {
+        authDispatch({
+          type: "LOGOUT",
+        });
+        window.localStorage.removeItem("isAuth");
+      },
+    },
+  ];
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        paddingTop: "0.5em",
-        paddingBottom: "0.5em",
-        paddingLeft: "1em",
-        paddingRight: "1em",
-        backgroundColor: "#eae7ed",
-        borderBottom: "1px solid gray",
-        alignItems: "center",
-      }}
-    >
-      <button
-        type="button"
-        style={{ border: "0" }}
-        onClick={() => history.push("/")}
+    <div className="header">
+      <IconButton type="button" onClick={handleLogoButtonClick}>
+        <img src={Logo} alt="Logo" />
+      </IconButton>
+      <IconButton type="button" onClick={handleMenuClick}>
+        <PersonOutlineIcon />
+      </IconButton>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuclose}
       >
-        <img src={Logo} alt="Logo" style={{ height: "70px" }} />
-      </button>
-      {/* Hard Coded -- Should be Changed */}
-      <Button
-        style={{
-          fontSize: "1em",
-          fontWeight: "bold",
-          height: "fit-content",
-          padding: "0px",
-          color: "black",
-        }}
-        onClick={handleClick}
-      >
-        OOO 상병님
-      </Button>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem
-          onClick={() => {
-            authDispatch({
-              type: "LOGOUT",
-            });
-            window.localStorage.removeItem("isAuth");
-            setAnchorEl(null);
-          }}
-        >
-          로그아웃
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            history.push("/firearm-accept-update");
-            setAnchorEl(null);
-          }}
-        >
-          총기 최신화 승인 대기 목록
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            history.push("/fooddata-accept-update");
-            setAnchorEl(null);
-          }}
-        >
-          부식작전 최신화 승인 대기 목록
-        </MenuItem>
+        <div className="header-user">상병 OOO</div>
+        {menuItems.map((e) => (
+          <MenuItem
+            key={JSON.stringify(e)}
+            onClick={() => {
+              e.onClick();
+              setAnchorEl(null);
+            }}
+          >
+            {e.label}
+          </MenuItem>
+        ))}
       </Menu>
     </div>
   );

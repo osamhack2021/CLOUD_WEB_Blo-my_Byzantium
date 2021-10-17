@@ -5,6 +5,35 @@ body {
   margin: 0px;
 }
 
+button {
+  outline: 0;
+  border: 0;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  align-items: center;
+}
+.header > button > img {
+  height: 70px;
+}
+.header-user {
+  border: 0;
+  outline: 0;
+  padding-bottom: 0.6em;
+  padding-top: 0.6em;
+  font-size: 1em;
+  text-align: center;
+  border-bottom: 1px solid gray;
+  margin-bottom: "15px";
+}
+
 /* FirearmStatus */
 .firearm-status-container {
   position: relative;
