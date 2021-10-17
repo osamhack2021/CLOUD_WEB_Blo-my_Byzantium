@@ -29,3 +29,15 @@ export type FirearmQueryType = {
     updateReason: string;
   };
 };
+
+export type FirearmAllType = {
+  // eslint-disable-next-line camelcase
+  Affiliated_Unit: string;
+  Owner: string;
+  SerialNumber: string;
+  UpdateReason: string;
+  // eslint-disable-next-line camelcase
+  Weapon_Model: string;
+  opType: string;
+  status: string;
+};

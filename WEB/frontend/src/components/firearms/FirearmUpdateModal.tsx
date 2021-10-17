@@ -16,6 +16,10 @@ export default function FirearmUpdateModal({
   setIsModalOpen,
   firearmElement,
 }: Props) {
+  const inOut = [
+    { label: "불출", opType: "checkoutFirearm" },
+    { label: "입고", opType: "checkinFirearm" },
+  ];
   const reasons = [
     "사유를 선택해주시오",
     "총기 입고",
@@ -25,23 +29,34 @@ export default function FirearmUpdateModal({
     "파견 복귀",
     "기타",
   ];
+  const [inOutSelected, setInOutSelected] = useState(inOut[0].opType);
   const [selectedReason, setSelectedReason] = useState(reasons[0]);
   const [extraReason, setExtraReason] = useState("");
   const [owner, setOwner] = useState("");
   const [affiliatedUnit, setAffiliatedUnit] = useState("");
 
-  const onUpdate = () => {
-    api.post("/firearm/changeFirearmAttributes", {
-      opType: "changeFirearmAttributes",
-      SerialNumber: firearmElement.serialNumber,
-      Weapon_Model: firearmElement.model,
-      Owner: owner || firearmElement.owner,
-      Affiliated_Unit: affiliatedUnit || firearmElement.affiliatedUnit,
-      status: firearmElement.misc,
-      UpdateReason: selectedReason === "기타" ? extraReason : selectedReason,
-    });
-  };
-
+  const onUpdate = async () =>
+    owner || affiliatedUnit
+      ? api.post("/firearm/changeFirearmAttributes", {
+          opType: "changeFirearmAttributes",
+          SerialNumber: firearmElement.serialNumber,
+          Weapon_Model: firearmElement.model,
+          Owner: owner || firearmElement.owner,
+          Affiliated_Unit: affiliatedUnit || firearmElement.affiliatedUnit,
+          status: firearmElement.misc,
+          UpdateReason:
+            selectedReason === "기타" ? extraReason : selectedReason,
+        })
+      : api.post(`/firearm/${inOutSelected}`, {
+          opType: inOutSelected,
+          SerialNumber: firearmElement.serialNumber,
+          status:
+            inOutSelected === "checkoutFirearm"
+              ? inOut[0].label
+              : inOut[1].label,
+          UpdateReason:
+            selectedReason === "기타" ? extraReason : selectedReason,
+        });
   return (
     <Dialog
       onClose={() => {
@@ -66,6 +81,18 @@ export default function FirearmUpdateModal({
           style={{ fontSize: "2em", fontWeight: "bold", marginBottom: "25px" }}
         >
           총기 수불 최신화
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          {inOut.map((e) => (
+            <Button
+              style={{ marginRight: "5px" }}
+              key={e.label}
+              variant={inOutSelected === e.opType ? "contained" : "outlined"}
+              onClick={() => setInOutSelected(e.opType)}
+            >
+              {e.label}
+            </Button>
+          ))}
         </div>
         <Select
           value={selectedReason}

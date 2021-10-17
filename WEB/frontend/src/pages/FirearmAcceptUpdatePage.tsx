@@ -1,59 +1,37 @@
 import { Button } from "@mui/material";
-import React from "react";
-
-type FirearmWaitListElementType = {
-  date: string;
-  firearmNumber: string;
-  suggester: string;
-  owner: string;
-  reason: string;
-  corps: string;
-  in: boolean;
-};
+import React, { useEffect, useState } from "react";
+import api from "../utils/api";
+import { FirearmAllType, FirearmListElement } from "../utils/types";
 
 export default function FirearmAcceptUpdatePage() {
-  const waitlist: FirearmWaitListElementType[] = [
-    {
-      date: "today",
-      firearmNumber: "1234",
-      suggester: "1",
-      owner: "1",
-      reason: "1",
-      corps: "1",
-      in: true,
-    },
-    {
-      date: "today",
-      firearmNumber: "1234",
-      suggester: "2",
-      owner: "2",
-      reason: "2",
-      corps: "2",
-      in: false,
-    },
-    {
-      date: "today",
-      firearmNumber: "1234",
-      suggester: "3",
-      owner: "3",
-      reason: "3",
-      corps: "3",
-      in: true,
-    },
-    {
-      date: "today",
-      firearmNumber: "1234",
-      suggester: "4",
-      owner: "4",
-      reason: "4",
-      corps: "4",
-      in: false,
-    },
-  ];
+  const [waitList, setWaitList] = useState<FirearmListElement[]>([]);
+  useEffect(() => {
+    api.get<FirearmAllType[]>("firearm").then((res) => {
+      setWaitList(
+        res.data.map((e) => ({
+          opType: e.opType,
+          serialNumber: e.SerialNumber,
+          owner: e.Owner,
+          affiliatedUnit: e.Affiliated_Unit,
+          updateReason: e.UpdateReason,
+          date: "",
+          time: "",
+          model: "",
+          misc: "",
+        }))
+      );
+    });
+  }, []);
+  const approve = () => {
+    api.get("/firearm/approve");
+  };
+  const reject = () => {
+    api.get("/firearm/reject");
+  };
   return (
     <div>
       <h1>총기 최신화 승인 대기 목록</h1>
-      {waitlist.map((e, i) => (
+      {waitList.map((e, i) => (
         <div
           key={JSON.stringify(e)}
           style={{
@@ -69,22 +47,34 @@ export default function FirearmAcceptUpdatePage() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              flex: 1,
             }}
           >
+            <div>
+              {e.opType === "firearmCheckout" ? "총기 입고" : "총기 불출"}
+            </div>
             <div>{e.date}</div>
-            <div>{`건의자: ${e.suggester}`}</div>
           </div>
-          <div>
-            <div>{e.in ? "총기 입고" : "총기 불출"}</div>
-            <div>{`총기 번호: ${e.firearmNumber}`}</div>
+          <div style={{ flex: 1 }}>
+            <div>{`총기 번호: ${e.serialNumber}`}</div>
             <div>{`소유자: ${e.owner}`}</div>
-            <div>{`총기 ${e.in ? "입고" : "불출"} 사유: ${e.reason}`}</div>
+            <div>{`총기 ${
+              e.opType === "firearmCheckout" ? "입고" : "불출"
+            } 사유: ${e.updateReason}`}</div>
           </div>
-          <div>
-            <Button disabled={i > 0} style={{ opacity: i === 0 ? "100" : "0" }}>
+          <div style={{ flex: 1 }}>
+            <Button
+              disabled={i > 0}
+              style={{ opacity: i === 0 ? "100" : "0" }}
+              onClick={approve}
+            >
               승인
             </Button>
-            <Button disabled={i > 0} style={{ opacity: i === 0 ? "100" : "0" }}>
+            <Button
+              disabled={i > 0}
+              style={{ opacity: i === 0 ? "100" : "0" }}
+              onClick={reject}
+            >
               반려
             </Button>
           </div>
