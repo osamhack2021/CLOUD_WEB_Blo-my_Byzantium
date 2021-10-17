@@ -34,6 +34,7 @@ export default function FireArmsPage() {
           serialNumber: e.Value.serialNumber,
           model: e.Value.model,
           misc: e.Value.misc,
+          opType: e.Value.opType,
         }))
       );
       setErrorMessage("");

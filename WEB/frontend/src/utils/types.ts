@@ -7,6 +7,7 @@ export interface FirearmListElement {
   time: string;
   model: string;
   misc: string;
+  opType: string;
 }
 
 export type foodDataSearchType = {

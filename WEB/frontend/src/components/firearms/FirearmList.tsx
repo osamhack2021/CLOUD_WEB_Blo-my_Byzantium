@@ -12,7 +12,7 @@ export default function FirearmList(props: Props) {
     status: `${item.misc}`,
     date: item.date,
     time: item.time,
-    out: true,
+    out: item.opType === "CHECKOUT",
     extraData: [
       `총기 번호: ${item.serialNumber}`,
       `총기 소유자: ${item.owner}`,
