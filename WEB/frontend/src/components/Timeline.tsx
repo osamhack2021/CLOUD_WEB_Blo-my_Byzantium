@@ -2,6 +2,7 @@ import React from "react";
 
 type timelineItemType = {
   status: string;
+  date: string;
   time: string;
   out: boolean;
   extraData: string[];
@@ -23,7 +24,8 @@ function TimelineItem({ item }: TimelineItemProps) {
     >
       <div className="timeline-item-content">
         <span className="tag">{item.status}</span>
-        <time>{item.time}</time>
+        <time>{item.date}</time>
+        <time className="time">{item.time}</time>
         <div
           style={{
             paddingTop: "10px",

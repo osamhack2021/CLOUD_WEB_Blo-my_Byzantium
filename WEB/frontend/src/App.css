@@ -57,13 +57,13 @@ button {
 
 .firearm-status-title {
   font-weight: bold;
-  font-size: 10vmin;
+  font-size: 6vmin;
   margin-bottom: 30px;
   color: #3d4147;
 }
 
 .firearm-status-body {
-  font-size: 5vmin;
+  font-size: 4vmin;
   font-weight: bold;
   color: #3d4147;
 }
@@ -71,6 +71,7 @@ button {
 @media all and (orientation: portrait) {
   .firearm-status-content {
     flex-direction: column;
+    justify-content: space-between;
   }
   .update-button {
     left: 0;
@@ -99,7 +100,6 @@ button {
 }
 
 .update-button {
-  left: -10vw;
   background: none;
   border: 3px solid #000;
   border-radius: 5px;
@@ -111,7 +111,6 @@ button {
 }
 
 .update-button:active {
-  margin-left: 2px;
   margin-top: 2px;
   box-shadow: none;
 }
@@ -236,6 +235,10 @@ button {
   color: #023047;
   font-size: 16px;
   font-weight: bold;
+}
+.timeline-item-content .time {
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .timeline-item-content .circle {

@@ -1,12 +1,29 @@
 export interface FirearmListElement {
-  status: string;
-  fireArmNumber: string;
+  serialNumber: string;
   owner: string;
-  reason: string;
+  affiliatedUnit: string;
+  updateReason: string;
+  date: string;
   time: string;
+  model: string;
 }
 
 export type foodDataSearchType = {
   corps: string;
   food: string;
+};
+
+export type FirearmQueryType = {
+  Timestamp: string;
+  TxId: string;
+  Value: {
+    affiliatedUnit: string;
+    docType: string;
+    misc: string;
+    model: string;
+    opType: string;
+    owner: string;
+    serialNumber: string;
+    updateReason: string;
+  };
 };

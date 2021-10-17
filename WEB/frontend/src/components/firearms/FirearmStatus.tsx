@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@mui/material";
 import axios from "axios";
 import firearmBackground from "../../images/firearmBackground.png";
 import { FirearmListElement } from "../../utils/types";
@@ -40,15 +39,15 @@ export default function FirearmStatus({
         <div className="firearm-status-text">
           <div className="firearm-status-title">총기 현황</div>
           <div className="firearm-status-body">
-            {`총기번호: ${firearmElement.fireArmNumber}`}
+            {`총기번호: ${firearmElement.serialNumber}`}
           </div>
-          <div className="firearm-status-body">총기명: K2</div>
+          <div className="firearm-status-body">{`총기명: ${firearmElement.model}`}</div>
           <div className="firearm-status-body">{`총기소유주: ${firearmElement.owner}`}</div>
           <div className="firearm-status-body">
-            부대: 5사단 12여단 3대대 5중대 중대본부
+            {`부대: ${firearmElement.affiliatedUnit}`}
           </div>
           <div className="firearm-status-body">
-            최종 변경 사유: 총기 정비 후 재지급
+            {`최종 변경 사유: ${firearmElement.updateReason}`}
           </div>
         </div>
         <div className="update-button-container">

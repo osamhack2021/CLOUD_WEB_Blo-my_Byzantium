@@ -7,12 +7,12 @@ import SearchIcon from "@mui/icons-material/Search";
 type Props = {
   children?: React.ReactChild | React.ReactChild[];
   placeholder: string;
-  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+  onClick: (searchText: string) => void;
+  // setSearchText: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function SearchBar(props: Props) {
+export default function SearchBar({ children, placeholder, onClick }: Props) {
   const [text, setText] = useState<string>("");
-  const { children, placeholder, setSearchText } = props;
   return (
     <>
       <Paper
@@ -35,15 +35,14 @@ export default function SearchBar(props: Props) {
           sx={{ p: "10px" }}
           onClick={(e) => {
             e.preventDefault();
-            setSearchText(text);
+            onClick(text);
+            // setSearchText(text);
           }}
         >
           <SearchIcon />
         </IconButton>
       </Paper>
-      <div style={{ marginTop: "1em", display: "flex", gap: "1em" }}>
-        {children}
-      </div>
+      <div style={{ marginTop: "1em", display: "flex" }}>{children}</div>
     </>
   );
 }
