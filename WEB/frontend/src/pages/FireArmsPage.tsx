@@ -33,6 +33,7 @@ export default function FireArmsPage() {
           time: moment(e.Timestamp).format("hh:mm:ss"),
           serialNumber: e.Value.serialNumber,
           model: e.Value.model,
+          misc: e.Value.misc,
         }))
       );
       setErrorMessage("");
@@ -56,6 +57,7 @@ export default function FireArmsPage() {
           />
           <FirearmList items={items} />
           <FirearmUpdateModal
+            firearmElement={items[0]}
             open={isModalOpen}
             setIsModalOpen={setIsModalOpen}
           />

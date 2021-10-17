@@ -9,7 +9,7 @@ interface Props {
 export default function FirearmList(props: Props) {
   const { items } = props;
   const firearmInfos = items.map((item) => ({
-    status: `${item.owner}`,
+    status: `${item.misc}`,
     date: item.date,
     time: item.time,
     out: true,
