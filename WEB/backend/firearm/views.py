@@ -167,6 +167,14 @@ def approve(request):
         return response_allow_header(JsonResponse(serializer.data[0], safe=False))
 
 
+@csrf_exempt
+def reject(request):
+    if request.method == 'GET':
+        query_set = Firearm.objects.all()
+        serializer = ModelSerializer(query_set, many=True)
+        Firearm.objects.first().delete()
+        return response_allow_header(JsonResponse({'opType' : 'deleted'}, safe=False))
+
     
 
 @csrf_exempt

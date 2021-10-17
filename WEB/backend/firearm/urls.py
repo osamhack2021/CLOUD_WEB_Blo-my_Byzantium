@@ -19,6 +19,7 @@ urlpatterns = [
     path('seeFireArmAssetWithSerialNum/<int:SerialNum>', views.seeFireArmAssetWithSerialNum),
     path('querySerialNumber/<int:SerialNum>', views.querySerialNumber),
     path('approve', views.approve),
+    path('reject', views.reject),
 
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
