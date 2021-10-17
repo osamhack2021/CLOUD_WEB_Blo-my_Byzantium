@@ -36,7 +36,7 @@ def queryAllFirearms(request):                                       #하이퍼�
     if request.method == 'GET':
         REQUEST_URL = API_URL + 'queryAllFirearms'
         response = requests.get(REQUEST_URL).json()
-        return response_allow_header(JsonResponse(response, safe=False, verify = False))
+        return response_allow_header(JsonResponse(response, safe=False))
 
 
 
@@ -174,7 +174,7 @@ def querySerialNumber(request,SerialNum):                                       
     if request.method == 'GET':
         REQUEST_URL = API_URL + "query/" + str(SerialNum)
         req = requests.get(REQUEST_URL)
-        return response_allow_header(JsonResponse(req.json(), safe=False, verify = False))
+        return response_allow_header(JsonResponse(req.json(), safe=False))
 
 
 
