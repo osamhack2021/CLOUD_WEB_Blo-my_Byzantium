@@ -1,35 +1,25 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Divider from "@mui/material/Divider";
 import FirearmList from "../components/firearms/FirearmList";
 import { FirearmListElement, foodDataSearchType } from "../utils/types";
 import FoodDataSearch from "../components/fooddata/FoodDataSearch";
 import FoodDataStatus from "../components/fooddata/FoodDataStatus";
 import FoodDataUpdateModal from "../components/fooddata/FoodDataUpdateModal";
-
-export const SearchContext = React.createContext<{
-  searchText: foodDataSearchType;
-  setSearchText: React.Dispatch<React.SetStateAction<foodDataSearchType>>;
-}>({
-  searchText: {
-    corps: "",
-    food: "",
-  },
-  setSearchText: () => "",
-});
+import api from "../utils/api";
 
 export default function FireArmsPage() {
-  const [searchText, setSearchText] = useState<foodDataSearchType>({
-    corps: "",
-    food: "",
-  });
-  const value = useMemo(() => ({ searchText, setSearchText }), [searchText]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    api.get("/foods/queryAllUnits").then((res) => console.log(res));
+  }, []);
 
   return (
-    <SearchContext.Provider value={value}>
-      <FoodDataSearch />
+    <>
+      <FoodDataSearch setItems={setItems} />
       <Divider sx={{ mt: 3 }} />
-      {searchText.corps.length > 0 && searchText.food.length > 0 && (
+      {items.length > 0 && (
         <>
           <FoodDataUpdateModal
             open={isModalOpen}
@@ -37,6 +27,6 @@ export default function FireArmsPage() {
           />
         </>
       )}
-    </SearchContext.Provider>
+    </>
   );
 }

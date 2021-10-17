@@ -1,24 +1,18 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import { Divider } from "@mui/material";
 import { foodDataSearchType } from "../../utils/types";
+import api from "../../utils/api";
 
 type Props = {
   children?: React.ReactChild | React.ReactChild[];
   placeholder: string;
-  searchText: foodDataSearchType;
-  setSearchText: React.Dispatch<React.SetStateAction<foodDataSearchType>>;
+  setItems: Dispatch<SetStateAction<never[]>>;
 };
 
-export default function SearchBar({
-  children,
-  placeholder,
-  searchText,
-  setSearchText,
-}: Props) {
+export default function SearchBar({ children, placeholder, setItems }: Props) {
   const [texts, setTexts] = useState<foodDataSearchType>({
     corps: "",
     food: "",
@@ -40,20 +34,14 @@ export default function SearchBar({
           value={texts.corps}
           onChange={(e) => setTexts({ ...texts, corps: e.target.value })}
         />
-        <Divider orientation="vertical" variant="middle" flexItem />
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder="부식을 입력해주시오"
-          value={texts.food}
-          onChange={(e) => setTexts({ ...texts, food: e.target.value })}
-        />
         <IconButton
           type="submit"
           sx={{ p: "10px" }}
           onClick={(e) => {
             e.preventDefault();
-            setSearchText(texts);
-            console.log(searchText);
+            api
+              .get(`/foods/GetUnitHistory/${texts}`)
+              .then((res) => console.log(res));
           }}
         >
           <SearchIcon />
