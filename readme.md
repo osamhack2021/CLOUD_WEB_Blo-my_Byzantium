@@ -124,28 +124,28 @@ curl -sSL https://bit.ly/2ysbOFE | bash -s
 ```
 2. nodejs dependency 설치
 ```bash
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy/javascript
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy/javascript"
 npm install
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/chaincode/blomy/javascript
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/chaincode/blomy/javascript"
 npm install
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/chaincode/blomyfood/javascript
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/chaincode/blomyfood/javascript"
 npm install
 ```
 3. 블록체인 네트워크 실행(총기 채널 자동 실행됨)
 ```bash
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy"
 . startFabric.sh javascript
 ```
 4. 부식 채널 실행
 ```bash
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/test-network
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/test-network"
 ./networkFood.sh up createChannel -ca -s couchdb
 ./networkFood.sh deployCC -ccn blomyfood -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/blomyfood/javascript
 ```
 
 5. admin 생성 후 app유저 생성
 ```bash
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy/javascript
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy/javascript"
 node enrollAdmin.js
 node registerUser.js
 ```
@@ -158,7 +158,7 @@ node invokefood.js
 
 7. Hyperledger-fabric rest 서버 실행
 ```bash
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy/javascript
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB(BE)/fabric-samples/blomy/javascript"
 node rest.js
 ```
 
