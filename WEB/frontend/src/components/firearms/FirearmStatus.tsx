@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import firearmBackground from "../../images/firearmBackground.png";
 import { FirearmListElement } from "../../utils/types";
 
@@ -12,16 +11,8 @@ export default function FirearmStatus({
   firearmElement,
   setIsModalOpen,
 }: Props) {
-  const baseUrl =
-    "https://osamhack2021-cloud-web-blo-my-byzantium-v5jxjj4w2qx5-8080.githubpreview.dev/";
   const onClick = () => {
     setIsModalOpen(true);
-    axios({
-      method: "get",
-      url: `${baseUrl}/firearmAssets`,
-    }).then((res) => {
-      console.log(res);
-    });
   };
   return (
     <div className="firearm-status-container">
