@@ -51,7 +51,6 @@ async function foodQuery(affiliatedUnit) {
         
     } catch (error) {
         console.log('failed');
-        process.exit(1);
     }
 }
 
