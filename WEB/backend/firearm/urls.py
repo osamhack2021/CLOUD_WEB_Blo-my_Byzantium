@@ -18,6 +18,7 @@ urlpatterns = [
 
     path('seeFireArmAssetWithSerialNum/<int:SerialNum>', views.seeFireArmAssetWithSerialNum),
     path('querySerialNumber/<int:SerialNum>', views.querySerialNumber),
+    path('queryOwner/<str:Owner>', views.queryOwner),
     path('approve', views.approve),
     path('reject', views.reject),
 

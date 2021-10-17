@@ -186,6 +186,21 @@ def querySerialNumber(request,SerialNum):                                       
 
 
 
+@csrf_exempt
+def queryOwner(request,Owner):                                       #하이퍼레저에서 총기검색
+    
+    if request.method == 'GET':
+        REQUEST_URL = API_URL + 'queryAllFirearms'
+        request_json = requests.get(REQUEST_URL).json()
+        allresdata = request_json
+        
+        for i in range(len(allresdata)):
+            if allresdata[i]["Record"]["owner"] == Owner : 
+                return response_allow_header(JsonResponse(request_json[i], safe=False))
+        
+
+        return response_allow_header(JsonResponse({}, safe=False))
+    
 
 
 
