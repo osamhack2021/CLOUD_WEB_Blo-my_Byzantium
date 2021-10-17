@@ -100,8 +100,7 @@ async function foodQuery(affiliatedUnit) {
        
 
     } catch (error) {
-        console.error(`Failed to submit transaction: ${error}`);
-        process.exit(1);
+        return 'Failed to submit transaction';
     }
 }
 
