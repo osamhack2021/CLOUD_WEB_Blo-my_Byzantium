@@ -46,6 +46,11 @@ python manage.py runserver
     - 특정 총기의 과거 데이터 전체 조회 (하이퍼레저)
     - [0] 인덱스가 현재 상태
 
+    
+ - GET http://localhost:8000/firearm/queryOwner/군번
+
+    - 특정 군번의 과거 데이터 전체 조회 (하이퍼레저)
+
 
  - GET http://localhost:8000/firearm/approve
 
