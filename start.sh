@@ -25,7 +25,7 @@ node rest.js &
 
 cd ..
 cd ..
-cd ../WEB/backend
+cd ../WEB\(BE\):WEB
 sudo apt-get install pkg-config
 sudo apt-get install libcairo2-dev --yes
 pip install -r requirements.txt
