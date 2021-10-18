@@ -59,11 +59,12 @@ def account(request, pk):
 def login(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
+        serializer = AccountSerializer(data=data)
         search_username = data['username']
         obj = User.objects.get(username = search_username)
 
         if data['password'] == obj.password:
-            return response_allow_header(HttpResponse(status=200))
+            return response_allow_header(JsonResponse(serializer.data, status=201))
         else:
             return response_allow_header(HttpResponse(status=400))
 
