@@ -1,12 +1,8 @@
-export const login = (data: {
-  type: string;
-  username: string;
-  token: string;
-}) => {
+export const login = (data: { name: string; rank: string }) => {
   return {
     type: "LOGIN",
-    username: data.username,
-    token: data.token,
+    name: data.name,
+    rank: data.rank,
   };
 };
 

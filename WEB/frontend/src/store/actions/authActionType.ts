@@ -2,7 +2,7 @@ export type AuthActionType =
   | {
       type: "LOGIN";
       isAuth: boolean;
-      username: string;
-      accessToken: string;
+      name: string;
+      rank: string;
     }
   | { type: "LOGOUT" };

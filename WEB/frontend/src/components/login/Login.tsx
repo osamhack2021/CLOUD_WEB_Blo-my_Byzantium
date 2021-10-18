@@ -12,14 +12,16 @@ export default function Login() {
         ...loginInput,
       })
       .then((res) => {
-        setIsError(false);
+        const authInfo = {
+          name: res.data.name,
+          rank: res.data.rank,
+          isAuth: true,
+        };
         authDispatch({
           type: "LOGIN",
-          username: loginInput.username,
-          accessToken: "",
-          isAuth: true,
+          ...authInfo,
         });
-        window.localStorage.setItem("isAuth", JSON.stringify(true));
+        window.localStorage.setItem("authInfo", JSON.stringify(authInfo));
       })
       .catch(() => {
         setIsError(true);

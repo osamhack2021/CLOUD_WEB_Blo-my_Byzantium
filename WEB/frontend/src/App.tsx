@@ -15,13 +15,11 @@ function App() {
   const { isAuth } = useAuthState();
   const authDispatch = useAuthDispatch();
   useEffect(() => {
-    const loginStatus = window.localStorage.getItem("isAuth");
+    const loginStatus = window.localStorage.getItem("authInfo");
     if (loginStatus !== null) {
       authDispatch({
         type: "LOGIN",
-        username: "",
-        accessToken: "",
-        isAuth: JSON.parse(loginStatus),
+        ...JSON.parse(loginStatus),
       });
     }
   }, []);

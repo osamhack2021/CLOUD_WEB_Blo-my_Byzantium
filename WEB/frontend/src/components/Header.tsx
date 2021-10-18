@@ -2,10 +2,11 @@ import React from "react";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { useHistory } from "react-router-dom";
-import { useAuthDispatch } from "../utils/contexts/AuthContext";
+import { useAuthDispatch, useAuthState } from "../utils/contexts/AuthContext";
 import Logo from "../images/logo.png";
 
 export default function Header() {
+  const { name, rank } = useAuthState();
   const history = useHistory();
   const authDispatch = useAuthDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -48,7 +49,7 @@ export default function Header() {
         open={Boolean(anchorEl)}
         onClose={handleMenuclose}
       >
-        <div className="header-user">상병 OOO</div>
+        <div className="header-user">{`${name} ${rank}님`}</div>
         {menuItems.map((e) => (
           <MenuItem
             key={JSON.stringify(e)}

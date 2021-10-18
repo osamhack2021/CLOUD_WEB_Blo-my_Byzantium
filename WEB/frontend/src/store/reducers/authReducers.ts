@@ -2,8 +2,8 @@ import { AuthActionType } from "../actions/authActionType";
 
 export const initialState = {
   isAuth: false,
-  username: "",
-  accessToken: "",
+  name: "",
+  rank: "",
 };
 
 export const AuthReducer = (state = initialState, action: AuthActionType) => {
@@ -12,15 +12,15 @@ export const AuthReducer = (state = initialState, action: AuthActionType) => {
       return {
         ...state,
         isAuth: true,
-        username: action.username,
-        accessToken: action.accessToken,
+        name: action.name,
+        rank: action.rank,
       };
     case "LOGOUT":
       return {
         ...state,
         isAuth: false,
-        username: "",
-        accessToken: "",
+        name: "",
+        rank: "",
       };
     default:
       return state;

@@ -2,13 +2,13 @@ import React, { useReducer, Dispatch, useContext } from "react";
 import { AuthReducer, initialState } from "../../store/reducers/authReducers";
 import { AuthActionType } from "../../store/actions/authActionType";
 
-type authState = { isAuth: boolean; username: string; accessToken: string };
+type authState = { isAuth: boolean; name: string; rank: string };
 type authDispatch = Dispatch<AuthActionType>;
 
 const AuthContext = React.createContext<authState>({
   isAuth: false,
-  username: "",
-  accessToken: "",
+  name: "",
+  rank: "",
 });
 const AuthDispatchContext = React.createContext<authDispatch | null>(null);
 
