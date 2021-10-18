@@ -1,0 +1,12 @@
+[
+  '{{repeat(20, 20)}}',
+  {
+    serialNumber: '{{integer(1000000, 9999999)}}',
+    model: '{{random("K-1A", "K2C1", "K-201", "K-3")}}',
+    owner: '{{integer(10, 21)}}-{{integer(10000000, 99999999)}}',
+    affiliatedUnit: '{{random("1div11regt1bn1co1p", "1div11regt1bn1co2p", "1div11regt1bn1co3p", "1div11regt1bn1coHQ")}}',
+    misc: 'ready for deployment',
+    updateReason: 'for new recruit',
+    opType: 'CREATE'
+  }
+]

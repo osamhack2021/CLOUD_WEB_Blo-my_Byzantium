@@ -1,0 +1,182 @@
+[
+    {
+      "serialNumber": "3659878",
+      "model": "K-1A",
+      "owner": "12-47678754",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "7752664",
+      "model": "K-1A",
+      "owner": "18-29480321",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "6503816",
+      "model": "K-201",
+      "owner": "10-40636865",
+      "affiliatedUnit": "1div11regt1bn1co3p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "5676123",
+      "model": "K-201",
+      "owner": "12-43201090",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "2904989",
+      "model": "K-1A",
+      "owner": "21-35823177",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "8620336",
+      "model": "K2C1",
+      "owner": "20-66381879",
+      "affiliatedUnit": "1div11regt1bn1co2p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "1239276",
+      "model": "K-201",
+      "owner": "19-29233589",
+      "affiliatedUnit": "1div11regt1bn1co1p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "3659235",
+      "model": "K-201",
+      "owner": "20-69460066",
+      "affiliatedUnit": "1div11regt1bn1co1p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "5588709",
+      "model": "K-3",
+      "owner": "19-95947469",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "3185280",
+      "model": "K-201",
+      "owner": "13-41833236",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "7181989",
+      "model": "K-201",
+      "owner": "12-22060700",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "8250705",
+      "model": "K-201",
+      "owner": "18-93438983",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "8916748",
+      "model": "K-201",
+      "owner": "21-93110056",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "9568385",
+      "model": "K-201",
+      "owner": "19-62489263",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "5655406",
+      "model": "K-3",
+      "owner": "17-14791211",
+      "affiliatedUnit": "1div11regt1bn1co2p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "5148063",
+      "model": "K2C1",
+      "owner": "15-84659296",
+      "affiliatedUnit": "1div11regt1bn1co2p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "4206604",
+      "model": "K-201",
+      "owner": "21-98039837",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "4315189",
+      "model": "K-3",
+      "owner": "15-83367455",
+      "affiliatedUnit": "1div11regt1bn1coHQ",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "2430935",
+      "model": "K-1A",
+      "owner": "12-85172479",
+      "affiliatedUnit": "1div11regt1bn1co1p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    },
+    {
+      "serialNumber": "5662262",
+      "model": "K2C1",
+      "owner": "12-98076520",
+      "affiliatedUnit": "1div11regt1bn1co2p",
+      "misc": "ready for deployment",
+      "updateReason": "for new recruit",
+      "opType": "CREATE"
+    }
+  ]
