@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 router.route('/queryUnit/:affiliatedUnit').get((req,res)=>{
-    const affiliatedUnit = String(req.params.affiliatedUnit);
+    const affiliatedUnit = JSON.stringify(req.params.affiliatedUnit);
     console.log('---------부대 부식 정보 조회 호출---------');
     console.log(`affiliatedUnit = ${affiliatedUnit}`);
     foodChaincode.foodQuery(affiliatedUnit).then((value)=>{
@@ -15,6 +15,7 @@ router.route('/queryUnit/:affiliatedUnit').get((req,res)=>{
         res.end();
     });
 });
+
 
 router.route('/getUnitFoodHistory/:affiliatedUnit/:foodName').get((req,res)=>{
     const affiliatedUnit = String(req.params.affiliatedUnit);
