@@ -37,26 +37,30 @@ export default function FirearmUpdateModal({
 
   const onUpdate = async () =>
     owner || affiliatedUnit
-      ? api.post("/firearm/changeFirearmAttributes", {
-          opType: "changeFirearmAttributes",
-          SerialNumber: firearmElement.serialNumber,
-          Weapon_Model: firearmElement.model,
-          Owner: owner || firearmElement.owner,
-          Affiliated_Unit: affiliatedUnit || firearmElement.affiliatedUnit,
-          status: firearmElement.misc,
-          UpdateReason:
-            selectedReason === "기타" ? extraReason : selectedReason,
-        })
-      : api.post(`/firearm/${inOutSelected}`, {
-          opType: inOutSelected,
-          SerialNumber: firearmElement.serialNumber,
-          status:
-            inOutSelected === "checkoutFirearm"
-              ? inOut[0].label
-              : inOut[1].label,
-          UpdateReason:
-            selectedReason === "기타" ? extraReason : selectedReason,
-        });
+      ? api
+          .post("/firearm/changeFirearmAttributes", {
+            opType: "changeFirearmAttributes",
+            SerialNumber: firearmElement.serialNumber,
+            Weapon_Model: firearmElement.model,
+            Owner: owner || firearmElement.owner,
+            Affiliated_Unit: affiliatedUnit || firearmElement.affiliatedUnit,
+            status: firearmElement.misc,
+            UpdateReason:
+              selectedReason === "기타" ? extraReason : selectedReason,
+          })
+          .then(() => setIsModalOpen(false))
+      : api
+          .post(`/firearm/${inOutSelected}`, {
+            opType: inOutSelected,
+            SerialNumber: firearmElement.serialNumber,
+            status:
+              inOutSelected === "checkoutFirearm"
+                ? inOut[0].label
+                : inOut[1].label,
+            UpdateReason:
+              selectedReason === "기타" ? extraReason : selectedReason,
+          })
+          .then(() => setIsModalOpen(false));
   return (
     <Dialog
       onClose={() => {
