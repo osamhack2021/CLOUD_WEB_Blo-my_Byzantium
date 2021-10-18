@@ -6,7 +6,7 @@ import { FirearmAllType, FirearmListElement } from "../utils/types";
 export default function FirearmAcceptUpdatePage() {
   const [waitList, setWaitList] = useState<FirearmListElement[]>([]);
   useEffect(() => {
-    api.get<FirearmAllType[]>("firearm").then((res) => {
+    api.get<FirearmAllType[]>("/firearm/").then((res) => {
       setWaitList(
         res.data.map((e) => ({
           opType: e.opType,
