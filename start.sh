@@ -23,9 +23,9 @@ node invoke.js
 node invokefood.js
 node rest.js &
 
-cd ..
-cd ..
-cd ../WEB/backend
+
+
+cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB"("BE")"
 sudo apt-get install pkg-config
 sudo apt-get install libcairo2-dev --yes
 pip install -r requirements.txt
