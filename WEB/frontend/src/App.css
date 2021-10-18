@@ -1,0 +1,283 @@
+* {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+body {
+  margin: 0px;
+}
+
+button {
+  outline: 0;
+  border: 0;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  align-items: center;
+}
+.header > button > img {
+  height: 70px;
+}
+.header-user {
+  border: 0;
+  outline: 0;
+  padding-bottom: 0.6em;
+  padding-top: 0.6em;
+  font-size: 1em;
+  text-align: center;
+  border-bottom: 1px solid gray;
+  margin-bottom: "15px";
+}
+
+/* FirearmStatus */
+.firearm-status-container {
+  position: relative;
+}
+
+.firearm-status-content {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  height: 600px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.firearm-status-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.firearm-status-title {
+  font-weight: bold;
+  font-size: 6vmin;
+  margin-bottom: 30px;
+  color: #3d4147;
+}
+
+.firearm-status-body {
+  font-size: 4vmin;
+  font-weight: bold;
+  color: #3d4147;
+}
+
+@media all and (orientation: portrait) {
+  .firearm-status-content {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .update-button {
+    left: 0;
+    margin: auto;
+  }
+  .firearm-status-text {
+    margin: 0 auto;
+  }
+  .update-button-container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/*  UpdateButton */
+.update-button-container {
+  margin: auto 0;
+}
+.update-button,
+.update-button::after {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.update-button {
+  background: none;
+  border: 3px solid #000;
+  border-radius: 5px;
+  font-size: 4vmin;
+  font-weight: bold;
+  color: #000;
+  position: relative;
+  box-shadow: 2px 2px 2px black;
+}
+
+.update-button:active {
+  margin-top: 2px;
+  box-shadow: none;
+}
+
+.update-button:hover {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.update-button::after {
+  height: 0;
+  left: 50%;
+  top: 50%;
+  width: 0;
+}
+
+.update-button:hover:after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+/*  Timeline */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 40px 0;
+}
+
+.timeline-container::after {
+  background-color: #3262a8;
+  content: "";
+  position: absolute;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 100%;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+  position: relative;
+  margin: 10px -25px;
+  width: 50%;
+}
+
+.timeline-item-out {
+  align-self: flex-end;
+  justify-content: flex-start;
+  padding-left: 30px;
+  padding-right: 0;
+}
+
+.timeline-item-content {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 15px;
+  position: relative;
+  width: 400px;
+  max-width: 70%;
+  text-align: right;
+  border: 2px solid #023047;
+}
+
+.timeline-item-content::after {
+  content: " ";
+  border-top: 15px solid #023047;
+  border-left: 7.5px solid transparent;
+  border-right: 7.5px solid transparent;
+  position: absolute;
+  right: -15px;
+  top: calc(50% - 7.5px);
+  transform: rotate(270deg);
+  width: 0px;
+  height: 0px;
+}
+
+.timeline-item-out .timeline-item-content {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.timeline-item-out .timeline-item-content::after {
+  right: auto;
+  left: -15px;
+  transform: rotate(90deg);
+}
+
+.timeline-item-content .tag {
+  color: #023047;
+  font-size: 16px;
+  font-weight: bold;
+  top: 5px;
+  left: 5px;
+  letter-spacing: 1px;
+  padding: 5px;
+  position: absolute;
+  font-family: "Spoca Han Sans Neo";
+}
+
+.timeline-item-out .timeline-item-content .tag {
+  left: auto;
+  right: 5px;
+}
+
+.timeline-item .timeline-item-content .timeline-item-extra-data {
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 250px;
+  padding-top: 8px;
+  font-family: "Spoca Han Sans Neo";
+}
+
+.timeline-item-content time {
+  color: #023047;
+  font-size: 16px;
+  font-weight: bold;
+}
+.timeline-item-content .time {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.timeline-item-content .circle {
+  background-color: #fff;
+  border: 3px solid #3262a8;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 10px);
+  right: -40px;
+  width: 20px;
+  height: 20px;
+  z-index: 100;
+}
+
+.timeline-item-out .timeline-item-content .circle {
+  right: auto;
+  left: -40px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .timeline-item-content {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .timeline-item-content,
+  .timeline-item-out .timeline-item-content {
+    padding: 15px 10px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .timeline-item-content .tag {
+    width: calc(100% - 10px);
+    text-align: center;
+  }
+
+  .timeline-item-content time {
+    margin-top: 20px;
+  }
+}
