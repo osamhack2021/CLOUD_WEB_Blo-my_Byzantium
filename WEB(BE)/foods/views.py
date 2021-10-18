@@ -118,15 +118,16 @@ def approve(request):
             
 
         elif serializer.data[0]["opType"] == "checkinFood":                    #부식 반입 api
-            REQUEST_URL = API_URL + "checkinFood/" + serializer.data[0]["Affiliated_Unit"]
+            REQUEST_URL = API_URL + "checkinFood/" + serializer.data[0]["Affiliated_Unit"] + "/" + serializer.data[0]["FoodName"] + "/" + serializer.data[0]["Amount"]
 
             requests.get(REQUEST_URL)
+            print(REQUEST_URL)
             Foods.objects.first().delete()
             return response_allow_header(JsonResponse({'opType' : 'checkinFood'}, safe=False))
 
         
         elif serializer.data[0]["opType"] == "checkoutFood":                    #부식 불출 api
-            REQUEST_URL = API_URL + "checkoutFood/" + serializer.data[0]["Affiliated_Unit"]
+            REQUEST_URL = API_URL + "checkoutFood/" + serializer.data[0]["Affiliated_Unit"] +  "/" + serializer.data[0]["FoodName"] +  "/" + serializer.data[0]["Amount"]
 
             requests.get(REQUEST_URL)
             Foods.objects.first().delete()
