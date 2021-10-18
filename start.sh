@@ -1,5 +1,5 @@
 #!/bin/bash 
-
+cd "CLOUD(BE)"
 curl -sSL https://bit.ly/2ysbOFE | bash -s
 cd ./fabric-samples/blomy/javascript
 npm install
