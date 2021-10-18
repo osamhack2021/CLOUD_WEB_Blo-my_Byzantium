@@ -51,6 +51,7 @@ async function foodQuery(affiliatedUnit) {
         
     } catch (error) {
         console.log('failed');
+        return false
     }
 }
 

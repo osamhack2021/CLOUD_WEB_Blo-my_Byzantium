@@ -6,16 +6,34 @@ const express = require('express');
 const router = express.Router();
 
 router.route('/queryUnit/:affiliatedUnit').get((req,res)=>{
-    const affiliatedUnit = JSON.stringify(req.params.affiliatedUnit);
-    console.log('---------부대 부식 정보 조회 호출---------');
-    console.log(`affiliatedUnit = ${affiliatedUnit}`);
-    foodChaincode.foodQuery(affiliatedUnit).then((value)=>{
-        res.writeHead(200, {"Content-Type":'text/html;charset=utf8'});
-        res.write(value);
-        res.end();
-    });
+    let affiliatedUnit = JSON.stringify(req.params.affiliatedUnit);
+    for (let i in affiliatedUnit.split('"')){
+        foodChaincode.foodQuery(affiliatedUnit.split('"')[i]).then((value)=>{
+            if (value != false ){
+                console.log('---------부대 부식 정보 조회 호출---------');
+                console.log(`affiliatedUnit = ${affiliatedUnit.split('"')[i]}`);
+                res.writeHead(200, {"Content-Type":'text/html;charset=utf8'});
+                res.write(value);
+                res.end();
+            }
+        });
+    }
 });
 
+router.route('/queryUnittx/').get((req,res)=>{
+    let affiliatedUnit = JSON.stringify({1:'5사단-12여단-지원중대'});
+    for (let i in affiliatedUnit.split('"')){
+        foodChaincode.foodQuery(affiliatedUnit.split('"')[i]).then((value)=>{
+            if (value != false ){
+                console.log('---------부대 부식 정보 조회 호출---------');
+                console.log(`affiliatedUnit = ${affiliatedUnit.split('"')[i]}`);
+                res.writeHead(200, {"Content-Type":'text/html;charset=utf8'});
+                res.write(value);
+                res.end();
+            }
+        });
+    }
+});
 
 router.route('/getUnitFoodHistory/:affiliatedUnit/:foodName').get((req,res)=>{
     const affiliatedUnit = String(req.params.affiliatedUnit);
