@@ -7,21 +7,21 @@ $ curl -sSL https://bit.ly/2ysbOFE | bash -s
 ```
 2. nodejs dependency 설치
 ```bash
-$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
+$ cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/blomy/javascript"
 $ npm install
-$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/chaincode/blomy/javascript
+$ cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/chaincode/blomy/javascript"
 $ npm install
-$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/chaincode/blomyfood/javascript
+$ cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/chaincode/blomyfood/javascript"
 $ npm install
 ```
 3. 블록체인 네트워크 실행(총기 채널 자동 실행됨)
 ```bash
-$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy
+$ cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/blomy"
 $ . startFabric.sh javascript
 ```
 4. 부식 채널 실행
 ```bash
-$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/test-network
+$ cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/test-network"
 $ ./networkFood.sh up createChannel -ca -s couchdb
 $ ./networkFood.sh deployCC -ccn blomyfood -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/blomyfood/javascript
 ```
@@ -33,7 +33,7 @@ $ . networkDown.sh
 ## 네트워크모니터 툴(디버깅)
 1. 새 터미널을 열고 밑 커맨드 실행
 ```bash
-$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy
+$ cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/blomy"
 $ ./networkMonitor.sh
 ```
 ![image](https://user-images.githubusercontent.com/10104871/136693813-0f116e05-3dba-4a31-94d1-fab2bee221a5.png)
@@ -42,7 +42,7 @@ $ ./networkMonitor.sh
 ## method 사용
 자바스크립트 실행파일 위치
 ```bash
-$ cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
+$ cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/blomy/javascript"
 ```
 admin 생성 후 app유저 생성
 ```bash
@@ -62,7 +62,7 @@ $ node queryfood.js
 ## REST API 사용
 ### rest api 서버 실행
 ```
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/blomy/javascript
+cd "/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/blomy/javascript"
 ```
 ```
 node rest.js
