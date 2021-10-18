@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable dot-notation */
 import React from "react";
 
 type timelineItemType = {
@@ -5,6 +7,7 @@ type timelineItemType = {
   date: string;
   time: string;
   out: boolean;
+  opType: string;
   extraData: string[];
 };
 
@@ -23,7 +26,13 @@ function TimelineItem({ item }: TimelineItemProps) {
       }
     >
       <div className="timeline-item-content">
-        <span className="tag">{item.status}</span>
+        <span className="tag">
+          {item.opType === "CHECKIN"
+            ? "입고"
+            : item.opType === "CHECKOUT"
+            ? "불출"
+            : "지급대기"}
+        </span>
         <time>{item.date}</time>
         <time className="time">{item.time}</time>
         <div
