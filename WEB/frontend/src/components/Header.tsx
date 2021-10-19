@@ -59,6 +59,9 @@ export default function Header() {
               e.onClick();
               setAnchorEl(null);
             }}
+            style={{
+              paddingTop: "12px",
+            }}
           >
             {e.label}
           </MenuItem>
