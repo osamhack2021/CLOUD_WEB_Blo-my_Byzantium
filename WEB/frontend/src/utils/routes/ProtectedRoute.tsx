@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
+import { useAuthDispatch } from "../contexts/AuthContext";
 
 export type ProtectedRouteProps = {
   isAuth: boolean;
@@ -9,7 +10,8 @@ export default function ProtectedRoute({
   isAuth,
   ...routeProps
 }: ProtectedRouteProps) {
-  return isAuth ? (
+  const loginStatus = window.localStorage.getItem("authInfo");
+  return isAuth || loginStatus ? (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <Route {...routeProps} />
   ) : (
