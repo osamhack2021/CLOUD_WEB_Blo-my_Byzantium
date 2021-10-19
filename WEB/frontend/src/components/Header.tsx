@@ -41,15 +41,17 @@ export default function Header() {
       <IconButton type="button" onClick={handleLogoButtonClick}>
         <img src={Logo} alt="Logo" />
       </IconButton>
-      <IconButton type="button" onClick={handleMenuClick}>
-        <PersonOutlineIcon />
-      </IconButton>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div className="header-user">{`${name} ${rank}님`}</div>
+        <IconButton type="button" onClick={handleMenuClick}>
+          <PersonOutlineIcon />
+        </IconButton>
+      </div>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuclose}
       >
-        <div className="header-user">{`${name} ${rank}님`}</div>
         {menuItems.map((e) => (
           <MenuItem
             key={JSON.stringify(e)}
