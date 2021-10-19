@@ -21,13 +21,13 @@ class createFirearmSerializer(serializers.ModelSerializer):                     
 class checkoutFirearmSerializer(serializers.ModelSerializer):                           #총기 불출
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber', 'status','UpdateReason']
+        fields = ['opType','SerialNumber' , 'Owner' ,'status', 'UpdateReason']
 
 
 class checkinFirearmSerializer(serializers.ModelSerializer):                            #총기 반납
     class Meta:
         model = Firearm
-        fields = ['opType','SerialNumber', 'status','UpdateReason']
+        fields = ['opType','SerialNumber','Owner', 'status', 'UpdateReason']
 
 
 class changeFirearmAttributesSerializer(serializers.ModelSerializer):                   #총기 상태 변경

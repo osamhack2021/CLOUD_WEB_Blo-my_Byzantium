@@ -56,20 +56,51 @@ def checkoutFirearm(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = checkoutFirearmSerializer(data=data)
+
+
         if serializer.is_valid():
             serializer.save()
-            return response_allow_header(JsonResponse(serializer.data, status=201))
+            
+            REQUEST_URL = API_URL + "query/" + str(data["SerialNumber"])
+            req = requests.get(REQUEST_URL).json()
+            owner = "null"
+
+            for i in range(len(req)):
+                if req[i]["Value"]["owner"] != "null" : 
+                    owner = req[i]["Value"]["owner"]
+                    
+            data["Owner"] = owner
+            print(data)
+
+            return response_allow_header(JsonResponse(data, status=201))
         return response_allow_header(JsonResponse(serializer.errors, status=400))
+
 
 @csrf_exempt
 def checkinFirearm(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = checkinFirearmSerializer(data=data)
+
+
         if serializer.is_valid():
             serializer.save()
-            return response_allow_header(JsonResponse(serializer.data, status=201))
+            
+            REQUEST_URL = API_URL + "query/" + str(data["SerialNumber"])
+            req = requests.get(REQUEST_URL).json()
+            owner = "null"
+
+            for i in range(len(req)):
+                if req[i]["Value"]["owner"] != "null" : 
+                    owner = req[i]["Value"]["owner"]
+                    
+            data["Owner"] = owner
+            print(data)
+
+            return response_allow_header(JsonResponse(data, status=201))
         return response_allow_header(JsonResponse(serializer.errors, status=400))
+
+
 
 @csrf_exempt
 def changeFirearmAttributes(request):
