@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Divider from "@mui/material/Divider";
 import FirearmList from "../components/firearms/FirearmList";
-import { FirearmListElement, foodDataSearchType } from "../utils/types";
+import { FirearmListElement } from "../utils/types";
 import FoodDataSearch from "../components/fooddata/FoodDataSearch";
 import FoodDataStatus from "../components/fooddata/FoodDataStatus";
 import FoodDataUpdateModal from "../components/fooddata/FoodDataUpdateModal";
