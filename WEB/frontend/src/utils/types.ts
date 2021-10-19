@@ -36,3 +36,16 @@ export type FirearmAllType = {
   opType: string;
   status: string;
 };
+
+export type FoodDataHistoryType = {
+  opType: string;
+  foods: { name: string; amount: string }[];
+};
+
+export type FoodDataSearchType = {
+  affiliatedUnit: string;
+  docType: string;
+  foods: { name: string; amount: string }[];
+  lastUpdated: string;
+  opType: string;
+};

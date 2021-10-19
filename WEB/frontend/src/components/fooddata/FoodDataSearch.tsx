@@ -1,11 +1,13 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { FoodDataHistoryType } from "../../utils/types";
 import SearchBar from "./FoodDataSearchBar";
 
 type Props = {
-  setItems: Dispatch<SetStateAction<never[]>>;
+  setItems: Dispatch<SetStateAction<FoodDataHistoryType>>;
+  setAffiliatedUnit: Dispatch<SetStateAction<string>>;
 };
 
-export default function FoodDataSearch({ setItems }: Props) {
+export default function FoodDataSearch({ setItems, setAffiliatedUnit }: Props) {
   return (
     <div style={{ width: "60%", margin: "0 auto", paddingTop: "1em" }}>
       <div
@@ -13,7 +15,11 @@ export default function FoodDataSearch({ setItems }: Props) {
       >
         부식 작전 검색
       </div>
-      <SearchBar placeholder="부대를 입력해주시오" setItems={setItems} />
+      <SearchBar
+        placeholder="부대를 입력해주시오"
+        setItems={setItems}
+        setAffiliatedUnit={setAffiliatedUnit}
+      />
     </div>
   );
 }

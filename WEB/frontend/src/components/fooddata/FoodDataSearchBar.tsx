@@ -4,14 +4,21 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import api from "../../utils/api";
+import { FoodDataHistoryType, FoodDataSearchType } from "../../utils/types";
 
 type Props = {
   children?: React.ReactChild | React.ReactChild[];
   placeholder: string;
-  setItems: Dispatch<SetStateAction<never[]>>;
+  setItems: Dispatch<SetStateAction<FoodDataHistoryType>>;
+  setAffiliatedUnit: Dispatch<SetStateAction<string>>;
 };
 
-export default function SearchBar({ children, placeholder, setItems }: Props) {
+export default function SearchBar({
+  children,
+  placeholder,
+  setItems,
+  setAffiliatedUnit,
+}: Props) {
   const [texts, setTexts] = useState("");
   return (
     <>
@@ -36,8 +43,12 @@ export default function SearchBar({ children, placeholder, setItems }: Props) {
           onClick={(e) => {
             e.preventDefault();
             api
-              .get(`/foods/GetUnitHistory/${texts}`)
-              .then((res) => console.log(res));
+              .get<FoodDataSearchType>(`/foods/GetUnitHistory/${texts}`)
+              .then((res) => {
+                console.log(res);
+                setAffiliatedUnit(res.data.affiliatedUnit);
+                setItems({ foods: res.data.foods, opType: res.data.opType });
+              });
           }}
         >
           <SearchIcon />
