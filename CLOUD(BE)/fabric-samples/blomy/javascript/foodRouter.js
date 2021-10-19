@@ -81,6 +81,18 @@ router.route('/GetUnitHistory/:affiliatedUnit').get((req,res)=>{
     });
 });
 
+router.route('/getUnitFoodHistory/:affiliatedUnit/:foodname').get((req,res)=>{
+    const affiliatedUnit = String(req.params.affiliatedUnit);
+    console.log('--------부대 음식 거래 정보 조회 호출---------');
+    console.log(`affiliatedUnit = ${affiliatedUnit}`)
+    console.log(`foodName = ${foodName}`);
+    foodChaincode.modifyFoodTransaction(['getUnitFoodHistory',affiliatedUnit,foodName]).then((value)=>{
+        res.writeHead(200,{"Content-Type":'text/html;charset=utf8'});
+        res.write(value);
+        res.end();
+    });
+});
+
 router.route('/queryAllUnits').get((req,res)=>{
     console.log('-------모든 부대 거래 정보 조회 호출-------');
     foodChaincode.modifyFoodTransaction(['queryAllUnits']).then((value)=>{
