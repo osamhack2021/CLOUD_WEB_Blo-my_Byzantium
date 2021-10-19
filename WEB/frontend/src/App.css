@@ -92,7 +92,6 @@ button {
   display: flex;
   flex-direction: column;
   margin: 20px 0;
-  background-color: white;
 }
 .update-button-container {
   display: flex;
