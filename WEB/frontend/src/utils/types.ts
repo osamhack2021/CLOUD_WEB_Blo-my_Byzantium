@@ -10,11 +10,6 @@ export interface FirearmListElement {
   opType: string;
 }
 
-export type foodDataSearchType = {
-  corps: string;
-  food: string;
-};
-
 export type FirearmQueryType = {
   Timestamp: string;
   TxId: string;
@@ -40,4 +35,17 @@ export type FirearmAllType = {
   Weapon_Model: string;
   opType: string;
   status: string;
+};
+
+export type FoodDataHistoryType = {
+  opType: string;
+  foods: { name: string; amount: string }[];
+};
+
+export type FoodDataSearchType = {
+  affiliatedUnit: string;
+  docType: string;
+  foods: { name: string; amount: string }[];
+  lastUpdated: string;
+  opType: string;
 };
