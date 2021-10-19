@@ -154,6 +154,10 @@ example response ( query/1234567 )
 
 부대 거래 내역 조회 
 
+### ● http://localhost:9090/getUnitFoodHistory/:affiliatedUnit/:foodname
+
+부대 음식 거래 내역 조회
+
 ### ● http://localhost:9090/queryAllUnits
 
 모든 부대 거래 내역 조회
