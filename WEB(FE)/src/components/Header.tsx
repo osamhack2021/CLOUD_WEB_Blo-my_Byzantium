@@ -32,7 +32,7 @@ export default function Header() {
         authDispatch({
           type: "LOGOUT",
         });
-        window.localStorage.removeItem("isAuth");
+        window.localStorage.removeItem("authInfo");
       },
     },
   ];
