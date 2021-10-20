@@ -48,7 +48,7 @@ services:
     volumes:
       - ./config.json:/opt/explorer/app/platform/fabric/config.json
       - ./connection-profile:/opt/explorer/app/platform/fabric/connection-profile
-      - /workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(BE)/fabric-samples/test-network/organizations:/tmp/crypto
+      - /workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric-samples/test-network/organizations:/tmp/crypto
       - walletstore:/opt/explorer/wallet
     ports:
       - 8080:8080
