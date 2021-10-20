@@ -8,9 +8,9 @@ var tempdirname = dirname.replace("/workspaces/CLOUD_WEB_Blo-my_Byzantium/fabric
 
 
 // change explorer profile config with new key filename
-let file = editJsonFile("/workspaces/CLOUD_WEB_Blo-my_Byzantium/explorer/connection-profile/test-network.json");
+let file = editJsonFile("/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(FE)/explorer/connection-profile/test-network.json");
 file.set("organizations.Org1MSP.adminPrivateKey.path", tempdirname+filename);
 file.save();
-file = editJsonFile("/workspaces/CLOUD_WEB_Blo-my_Byzantium/explorer/connection-profile/test-network-copy.json", {
+file = editJsonFile("/workspaces/CLOUD_WEB_Blo-my_Byzantium/CLOUD(FE)/explorer/connection-profile/test-network-copy.json", {
     autosave: true
 });
