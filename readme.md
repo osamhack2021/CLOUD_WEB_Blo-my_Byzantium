@@ -12,9 +12,9 @@
 	<a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/osamhack2021/CLOUD_WEB_Blo-my_Byzantium"></a>
   </p>
 <p align="center">
-  <a href="https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/blob/master/doc/presentation/blo-my_presentation.pdf"><img src = "./doc/images/button/presentation.png" width=250px></a><br>
+  <a href="https://raw.githubusercontent.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/master/doc/presentation/blo-my_presentation.pdf"><img src = "./doc/images/button/presentation.png" width=250px></a><br>
   <a href="https://donggni0712.gitbook.io/blo-my/"><img src = "./doc/images/button/team_blog.png" width=250px></a><br>
-  <a href="https://www.youtube.com/"><img src = "./doc/images/button/demo_video.png" width=250px></a>
+  <a href="https://youtu.be/8N4L4gwqqEI"><img src = "./doc/images/button/demo_video.png" width=250px></a>
 </p>
 
 ## **무결성과 책임 추적성** :closed_lock_with_key:
@@ -25,24 +25,45 @@
  또, Blo-my의 발전은 다양한 컨트리뷰터들에 의해서 이루어지므로 별도의 국방 예산 없이 발전이 이루어질 수 있다.
 
 # :books: 목차
-- [:book:**프로젝트 소개**](#book-프로젝트-소개)
+- [Blo-my](#blo-my)
+  - [**무결성과 책임 추적성** :closed_lock_with_key:](#무결성과-책임-추적성-closed_lock_with_key)
+  - [**오픈소스 프로젝트** :open_file_folder:](#오픈소스-프로젝트-open_file_folder)
+- [:books: 목차](#books-목차)
+- [:book: 프로젝트 소개](#book-프로젝트-소개)
   - [프로젝트 개요](#프로젝트-개요)
   - [프로젝트 요약](#프로젝트-요약)
-- [:electric_plug:**컴퓨터 구성 / 필수 조건 안내**](#electric_plug-컴퓨터-구성--필수-조건-안내-prerequisites)
-- [:wrench:**사용 기술**](#wrench-사용-기술-technique)
-  - [기술 스택](#기술-스택-technique-used)
+- [:electric_plug: 컴퓨터 구성 / 필수 조건 안내 (Prerequisites)](#electric_plug-컴퓨터-구성--필수-조건-안내-prerequisites)
+- [:wrench: 사용 기술 (Technique)](#wrench-사용-기술-technique)
+  - [기술 스택 (Technique Used)](#기술-스택-technique-used)
+    - [**Infra**](#infra)
+    - [**Server**](#server)
+    - [**DB**](#db)
+    - [**Back-end**](#back-end)
+    - [**front-end**](#front-end)
   - [Hyperledger-fabric](#hyperledger-fabric)
   - [데이터 생성 방식](#데이터-생성-방식)
-- [:floppy_disk:**설치 & 시작 안내**](#floppy_disk-설치--시작-안내-installation-process--getting-start)
+- [:floppy_disk: 설치 & 시작 안내 (Installation Process & Getting Start)](#floppy_disk-설치--시작-안내-installation-process--getting-start)
+    - [Git Clone](#git-clone)
+  - [:pushpin:요약](#pushpin요약)
   - [Hyperledgher-fabric 서버 실행](#hyperledgher-fabric-서버-실행)
   - [Back-end 서버 실행](#back-end-서버-실행)
   - [Front-end 실행](#front-end-실행)
-- [:computer:**제공 기능**](#computer-제공-기능-service)
-  - [총기 수불](#총기-수불gun)
-  - [부식 작전](#부식-작전rice)
-  - [Hyperledgher-fabric 서버 개발자 기능](#hyperledgher-fabric-서버-개발자-기능hammer)
-- [:family:**팀 정보**](#family-팀-정보-team-information)
-- [:mag:**저작권 및 사용권 정보**](#mag-저작권-및-사용권-정보-copyleft--end-user-license)
+- [:computer: 제공 기능 (Service)](#computer-제공-기능-service)
+  - [총기 수불:gun:](#총기-수불gun)
+  - [부식 작전:rice:](#부식-작전rice)
+  - [데이터 승인:black_nib:](#데이터-승인black_nib)
+  - [Hyperledgher-fabric 서버 개발자 기능:hammer:](#hyperledgher-fabric-서버-개발자-기능hammer)
+- [:octocat: GitHub 폴더 내용](#octocat-github-폴더-내용)
+  - [CLOUD(BE)](#cloudbe)
+  - [CLODE(FE)](#clodefe)
+  - [WEB(BE)](#webbe)
+  - [WEB(FE)](#webfe)
+  - [doc](#doc)
+- [:family: 팀 정보 (Team Information)](#family-팀-정보-team-information)
+- [:mag: 저작권 및 사용권 정보 (Copyleft / End User License)](#mag-저작권-및-사용권-정보-copyleft--end-user-license)
+  - [License](#license)
+  - [이모티콘 출처](#이모티콘-출처)
+  - [참조](#참조)
 
 # :book: 프로젝트 소개
 ## 프로젝트 개요  
@@ -210,10 +231,22 @@ yarn start
 |▲간부 권한의 데이터 승인 페이지|
 
 ## Hyperledgher-fabric 서버 개발자 기능:hammer:
-[▶개발자 기능 사용법 자세히 보기](https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/tree/master/fabric-samples#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EB%AA%A8%EB%8B%88%ED%84%B0-%ED%88%B4%EB%94%94%EB%B2%84%EA%B9%85)
+[▶개발자 기능 사용법 자세히 보기](https://github.com/osamhack2021/CLOUD_WEB_Blo-my_Byzantium/tree/master/CLOUD(BE)#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EB%AA%A8%EB%8B%88%ED%84%B0-%ED%88%B4%EB%94%94%EB%B2%84%EA%B9%85)
 |<img src = "./doc/images/development/network_monitoring.png" width=300px>|<img src = "./doc/images/development/explorer.png" width=300px>|<img src = "./doc/images/development/couchDB.png" width=300px>|
 |--|--|--|
 |▲네트워크 모니터링|▲Hyperledger explorer|▲CouchDB 데이터 확인|
+
+# :octocat: GitHub 폴더 내용
+## CLOUD(BE)
+hyperledger-fabric을 이용한 블록체인 네트워크
+## CLODE(FE)
+hyperledger-fabric explorer
+## WEB(BE)
+WEB back-end
+## WEB(FE)
+WEB front-end
+## doc
+readme.md 작성에 필요한 이미지 파일들과 발표자료
 
 
 # :family: 팀 정보 (Team Information)

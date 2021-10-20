@@ -26,12 +26,20 @@ node rest.js &
 
 
 
-
-cd /workspaces/CLOUD_WEB_Blo-my_Byzantium/WEB"("BE")"
+cd ..
+cd ..
+cd..
+cd ../WEB"("BE")"
 
 sudo apt-get install pkg-config
 sudo apt-get install libcairo2-dev --yes
 pip install -r requirements.txt
 pip3 install requests --force-reinstall
 pip install lxml
-python manage.py runserver
+python manage.py runserver &
+
+
+cd ../WEB"("FE")"
+yarn
+yarn build
+yarn start
